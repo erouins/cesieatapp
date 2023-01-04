@@ -31,13 +31,6 @@ const routes = [
     ]
   },
   {
-    path:'/admin',
-    name: 'admin',
-    component: AdminLayout,
-    children : [
-    ]
-  },
-  {
     path: '/users',
     name: 'users',
     component: UserLayout,
