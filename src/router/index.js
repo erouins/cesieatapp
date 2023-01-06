@@ -5,7 +5,6 @@ import Home from '@/views/public/Home.vue'
 import UserHome from '@/views/consumers/Home.vue'
 import UserLayout from '@/views/consumers/Layout.vue'
 
-import { authGuard } from '@/_helpers/auth-guard'
 const routes = [
   {
     path: '/',

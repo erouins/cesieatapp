@@ -47,7 +47,6 @@ export default {
             })
             .then((blob) => blob.json())
             .then((data) => {
-                console.log(data);
                 localStorage.setItem('token', data.access_token);
                 this.$router.push('/users/' + data.user_id[0]);
                 });
