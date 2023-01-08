@@ -3,7 +3,8 @@
 <router-link to="/">Home</router-link> 
 <router-view/>
  -->
-<h1><img alt="Vue logo" src="@/assets/logo.png"/></h1>
+<!-- <h1><img alt="Vue logo" src="@/assets/logo.png"/></h1> -->
+<!-- faire le header et le footer -->
 
 <router-view/>
 </template>
