@@ -41,9 +41,9 @@ export default {
                 password: '',
                 accountType: '',
                 typeOptions: [
-                    { key: 'customer', value: 'Customer' },
-                    { key: 'restaurant', value: 'Restaurant' },
-                    { key: 'deliverer', value: 'Deliverer' }
+                    { key: 'customer', value: 'customer' },
+                    { key: 'restaurant', value: 'restaurant' },
+                    { key: 'deliverer', value: 'deliverer' }
                 ],
             }
         }
@@ -59,14 +59,12 @@ export default {
                 method: 'POST',
                 body: JSON.stringify(this.user)
             })
-            
             .then((blob) => blob.json())
             .then((data) => {
-                console.log(data);
-                localStorage.setItem('token', data.access_token);
-                localStorage.setItem('token', data.user_id);
-                localStorage.setItem('token', data.account_type);
-                this.$router.push('/users/' + data.user_id[0]);
+                console.log("AAAAAAAAA");
+                this.$router.push('/auth/login');
+            }).catch((err) => {
+                console.log(err);
             });
         },
 

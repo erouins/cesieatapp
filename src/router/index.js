@@ -68,6 +68,28 @@ const routes = [
     ]
   },
   {
+    path: '/deliverers',
+    name: 'deliverers',
+    component: DelivererHome,
+    beforeEnter: (to, from) => {
+      console.log(localStorage);
+      if(localStorage.getItem('accountType') == 'deliverer') return true;
+      return false
+    },
+  },
+  {
+    path: '/users',
+    name: 'users',
+    component: UserLayout,
+    children: [
+      {
+        path: ':id(\\d+)',
+        props: true,
+        component: UserHome
+      }
+    ]
+  },
+  {
     path: "/:pathMatch(.*)*", redirect :"/home", component: Home
   }
   
