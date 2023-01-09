@@ -2,15 +2,53 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Register from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
-import UserHome from '@/views/consumers/Home.vue'
-import UserLayout from '@/views/consumers/Layout.vue'
-import DelivererHome from '@/views/deliverers/Home.vue'
+import Layout from '@/views/public/Layout.vue'
+import Customer from '@/views/customers/Home.vue'
+import Deliverer from '@/views/deliverers/Home.vue'
+import Restaurant from '@/views/restaurants/Home.vue'
 
 const routes = [
   {
     path: '/',
     name: 'root',
     component: Home
+  },
+  {
+    path: '/customers',
+    name: 'customers',
+    component: Layout,
+    children: [
+      { 
+        path: 'home',
+        name: 'customerHome',
+        component: Customer,
+      },
+    ]
+    
+  },
+  {
+    path: '/deliverers',
+    name: 'deliverers',
+    component: Layout,
+    children: [
+      { 
+        path: 'home',
+        name: 'delivererHome',
+        component: Deliverer
+      },
+    ]
+  },
+  {
+    path: '/restaurants',
+    name: 'restaurants',
+    component: Layout,
+    children: [
+      { 
+        path: 'home',
+        name: 'restaurantHome',
+        component: Restaurant
+      },
+    ]
   },
   {
     path: '/auth',

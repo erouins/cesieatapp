@@ -1,5 +1,5 @@
 <template>
-    <h1>Test OK !</h1>
+    <h1>Deliverer</h1>
 </template>
 
 <script>
