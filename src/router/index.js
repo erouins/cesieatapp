@@ -4,6 +4,7 @@ import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import UserHome from '@/views/consumers/Home.vue'
 import UserLayout from '@/views/consumers/Layout.vue'
+import DelivererHome from '@/views/deliverers/Home.vue'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
         component : Register,
       },
     ]
+  },
+  {
+    path: '/deliverers',
+    name: 'deliverers',
+    component: DelivererHome
   },
   {
     path: '/users',
