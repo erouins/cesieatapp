@@ -81,19 +81,6 @@ const routes = [
       },
     ]
   },
-  
-  {
-    path: '/users',
-    name: 'users',
-    component: UserLayout,
-    children: [
-      {
-        path: ':id(\\d+)',
-        props: true,
-        component: UserHome
-      }
-    ]
-  },
   {
     path: "/:pathMatch(.*)*", redirect :"/home", component: Home
   }
