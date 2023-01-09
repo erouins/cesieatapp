@@ -17,6 +17,11 @@ const routes = [
     path: '/customers',
     name: 'customers',
     component: Layout,
+    beforeEnter: (to, from) => {
+      console.log(localStorage);
+      if(localStorage.getItem('accountType') == 'customer') return true;
+      return false
+    },
     children: [
       { 
         path: 'home',
@@ -47,6 +52,11 @@ const routes = [
     path: '/restaurants',
     name: 'restaurants',
     component: Layout,
+    beforeEnter: (to, from) => {
+      console.log(localStorage);
+      if(localStorage.getItem('accountType') == 'restaurant') return true;
+      return false
+    },
     children: [
       { 
         path: 'home',
@@ -63,7 +73,6 @@ const routes = [
         path : "login",
         name : "login",
         component : Login,
-        
       },
       {
         path : "register",
