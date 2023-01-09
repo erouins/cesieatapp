@@ -36,10 +36,13 @@ export default {
             })
             .then((blob) => blob.json())
             .then((data) => {
-                localStorage.setItem('token', data.access_token);
-                localStorage.setItem('token', data.account_type);
-                localStorage.setItem('user_id', data.user_id);
-                this.$router.push('/users/' + data.user_id[0]);
+                localStorage.clear();
+                localStorage.setItem('token', data.accessToken);
+                localStorage.setItem('userId', data.userId);
+                localStorage.setItem('accountType', data.accountType);
+                console.log(data);
+                console.log(localStorage.getItem("accountType"));
+                this.$router.push('/users/' + data.userId);
                 });
         }
     }

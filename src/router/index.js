@@ -32,7 +32,12 @@ const routes = [
   {
     path: '/deliverers',
     name: 'deliverers',
-    component: DelivererHome
+    component: DelivererHome,
+    beforeEnter: (to, from) => {
+      console.log(localStorage);
+      if(localStorage.getItem('accountType') == 'deliverer') return true;
+      return false
+    },
   },
   {
     path: '/users',
