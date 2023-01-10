@@ -4,6 +4,6 @@
 
 <script>
 export default {
-    name: 'restaurantHome'
+    name: 'RestaurantHome'
 }
 </script>

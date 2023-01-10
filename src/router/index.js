@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Register from '@/views/auth/Register.vue'
+import AuthRegister from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import Layout from '@/views/public/Layout.vue'
-import Customer from '@/views/customers/Home.vue'
+import Client from '@/views/clients/Home.vue'
+import ClientRegister from '@/views/clients/Register.vue'
 import Deliverer from '@/views/deliverers/Home.vue'
+import DelivererRegister from '@/views/deliverers/Register.vue'
 import Restaurant from '@/views/restaurants/Home.vue'
+import RestaurantRegister from '@/views/restaurants/Register.vue'
 
 const routes = [
   {
@@ -14,22 +17,26 @@ const routes = [
     component: Home
   },
   {
-    path: '/customers',
-    name: 'customers',
+    path: '/clients',
+    name: 'clients',
     component: Layout,
     beforeEnter: (to, from) => {
       console.log(localStorage);
-      if(localStorage.getItem('accountType') == 'customer') return true;
+      if(localStorage.getItem('accountType') == 'client') return true;
       return false
     },
     children: [
       { 
         path: 'home',
-        name: 'customerHome',
-        component: Customer,
+        name: 'ClientHome',
+        component: Client,
+      },
+      { 
+        path: 'register',
+        name: 'clientRegister',
+        component: ClientRegister
       },
     ]
-    
   },
   {
     path: '/deliverers',
@@ -45,6 +52,11 @@ const routes = [
         path: 'home',
         name: 'delivererHome',
         component: Deliverer
+      },
+      { 
+        path: 'register',
+        name: 'delivererRegister',
+        component: DelivererRegister
       },
     ]
   },
@@ -63,6 +75,11 @@ const routes = [
         name: 'restaurantHome',
         component: Restaurant
       },
+      { 
+        path: 'register',
+        name: 'restaurantRegister',
+        component: RestaurantRegister
+      },
     ]
   },
   {
@@ -77,7 +94,7 @@ const routes = [
       {
         path : "register",
         name : "register",
-        component : Register,
+        component : AuthRegister,
       },
     ]
   },

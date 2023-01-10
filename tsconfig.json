@@ -1,0 +1,25 @@
+{
+    "include": [
+      "src/**/*"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],},
+    "compileOnSave": true,
+    "compilerOptions": {
+      "outDir": "build",
+      "lib": [
+        "esnext",
+        "dom",
+        "dom.iterable",
+        "scripthost"
+      ],
+      "module": "es2015",
+      "moduleResolution": "node",
+      "target": "es5",
+      "sourceMap": true,
+      "allowJs": true
+    },
+    "exclude": ["node_modules", "build/**/*"]
+}
