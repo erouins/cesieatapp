@@ -4,22 +4,22 @@
             <div class="card-title">Sign in</div>
             <form @submit.prevent="register">
                 <div class="input-label"><label for="user_firstname">First name</label></div>
-                <input type="text" id="user_firstname" v-model="user.firstName"
+                <input class="input-field-auth" type="text" id="user_firstname" v-model="user.firstName"
                     title="The first name must contains only letters" pattern="^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\s]*[A-Za-zÀ-ÿ]$"
                     required autocomplete />
                 <div class="input-label"><label for="user_lastname">Last name</label></div>
-                <input type="text" id="user_lastname" v-model="user.lastName"
+                <input class="input-field-auth" type="text" id="user_lastname" v-model="user.lastName"
                     title="The first name must contains only letters" pattern="^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\s]*[A-Za-zÀ-ÿ]$"
                     required autocomplete />
                 <div class="input-label"><label for="user_mail">E-mail</label></div>
-                <input type="text" id="user_mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$"
+                <input class="input-field-auth" type="text" id="user_mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$"
                     title="Enter a valid email" v-model="user.email" required autocomplete />
                 <div class="input-label"><label for="new_password">Password</label></div>
-                <input type="password" id="new_password" v-model="user.password" @input="inputPassword" required />
+                <input class="input-field-auth" type="password" id="new_password" v-model="user.password" @input="inputPassword" required />
                 <div class="input-label"><label for="confirm_password">Confirm password</label></div>
-                <input type="password" id="confirm_password" v-model="user.confirmPassword" @input="inputConfirmPassword" required />
+                <input class="input-field-auth" type="password" id="confirm_password" v-model="user.confirmPassword" @input="inputConfirmPassword" required />
                 <div class="input-label"><label for="user_type">Select the type of your account</label></div>
-                <select id="user_type" v-model="user.accountType" required>
+                <select class="input-select-auth" id="user_type" v-model="user.accountType" required>
                     <option v-for="option in user.typeOptions" v-bind:value="option.key" v-bind:key="option.key">{{ option.value }}</option>
                 </select>
                 <button class="submit-button" type="submit" >register</button>
