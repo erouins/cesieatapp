@@ -2,12 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AuthRegister from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
-import Layout from '@/views/public/Layout.vue'
-import Client from '@/views/clients/Home.vue'
+import ClientMain from '@/views/clients/Main.vue'
 import ClientRegister from '@/views/clients/Register.vue'
-import Deliverer from '@/views/deliverers/Home.vue'
+import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
-import Restaurant from '@/views/restaurants/Home.vue'
+import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
 
 const routes = [
@@ -19,7 +18,6 @@ const routes = [
   {
     path: '/clients',
     name: 'clients',
-    component: Layout,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'client') return true;
@@ -27,9 +25,9 @@ const routes = [
     },
     children: [
       { 
-        path: 'home',
-        name: 'ClientHome',
-        component: Client,
+        path: 'main',
+        name: 'ClientMain',
+        component: ClientMain,
       },
       { 
         path: 'register',
@@ -41,7 +39,6 @@ const routes = [
   {
     path: '/deliverers',
     name: 'deliverers',
-    component: Layout,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'deliverer') return true;
@@ -49,9 +46,9 @@ const routes = [
     },
     children: [
       { 
-        path: 'home',
-        name: 'delivererHome',
-        component: Deliverer
+        path: 'main',
+        name: 'delivererMain',
+        component: DelivererMain
       },
       { 
         path: 'register',
@@ -63,7 +60,6 @@ const routes = [
   {
     path: '/restaurants',
     name: 'restaurants',
-    component: Layout,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'restaurant') return true;
@@ -71,9 +67,9 @@ const routes = [
     },
     children: [
       { 
-        path: 'home',
-        name: 'restaurantHome',
-        component: Restaurant
+        path: 'main',
+        name: 'restaurantMain',
+        component: RestaurantMain
       },
       { 
         path: 'register',
