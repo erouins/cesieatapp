@@ -27,10 +27,13 @@
       Don't have an account ?
       <a href="http://localhost:8080/auth/Register">sign in</a>
     </p>
-  </div>
+    </div>
 </template>
 
 <script>
+//<input type="file" ref="file" style="display: none" />
+//<button @click="$refs.file.click()">open file dialog</button>
+  
 export default {
   name: "Login",
   data() {
