@@ -3,9 +3,9 @@
         <div class="card-title">Login</div>
         <form @submit.prevent="login">
             <div class="input-label"><label>E-mail</label></div>
-            <input type="text" id="user_mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$" title="Enter a valid email"  v-model="user.email" required autocomplete/>
+            <input class="input-field-auth" type="text" id="user_mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$" title="Enter a valid email"  v-model="user.email" required autocomplete/>
             <div class="input-label"><label>Password</label></div>
-            <input type="password" id="user_password" v-model="user.password" required/>
+            <input class="input-field-auth" type="password" id="user_password" v-model="user.password" required/>
             <button class="submit-button" type="submit" >connect</button>
         </form>
         <p>Don't have an account ? <a href="http://localhost:8080/auth/Register">sign in</a></p>
@@ -53,39 +53,6 @@ export default {
         font-family: 'Roboto', 'Open Sans', Arial, Helvetica, sans-serif;
         text-align: center;
         font-size: 1em;
-    }
-
-    input {
-        width: 97%;
-        font-size: 1.2em;
-        margin-bottom: 2em;
-        border-radius: 5px;
-        border-width: 3px;
-        border-color: #93b721;
-        box-shadow: 2px 0px 5px rgb(0 0 0 / 20%);
-    }
-
-    select:focus,
-    input:focus {
-        outline: none;
-        border-color: #0091ff;
-        box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
-    }
-
-    select {
-        width: 100%;
-        font-size: 1.2em;
-        margin-bottom: 2em;
-        border-radius: 5px;
-        border-width: 3px;
-        border-color: #93b721;
-        box-shadow: 2px 0px 5px rgb(0 0 0 / 20%);
-    }
-
-    select:focus{
-        outline: none;
-        border-color: #0091ff;
-        box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
     }
 
     form {
@@ -146,6 +113,39 @@ export default {
         font-size: 2em;
         font-weight: 600;
         margin: 1em 0 1em 0;
+    }
+    
+    .input-field-auth {
+        width: 97%;
+        font-size: 1.2em;
+        margin-bottom: 2em;
+        border-radius: 5px;
+        border-width: 3px;
+        border-color: #93b721;
+        box-shadow: 2px 0px 5px rgb(0 0 0 / 20%);
+    }
+
+    .input-select-auth:focus,
+    .input-field-auth:focus {
+        outline: none;
+        border-color: #0091ff;
+        box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
+    }
+
+    .input-select-auth {
+        width: 100%;
+        font-size: 1.2em;
+        margin-bottom: 2em;
+        border-radius: 5px;
+        border-width: 3px;
+        border-color: #93b721;
+        box-shadow: 2px 0px 5px rgb(0 0 0 / 20%);
+    }
+
+    .input-select-auth:focus{
+        outline: none;
+        border-color: #0091ff;
+        box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
     }
 
     .submit-button:enabled {
