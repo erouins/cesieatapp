@@ -3,14 +3,6 @@
         <div class="card">
             <div class="card-title">Sign in</div>
             <form @submit.prevent="register">
-                <div class="input-label"><label for="user_firstname">First name</label></div>
-                <input class="input-field-auth" type="text" id="user_firstname" v-model="user.firstName"
-                    title="The first name must contains only letters" pattern="^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\s]*[A-Za-zÀ-ÿ]$"
-                    required autocomplete />
-                <div class="input-label"><label for="user_lastname">Last name</label></div>
-                <input class="input-field-auth" type="text" id="user_lastname" v-model="user.lastName"
-                    title="The first name must contains only letters" pattern="^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ\s]*[A-Za-zÀ-ÿ]$"
-                    required autocomplete />
                 <div class="input-label"><label for="user_mail">E-mail</label></div>
                 <input class="input-field-auth" type="text" id="user_mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$"
                     title="Enter a valid email" v-model="user.email" required autocomplete />
@@ -35,13 +27,11 @@ export default {
     data() {
         return {
             user: {
-                firstName: '',
-                lastName: '',
                 email: '',
                 password: '',
                 accountType: '',
                 typeOptions: [
-                    { key: 'customer', value: 'Customer' },
+                    { key: 'client', value: 'client' },
                     { key: 'restaurant', value: 'Restaurant' },
                     { key: 'deliverer', value: 'Deliverer' }
                 ],
