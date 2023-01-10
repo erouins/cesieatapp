@@ -22,7 +22,7 @@ export default {
 
     .button-sidemenu {
         height: 74px;
-        width: 64px;
+        width: 70px;
         background: none;
         border: none;
         cursor: pointer;

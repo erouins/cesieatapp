@@ -15,7 +15,7 @@ import SideBar from "@/components/SideBar.vue";
 import SideMenu from "@/views/deliverers/components/SideMenu.vue";
 
 export default {
-    name: 'DelivererHome',
+    name: 'DelivererMain',
     components: {
         MainContener,
         HeaderBar,

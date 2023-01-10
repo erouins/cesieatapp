@@ -17,8 +17,8 @@ const routes = [
     name: 'clients',
     children: [
       { 
-        path: 'home',
-        name: 'clientHome',
+        path: 'main',
+        name: 'clientMain',
         component: client,
       },
     ]
@@ -29,8 +29,8 @@ const routes = [
     name: 'deliverers',
     children: [
       { 
-        path: 'home',
-        name: 'delivererHome',
+        path: 'main',
+        name: 'delivererMain',
         component: Deliverer
       },
     ]
@@ -40,8 +40,8 @@ const routes = [
     name: 'restaurants',
     children: [
       { 
-        path: 'home',
-        name: 'restaurantHome',
+        path: 'main',
+        name: 'restaurantMain',
         component: Restaurant
       },
     ]
