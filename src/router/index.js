@@ -78,8 +78,38 @@ const routes = [
         component: RestaurantRegister
       },
       {
-        path: 'ok',
-        component: RestaurantCardContent
+        path: 'profile',
+        component: RestaurantProfile,
+        children:[
+          {
+            path:'edit',
+            component: RestaurantEditProfile
+          }
+        ]
+      },
+      {
+        path: 'cards',
+        component: RestaurantCardContent,
+        children:[
+          {
+            path:'menus',
+            component: 'MenuCard',
+            children: [
+              {
+                path: ':id/edit'
+              }
+            ]
+          },
+          {
+            path:'articles',
+            component: 'ArticleCard',
+            children: [
+              {
+                path: ':id/edit'
+              }
+            ]
+          },
+        ]
       }
     ]
   },
