@@ -61,8 +61,6 @@ export default {
           localStorage.setItem("token", data["tokens"]["access"]["token"]);
           localStorage.setItem("userId", data['user']['id']);
           localStorage.setItem("accountType", data['user']['accountType']);
-          console.log(data['user']['accountType']);
-          console.log(localStorage.getItem('accountType') ,'and',localStorage.getItem('userId'));
           fetch("http://localhost:3001/users/find", {
             headers: {
               'Accept': "application/json",
@@ -77,14 +75,10 @@ export default {
           })
             .then((blob) => blob.json())
             .then((data) => {
-              console.log('le client est -il créé ? ',data["response"]);
-              console.log('token :', localStorage.getItem('token'));
               const route = '/' + localStorage.getItem('accountType') + 's/';
               if (data["response"] == "true") {
-                console.log(route);
                 this.$router.push(route + 'main');
               }else {
-                console.log(route);
                 this.$router.push(route + 'register');
               }
             });
