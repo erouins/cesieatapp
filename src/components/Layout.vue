@@ -1,7 +1,7 @@
 <template>
     <div class="main-contener">
         <div class="main-content">
-            <router-view/>
+            <slot name="main-content"></slot>
         </div>
     </div>
     <div class='header-bar'>
@@ -46,7 +46,6 @@ export default {
         position: absolute;
         height: 100%;
         width: 100%;
-        text-align: right;
         top: 0;
     }
 

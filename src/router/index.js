@@ -8,6 +8,7 @@ import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
 import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
+import RestaurantCardContent from '@/views/restaurants/components/CardContent.vue'
 
 const routes = [
   {
@@ -76,6 +77,10 @@ const routes = [
         name: 'restaurantRegister',
         component: RestaurantRegister
       },
+      {
+        path: 'ok',
+        component: RestaurantCardContent
+      }
     ]
   },
   {
