@@ -19,6 +19,7 @@ const routes = [
   {
     path: '/clients',
     name: 'clients',
+    component: ClientMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'client') return true;
@@ -40,6 +41,7 @@ const routes = [
   {
     path: '/deliverers',
     name: 'deliverers',
+    component: DelivererMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'deliverer') return true;
@@ -58,9 +60,15 @@ const routes = [
       },
     ]
   },
+  { 
+    path: '/restaurants/register',
+    name: 'restaurantRegister',
+    component: RestaurantRegister
+  },
   {
     path: '/restaurants',
     name: 'restaurants',
+    component: RestaurantMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'restaurant') return true;
@@ -70,22 +78,7 @@ const routes = [
       { 
         path: 'main',
         name: 'restaurantMain',
-        component: RestaurantMain
-      },
-      { 
-        path: 'register',
-        name: 'restaurantRegister',
-        component: RestaurantRegister
-      },
-      {
-        path: 'profile',
-        component: RestaurantProfile,
-        children:[
-          {
-            path:'edit',
-            component: RestaurantEditProfile
-          }
-        ]
+        component: RestaurantCardContent
       },
       {
         path: 'cards',
@@ -111,6 +104,18 @@ const routes = [
           },
         ]
       }
+      
+      // {
+      //   path: 'profile',
+      //   component: RestaurantProfile,
+      //   children:[
+      //     {
+      //       path:'edit',
+      //       component: RestaurantEditProfile
+      //     }
+      //   ]
+      // },
+      
     ]
   },
   {
