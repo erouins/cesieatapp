@@ -3,6 +3,10 @@
         <img class="icon-button" src="@/assets/house-door-fill.svg"/>
         <label for="button-home">Home</label>
     </button>
+    <button id="button-delivery" class="button-sidemenu">
+        <img class="icon-button" src="@/assets/compass-fill.svg"/>
+        <label for="button-delivery">Delivery</label>
+    </button>
     <button id="button-historical" class="button-sidemenu">
         <img class="icon-button" src="@/assets/book-fill.svg"/>
         <label for="button-historical">Historical</label>

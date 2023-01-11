@@ -1,4 +1,9 @@
 <template>
+    <div class="main-contener">
+        <div class="main-content">
+            <router-view/>
+        </div>
+    </div>
     <div class='header-bar'>
         <button id="button-active-sidebar" class="button-active-sidebar">
             <img  class="icon-button" src="../assets/list.svg"/>
@@ -9,18 +14,47 @@
         </div>
         <div class="search-bar">
             <input class="input-search-bar">
+            <!-- <button clas="search-button">
+                <img class="icon-search" src="../assets/search.svg"/>
+            </button> -->
         </div>
+    </div>
+    <div class="side-bar">
+        <slot name="side-menu"></slot>
     </div>
 </template>
 
 <script>
 export default {
-    name: "HeaderBar",
+    name: "Layout",
 
 }
 </script>
 
 <style>
+    body {
+        margin: 0px;
+        max-height: 500px;
+        background-color: #eee;
+        color: #212529;
+        font-family: 'Roboto', 'Open Sans', Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-size: 1em;
+    }
+
+    .main-contener {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        text-align: right;
+        top: 0;
+    }
+
+    .main-content {
+        margin-top: 56px;
+        margin-left: 78px;
+        padding: 16px;
+    }
     .header-bar {
         width: 100%;
         height: 56px;
@@ -81,6 +115,38 @@ export default {
     
     .icon-button{
         height: 2.7em;
+    }
+    .side-bar {
+        width: 70px;
+        height: 100%;
+        margin-top: 56px;
+        position: fixed;
+        display: table-column;        
+        padding: 4px;
+        background-color: red;
+    }
+
+    .button-sidemenu {
+        height: 74px;
+        width: 70px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        border-radius: 5%;
+        padding: 5px;
+        margin-bottom: 6px;
+        transition: 0.5s;
+    }
+    
+    .footer-button {
+        bottom: 0;
+        position: fixed;
+    }
+
+    .button-sidemenu:hover {
+        background-color: blue;
+        transition: 0.5s;
     }
 
 </style>

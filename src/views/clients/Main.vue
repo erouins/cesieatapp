@@ -1,25 +1,20 @@
 <template>    
-    <MainContener/>
-    <HeaderBar/>
-    <SideBar>
+    <layout>
         <template v-slot:side-menu>
             <SideMenu/>
         </template>
-    </SideBar>
+    </layout>
+    
 </template>
 
 <script>
-import MainContener from "@/components/MainContener.vue";
-import HeaderBar from "@/components/HeaderBar.vue";
-import SideBar from "@/components/SideBar.vue";
+import Layout from "@/components/Layout.vue";
 import SideMenu from "@/views/clients/components/SideMenu.vue";
 
 export default {
     name: 'ClientMain',
     components: {
-        MainContener,
-        HeaderBar,
-        SideBar,
+        Layout,
         SideMenu
     }
 }
