@@ -21,7 +21,7 @@ const routes = [
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'client') return true;
-      return false
+      this.$router.push('auth/login');
     },
     children: [
       { 
@@ -42,7 +42,7 @@ const routes = [
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'deliverer') return true;
-      return false
+      this.$router.push('auth/login');
     },
     children: [
       { 
@@ -63,7 +63,7 @@ const routes = [
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'restaurant') return true;
-      return false
+      this.$router.push('auth/login');
     },
     children: [
       { 
@@ -95,7 +95,7 @@ const routes = [
     ]
   },
   {
-    path: "/:pathMatch(.*)*", redirect :"/home", component: Home
+    path: "/:pathMatch(.*)*", redirect :"/auth/login", component: Login
   }
   
 ]
@@ -108,7 +108,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
 router.beforeEach((to, from, next) => {
   console.log(to, from);

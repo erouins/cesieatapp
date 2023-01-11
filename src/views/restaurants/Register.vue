@@ -54,7 +54,6 @@ export default {
             })
             .then((blob) => blob.json())
             .then((data) => {
-                console.log('mhhm',data);
             }).catch((err) => {
                 console.log(err);
             });
