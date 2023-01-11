@@ -1,56 +1,41 @@
 <template>
-    <div>
-        <button>Menu</button>
-        <button>Article</button>
-    </div>
-    <div>
-        <MenuCard name="LOLrr" price = "NICE" description="OK" imgSrc="@/assets/list.svg"/>
-    </div>
-        
+  <div>
+    <button>Menu</button>
+    <button>Article</button>
+  </div>
+  <div>
+    <RestaurantMenuCard name="LOLrr" price = "NICE" articles="OK" imgSrc=""/>
+  </div>
 </template>
 
 <script>
-import MenuCard from "@/components/MenuCard.vue";
+import RestaurantMenuCard from "@/views/restaurants/components/MenuCard.vue";
+import axios from "axios";
+const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
 export default {
-    methods:{
-        getMenus(){
-            fetch("http://localhost:3001/users/find", {
-            headers: {
-              'Accept': "application/json",
-              "Content-Type": "application/json",
-              'Authorization': "Bearer " + data["tokens"]["access"]["token"],
-            },
-            method: "POST",
-            body: JSON.stringify({
-              accountType: localStorage.getItem('accountType'),
-              userId: localStorage.getItem('userId'),
-            }),
-          })
-            .then((blob) => blob.json())
-            .then((data) => {
-            });
-        },
-        getArticles(){
-            fetch("http://localhost:3001/users/find", {
-            headers: {
-              'Accept': "application/json",
-              "Content-Type": "application/json",
-              'Authorization': "Bearer " + data["tokens"]["access"]["token"],
-            },
-            method: "POST",
-            body: JSON.stringify({
-              accountType: localStorage.getItem('accountType'),
-              userId: localStorage.getItem('userId'),
-            }),
-          })
-            .then((blob) => blob.json())
-            .then((data) => {
-            });
-        }
-    },
-    name: 'CardContent',
-    components: {
-        MenuCard
+  data(){
+    return {
+      restaurantMenus:[],
+      restaurantArticles:[],
     }
-}
+  },
+  mounted() {
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((data) => {
+        this.restaurantMenus = data["data"]["menus"];
+        this.restaurantArticles = data["data"]["articles"];
+      });
+  },
+  methods: {
+  },
+  name: "RestaurantCardContent",
+  components: {
+    RestaurantMenuCard,
+  },
+};
 </script>
