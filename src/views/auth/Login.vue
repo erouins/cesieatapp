@@ -75,6 +75,8 @@ export default {
           })
             .then((blob) => blob.json())
             .then((data) => {
+              localStorage.setItem('mongoUserId', data["id"]);
+              
               const route = '/' + localStorage.getItem('accountType') + 's/';
               if (data["response"] == "true") {
                 this.$router.push(route + 'main');

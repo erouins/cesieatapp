@@ -4,7 +4,7 @@
             <SideMenu/>
         </template>
         <template v-slot:main-content>
-            <CardContent/>
+            <RestaurantProfil/>
         </template>
     </Layout>
 </template>
@@ -12,14 +12,14 @@
 <script>
 import Layout from "@/components/Layout.vue";
 import SideMenu from "@/views/restaurants/components/SideMenu.vue";
-import CardContent from "@/views/restaurants/components/CardContent.vue"
+import RestaurantProfil from "@/views/restaurants/components/RestaurantProfil.vue"
 
 export default {
     name: 'restaurantMain',
     components: {
         Layout,
         SideMenu,
-        CardContent
+        RestaurantProfil
     }
 }
 </script>
