@@ -4,7 +4,6 @@
             <SideMenu/>
         </template>
     </layout>
-    
 </template>
 
 <script>

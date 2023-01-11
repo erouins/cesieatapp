@@ -200,6 +200,7 @@ a:active {
 }
 
 .submit-button:enabled {
+  cursor: pointer;
   color: #212529;
   background-color: #93b721;
   font-size: 1.2em;

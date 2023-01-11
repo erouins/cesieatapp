@@ -1,16 +1,23 @@
 <template>
     <div class="main-contener">
         <div class="main-content">
-            <router-view/>
+            <slot name="main-content"></slot>
         </div>
     </div>
+    <div id="side-bar" class="side-bar">
+        <slot name="side-menu"></slot>
+    </div>
     <div class='header-bar'>
-        <button id="button-active-sidebar" class="button-active-sidebar">
-            <img  class="icon-button" src="../assets/list.svg"/>
-        </button>
-        <div class="logo-titre">
-            <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
-            <p>CesiEAT</p>
+        <div class='header-right-part'>
+            <div class="logo-titre">
+                <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
+                <p>CesiEAT</p>
+            </div>
+        </div>
+        <div class='header-left-part'>
+            <button id="button-active-sidebar" class="button-active-sidebar" @click="hideSideMenu">
+                <img  class="icon-button" src="../assets/list.svg"/>
+            </button>
         </div>
         <div class="search-bar">
             <input class="input-search-bar">
@@ -19,16 +26,26 @@
             </button> -->
         </div>
     </div>
-    <div class="side-bar">
-        <slot name="side-menu"></slot>
-    </div>
 </template>
 
 <script>
-export default {
-    name: "Layout",
+    export default {
+        name: "Layout",
 
-}
+        methods: {
+            hideSideMenu(){
+                let side_bar = document.querySelector("#side-bar");
+                
+                if(side_bar.style.visibility == ""){
+                    side_bar.style.visibility = "hidden"
+                } else if(side_bar.style.visibility == "hidden"){
+                    console.log("what");
+                    side_bar.style.visiblility = "visible"
+                }
+                
+            }
+        }
+    }
 </script>
 
 <style>
@@ -62,8 +79,24 @@ export default {
         display: flex;
         align-items: center;
         top: 0;
-        padding: 0 16px;
-        background-color: red;
+    }
+    .header-left-part {
+        width: 78px;
+        height: 56px;
+        position: fixed;
+        text-align: center;
+        background: #fefefe;
+    }
+    .header-right-part {
+        margin-left: 78px;
+        width: 100%;
+        height: 56px;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        top: 0;
+        background: #fefefe;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
         
     }
 
@@ -98,35 +131,37 @@ export default {
     .button-active-sidebar {
         outline: none;
         background: none;
-        margin-right: 20px;
         border: none;
         padding: 0;
         line-height: 0;
         cursor: pointer;
         border-radius: 50%;
         padding: 5px;
+        margin: 5px;
         transition: 0.5s;
     }
 
     .button-active-sidebar:hover {
-        background-color: blue;
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
         transition: 0.5s;
     }
     
     .icon-button{
-        height: 2.7em;
+        width: 36px;
+        height: 36px;
+        color : #2c3e50;
     }
     .side-bar {
         width: 70px;
         height: 100%;
-        margin-top: 56px;
         position: fixed;
         display: table-column;        
-        padding: 4px;
-        background-color: red;
+        padding: 60px 4px 4px 4px;
+        background: #fefefe;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
     }
 
-    .button-sidemenu {
+    .button-sidemenu:enabled {
         height: 74px;
         width: 70px;
         background: none;
@@ -142,10 +177,21 @@ export default {
     .footer-button {
         bottom: 0;
         position: fixed;
+        background: #fefefe;
     }
 
+    .button-active-sidebar:focus,
+    .button-sidemenu:focus,
+    .button-active-sidebar:hover,
     .button-sidemenu:hover {
-        background-color: blue;
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
+        transition: 0.5s;
+    }
+
+    .button-active-sidebar:active,
+    .button-sidemenu:active {
+        background: #ebebeb;
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 50%);
         transition: 0.5s;
     }
 

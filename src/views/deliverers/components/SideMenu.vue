@@ -12,14 +12,14 @@
         <label for="button-historical">Historical</label>
     </button>
     <button id="button-settings" class="button-sidemenu">
-        <img class="icon-button" src="@/assets/gear-fill.svg"/>
-        <label for="button-settings">Settings</label>
+        <img class="icon-button" src="@/assets/person-circle.svg"/>
+        <label for="button-profile">Profile</label>
     </button>
     <div class="footer-button">
         <button id="button-exit" class="button-sidemenu">
-        <img class="icon-button" src="@/assets/arrow-left-circle-fill.svg"/>
-        <label for="button-exit">Disonnect</label>
-    </button>
+            <img class="icon-button" src="@/assets/arrow-left-circle-fill.svg"/>
+            <label for="button-exit">Disonnect</label>
+        </button>
     </div>
 </template>
 
