@@ -1,25 +1,19 @@
-<template>    
-    <MainContener/>
-    <HeaderBar/>
-    <SideBar>
+<template>
+    <Layout>
         <template v-slot:side-menu>
             <SideMenu/>
         </template>
-    </SideBar>
+    </Layout>
 </template>
 
 <script>
-import MainContener from "@/components/MainContener.vue";
-import HeaderBar from "@/components/HeaderBar.vue";
-import SideBar from "@/components/SideBar.vue";
+import Layout from "@/components/Layout.vue";
 import SideMenu from "@/views/deliverers/components/SideMenu.vue";
 
 export default {
     name: 'DelivererMain',
     components: {
-        MainContener,
-        HeaderBar,
-        SideBar,
+        Layout,
         SideMenu
     }
 }
