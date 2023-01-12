@@ -1,61 +1,107 @@
 <template>
-    <div class="card rounded-border">
-    <div class="card-header">
-      <h3>{{ name }}</h3>
+  <div class="card">
+    <div class="card-title">{{ name }} {{ firstName }} {{ lastName }}</div>
+    <div class="card-content">
+      <div class="card-left">
+        <img class="card-img" :src="this.image" alt="Card Image">
+      </div>
+      <div class="card-right">
+        <p class="card-address">{{ address }}</p>
+        <p class="card-zipcode">{{ zipCode }}</p>
+        <p class="card-city">{{ city }}</p>
+        <p class="card-description">{{ description }}</p>
+      </div>
+     
     </div>
-    <div class="card-body">
-      <p>{{ address }}</p>
-      <p>{{ description }}</p>
-    </div>
+     <button class="rounded-black-border-button" @click="handleClick">
+    update my data
+  </button>
   </div>
 </template>
 
 
 <script>
 export default {
-    name: 'UserCard',
+  name: "UserCard",
 
-     props: {
+  props: {
     name: {
       type: String,
-      required: true
+      required: true,
+    },
+     firstName: {
+      type: String,
+      required: true,
+    },
+     lastName: {
+      type: String,
+      required: true,
     },
     address: {
       type: String,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+    zipCode: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+     image: {
+      type: String,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>
+
+.rounded-black-border-button {
+  border-radius: 10px;
+  border: 2px solid black;
+  color: white;
+  background-color:  green;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .card {
-  background: white;
-  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 50%;
   overflow: hidden;
 }
 
-.rounded-border {
-  border-radius: 20px;
-}
-
-.card-header {
-  background: #f6f6f6;
-  padding: 20px;
+.card-title {
   text-align: center;
+  padding: 10px;
+  background-color: #f8f8f8;
 }
 
-.card-header h3 {
-  margin: 0;
-  color: #333;
-  font-size: 18px;
+.card-content {
+  display: flex;
 }
 
-.card-body {
-  padding: 20px;
+.card-left {
+  width: 35%;
+}
+
+.card-img {
+  width: 100%;
+}
+
+.card-right {
+  width: 65%;
+  padding: 0px 20px;
+}
+
+.card-name {
+  font-weight: bold;
 }
 </style>

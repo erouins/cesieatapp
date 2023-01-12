@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UserCard :name="this.results.name" :address="this.results.address" :description="this.results.description" :zipCode="this.results.zipCode" :city="this.results.city" :image="this.results.image"/>
+    <UserCard :lastName="this.results.lastName" :address="this.results.address" :firstName="this.results.firstName" :zipCode="this.results.zipCode" :city="this.results.city" :image="this.results.image"/>
   </div>
 </template>
 
@@ -8,10 +8,10 @@
 import UserCard from "@/components/UserCard.vue";
 import axios from 'axios';
 
-const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
+const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId");
 console.log(url)
 export default {
-  name: "RestaurantProfil",
+  name: "ClientProfil",
   components: {
     UserCard,
   },
