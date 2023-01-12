@@ -4,12 +4,8 @@
             <SideMenu/>
         </template>
         <template v-slot:main-content>
-            <UpdateRestaurant/>
-
-            <SideMenu/>            
-
+            <DelivererProfil/>
         </template>
-        <template v-slot:main-content><router-view/></template>
         
         
         <!-- <template v-slot:main-content>
