@@ -3,6 +3,11 @@
         <img class="icon-button" src="@/assets/house-door-fill.svg" @click="handleClickHome"/>
         <label for="button-home">Home</label>
     </button>
+     <button id="button-historical" class="button-sidemenu" @click="handleClickOrders">
+        <img class="icon-button" src="@/assets/book-fill.svg"/>
+        <label for="button-historical">Orders</label>
+    </button>
+
     <button id="button-historical" class="button-sidemenu">
         <img class="icon-button" src="@/assets/book-fill.svg"/>
         <label for="button-historical">Historical</label>
@@ -31,6 +36,9 @@ export default {
         },
         handleClickHome(){
               this.$router.push("/restaurants/main");
+        },
+        handleClickOrders(){
+              this.$router.push("/restaurants/orders");
         }
     }
 }
