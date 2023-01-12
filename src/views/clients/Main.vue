@@ -7,7 +7,6 @@
             <ClientProfil/>
         </template>
     </layout>
-    
 </template>
 
 <script>
