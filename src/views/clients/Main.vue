@@ -7,7 +7,6 @@
             <router-view/>
         </template>
     </layout>
-    
 </template>
 
 <script>
