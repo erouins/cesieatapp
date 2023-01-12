@@ -62,12 +62,16 @@ const routes = [
         component: ClientMain,
       },
       {
-        path: 'profile',
-        component: ClientProfil,
+        path: 'profil',
+        
         children:[
           {
             path:'update',
             component: ClientUpdateProfil
+          },
+          {
+            path: '',
+            component: ClientProfil,
           }
         ]
       },
@@ -90,12 +94,15 @@ const routes = [
       },
       
       {
-        path: 'profile',
-        component: DelivererProfil,
+        path: 'profil',
         children:[
           {
             path:'update',
             component: DelivererUpdateProfil
+          },
+          {
+            path:'',
+            component: DelivererProfil
           }
         ]
       },
@@ -141,12 +148,15 @@ const routes = [
         ]
       },
       {
-        path: 'profile',
-        component: RestaurantProfil,
+        path: 'profil',
         children:[
           {
             path:'update',
             component: RestaurantUpdateProfil
+          },
+          {
+            path:'',
+            component: RestaurantProfil
           }
         ]
       },

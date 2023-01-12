@@ -4,7 +4,7 @@
             <SideMenu/>
         </template>
         <template v-slot:main-content>
-            <DelivererProfil/>
+            <router-view/>
         </template>
         
         
@@ -17,15 +17,13 @@
 <script>
 import Layout from "@/components/Layout.vue";
 import SideMenu from "@/views/restaurants/components/SideMenu.vue";
-import UpdateRestaurant from "@/views/restaurants/components/Profil.vue"
 
 
 export default {
     name: 'restaurantMain',
     components: {
         Layout,
-        SideMenu,
-        UpdateRestaurant
+        SideMenu
     }
 }
 </script>

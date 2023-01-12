@@ -43,7 +43,7 @@ const urlToSend = "http://localhost:3001/deliverer/" + localStorage.getItem("mon
 import axios from 'axios';
 
 export default {
-    name: 'UpdateDeliverer',
+    name: 'DelivererUpdateProfil',
 
     data() {
     return {
