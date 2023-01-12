@@ -101,7 +101,6 @@ const routes = [
       },
     ]
   },
-  
   {
     path: '/restaurants',
     name: 'restaurants',
