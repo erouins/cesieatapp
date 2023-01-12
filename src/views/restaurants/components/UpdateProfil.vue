@@ -43,7 +43,7 @@ const urlToSend = "http://localhost:3001/restaurant/" + localStorage.getItem("mo
 import axios from 'axios';
 
 export default {
-    name: 'UpdateRestaurant',
+    name: 'RestaurantUpdateProfil',
 
     data() {
     return {

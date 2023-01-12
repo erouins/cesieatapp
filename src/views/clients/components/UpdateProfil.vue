@@ -43,7 +43,7 @@ const urlToSend = "http://localhost:3001/client/" + localStorage.getItem("mongoU
 import axios from 'axios';
 
 export default {
-    name: 'UpdateClient',
+    name: 'ClientUpdateProfil',
 
     data() {
     return {
