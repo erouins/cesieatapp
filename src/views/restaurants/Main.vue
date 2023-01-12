@@ -17,7 +17,7 @@
 <script>
 import Layout from "@/components/Layout.vue";
 import SideMenu from "@/views/restaurants/components/SideMenu.vue";
-import UpdateRestaurant from "@/views/restaurants/components/RestaurantProfil.vue"
+import UpdateRestaurant from "@/views/restaurants/components/Profil.vue"
 
 
 export default {
