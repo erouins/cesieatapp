@@ -12,7 +12,7 @@
 <script>
 import Layout from "@/components/Layout.vue";
 import SideMenu from "@/views/deliverers/components/SideMenu.vue";
-import DelivererProfil from "@/views/deliverers/components/DelivererProfil.vue"
+import DelivererProfil from "@/views/deliverers/components/Profil.vue"
 
 export default {
     name: 'DelivererMain',

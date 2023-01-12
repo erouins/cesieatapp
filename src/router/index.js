@@ -4,12 +4,12 @@ import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import ClientMain from '@/views/clients/Main.vue'
 import ClientRegister from '@/views/clients/Register.vue'
-import ClientProfil from '@/views/clients/Profil.vue'
-import ClientUpdateProfil from '@/views/clients/UpdateProfil.vue'
+import ClientProfil from '@/views/clients/components/Profil.vue'
+import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
-import DelivererProfil from '@/views/deliverers/Profil.vue'
-import DelivererUpdateProfil from '@/views/deliverers/UpdateProfil.vue'
+import DelivererProfil from '@/views/deliverers/components/Profil.vue'
+import DelivererUpdateProfil from '@/views/deliverers/components/UpdateProfil.vue'
 import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
 import RestaurantCardContent from '@/views/restaurants/components/CardContent.vue'
@@ -101,7 +101,6 @@ const routes = [
       },
     ]
   },
-  
   {
     path: '/restaurants',
     name: 'restaurants',
