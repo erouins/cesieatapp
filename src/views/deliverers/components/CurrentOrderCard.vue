@@ -106,15 +106,6 @@ mounted(){
   font-weight: bold;
   margin-bottom: 10px;
 }
-.green-button {
-  background-color: green;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-  border: none;
-  cursor: pointer;
-}
 .restaurant-name{
   margin-bottom: 20px;
 }

@@ -91,10 +91,7 @@ name: "OrderCard",
   
   width: 20em;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: fit-content;
+
   margin: auto;
   padding: 1em;
   border-radius: 15px;
@@ -105,14 +102,14 @@ name: "OrderCard",
 
 .order-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .green-button {
   color: white;
   background-color: green;
   padding: 10px 20px;
-    margin: 5px  ;
+  margin: 5px  ;
   border-radius: 5px;
 }
 
