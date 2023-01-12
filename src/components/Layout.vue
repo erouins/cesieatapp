@@ -55,6 +55,16 @@
 </script>
 
 <style>
+
+.rounded-black-border-button {
+  border-radius: 10px;
+  border: 2px solid black;
+  color: white;
+  background-color:  green;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
     body {
         margin: 0px;
         max-height: 500px;
