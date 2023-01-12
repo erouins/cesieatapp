@@ -21,9 +21,9 @@ export default {
       results: {},
     };
   },
-  mounted() {
+  async mounted() {
     console.log("results")
-    axios.get(url,
+    await axios.get(url,
     {
   headers: {
     'Authorization': `bearer ${localStorage.getItem("token")}` 

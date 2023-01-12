@@ -30,7 +30,10 @@
           <img :src="form.image" alt="restaurant image">
         </div>
       </div>
-      <button type="submit">Envoyer</button>
+     <div class="button-container">
+    <button class="rounded-black-border-button" type="submit">Send</button>
+    <button class="rounded-black-border-button" @click="GoBack">Back</button>
+  </div>
     </form>
   </div>
   </div>
@@ -39,6 +42,7 @@
 <script>
 const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId");
 const urlToSend = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId") + "/update-profil";
+const currentPage = "clients"
 
 import axios from 'axios';
 
@@ -106,15 +110,20 @@ export default {
   },
    }
   ).then((response) => {
-    console.log(response.data)
+
       this.form.firstName = response.data.firstName;
       this.form.lastName = response.data.lastName;
       this.form.address = response.data.address;
       this.form.city = response.data.city;
       this.form.zipCode = response.data.zipCode;
       this.form.image = response.data.image;
-      console.log("results" + this.form)
+      if (response.status == 201){
+       this.$router.push("/"+currentPage+"/profil");
+      }
     });
+    },
+    GoBack(){
+       this.$router.push("/"+currentPage+"/profil");
     }
   }
 }

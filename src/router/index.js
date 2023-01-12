@@ -9,6 +9,7 @@ import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
 import DelivererProfil from '@/views/deliverers/components/Profil.vue'
+import Deliveries from '@/views/deliverers/components/Deliveries.vue'
 import DelivererUpdateProfil from '@/views/deliverers/components/UpdateProfil.vue'
 import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
@@ -91,6 +92,11 @@ const routes = [
         path: 'main',
         name: 'delivererMain',
         component: DelivererMain
+      },
+      { 
+        path: 'deliveries',
+        name: 'deliveries',
+        component: Deliveries
       },
       
       {

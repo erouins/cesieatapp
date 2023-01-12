@@ -1,0 +1,79 @@
+<template>
+  <div v-show="!alreadyHaveOrder" class="order-container">
+     <OrderCard 
+      v-for="(order, index) in results" 
+      :key="index" 
+      :title="order.id" 
+      :deliveryAddress="order.client.address + ' - ' + order.client.zipCode+ ' - ' + order.client.city"  
+      :pickupAddress="order.restaurant.address + ' - ' + order.restaurant.zipCode+ ' - ' + order.restaurant.city" 
+      :restaurantName="order.restaurant.name" 
+      :clientName="order.client.firstName+ ' ' +order.client.lastName" 
+    />
+    
+   
+  </div>
+   <div v-show="alreadyHaveOrder" class="order-container">
+    <CurrentOrderCard /> 
+  </div>
+</template>
+
+<script>
+import OrderCard from "@/components/OrderCard.vue";
+import CurrentOrderCard from "@/views/deliverers/components/CurrentOrderCard.vue"
+import axios from 'axios';
+
+const url = "http://localhost:3001/deliverer/pending";
+const firstRequestUrl = "http://localhost:3001/deliverer/"+ localStorage.getItem("mongoUserId") +"/orders";
+export default {
+  name: "Deliveries",
+  components: {
+    OrderCard,
+    CurrentOrderCard,
+  },
+
+  data() {
+    return {
+      alreadyHaveOrder: false,
+      results: {},
+     
+    };
+  },
+  async mounted() {
+    await axios.get(firstRequestUrl,
+    {
+  headers: {
+    'Authorization': `bearer ${localStorage.getItem("token")}` 
+  }}
+  ).then((response) => {
+      if(response.status == 200) {
+        this.alreadyHaveOrder = true
+     }else{
+          axios.get(url,
+              {
+            headers: {
+              'Authorization': `bearer ${localStorage.getItem("token")}` 
+            }}
+            ).then((response) => {
+                this.results = response.data;
+                console.log("results" + this.results)
+              });
+              }
+    });
+   
+   
+     console.log(this.alreadyHaveOrder)
+  },
+
+  methods: {},
+};
+</script>
+
+<style scoped>
+
+.order-container {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+</style>
