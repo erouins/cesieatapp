@@ -4,17 +4,47 @@ import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import ClientMain from '@/views/clients/Main.vue'
 import ClientRegister from '@/views/clients/Register.vue'
+import ClientProfil from '@/views/clients/Profil.vue'
+import ClientUpdateProfil from '@/views/clients/UpdateProfil.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
+import DelivererProfil from '@/views/deliverers/Profil.vue'
+import DelivererUpdateProfil from '@/views/deliverers/UpdateProfil.vue'
 import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
 import RestaurantCardContent from '@/views/restaurants/components/CardContent.vue'
+import RestaurantProfil from '@/views/restaurants/components/Profil.vue'
+import RestaurantUpdateProfil from '@/views/restaurants/components/UpdateProfil.vue'
 
 const routes = [
   {
     path: '/',
     name: 'root',
     component: Home
+  },
+  { 
+    path: '/clients/register',
+    name: 'clientRegister',
+    component: ClientRegister,
+    beforeEnter: (to, from) => {
+      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+    },
+  },
+  { 
+    path: '/deliverers/register',
+    name: 'delivererRegister',
+    component: DelivererRegister,
+    beforeEnter: (to, from) => {
+      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+    },
+  },
+  { 
+    path: '/restaurants/register',
+    name: 'restaurantRegister',
+    component: RestaurantRegister,
+    beforeEnter: (to, from) => {
+      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+    },
   },
   {
     path: '/clients',
@@ -31,10 +61,15 @@ const routes = [
         name: 'ClientMain',
         component: ClientMain,
       },
-      { 
-        path: 'register',
-        name: 'clientRegister',
-        component: ClientRegister
+      {
+        path: 'profile',
+        component: ClientProfil,
+        children:[
+          {
+            path:'update',
+            component: ClientUpdateProfil
+          }
+        ]
       },
     ]
   },
@@ -53,18 +88,20 @@ const routes = [
         name: 'delivererMain',
         component: DelivererMain
       },
-      { 
-        path: 'register',
-        name: 'delivererRegister',
-        component: DelivererRegister
+      
+      {
+        path: 'profile',
+        component: DelivererProfil,
+        children:[
+          {
+            path:'update',
+            component: DelivererUpdateProfil
+          }
+        ]
       },
     ]
   },
-  { 
-    path: '/restaurants/register',
-    name: 'restaurantRegister',
-    component: RestaurantRegister
-  },
+  
   {
     path: '/restaurants',
     name: 'restaurants',
@@ -89,7 +126,7 @@ const routes = [
             component: 'MenuCard',
             children: [
               {
-                path: ':id/edit'
+                path: ':id/update'
               }
             ]
           },
@@ -98,23 +135,22 @@ const routes = [
             component: 'ArticleCard',
             children: [
               {
-                path: ':id/edit'
+                path: ':id/update'
               }
             ]
           },
         ]
-      }
-      
-      // {
-      //   path: 'profile',
-      //   component: RestaurantProfile,
-      //   children:[
-      //     {
-      //       path:'edit',
-      //       component: RestaurantEditProfile
-      //     }
-      //   ]
-      // },
+      },
+      {
+        path: 'profile',
+        component: RestaurantProfil,
+        children:[
+          {
+            path:'update',
+            component: RestaurantUpdateProfil
+          }
+        ]
+      },
       
     ]
   },
