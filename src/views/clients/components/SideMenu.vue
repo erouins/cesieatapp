@@ -1,5 +1,5 @@
 <template>
-    <button id="button-home" class="button-sidemenu">
+    <button id="button-home" class="button-sidemenu" @click="handleClickHome">
         <img class="icon-button" src="@/assets/house-door-fill.svg"/>
         <label for="button-home">Home</label>
     </button>
@@ -11,9 +11,9 @@
         <img class="icon-button" src="@/assets/book-fill.svg"/>
         <label for="button-historical">Historical</label>
     </button>
-<button id="button-settings" class="button-sidemenu">
-        <img class="icon-button" src="@/assets/person-circle.svg"/>
-        <label for="button-profile">Profile</label>
+    <button id="button-settings" class="button-sidemenu" @click="handleClickProfile">
+        <img class="icon-button" src="@/assets/person-fill.svg"/>
+        <label for="button-settings">Profile</label>
     </button>
     <div class="footer-button">
         <button id="button-exit" class="button-sidemenu ">
@@ -25,6 +25,16 @@
 
 <script>
 export default {
-    name: 'ClientSideMenu'
+    name: 'ClientSideMenu',
+
+     methods:{
+
+        handleClickProfile(){
+              this.$router.push("/clients/profil");
+        },
+        handleClickHome(){
+              this.$router.push("/clients/main");
+        }
+    }
 }
 </script>

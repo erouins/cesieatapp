@@ -14,16 +14,16 @@
           <label for="city">Last name :</label>
           <input type="text" id="city" v-model="form.lastName">
           
-          <!-- <label for="zipcode">Code postal :</label>
-          <input type="text" id="zipcode" v-model="form.zipCode"> -->
+          <label for="zipcode">Code postal :</label>
+          <input type="text" id="zipcode" v-model="form.zipCode">
         </div>
       </div>
 
       <div class="form-row">
-        <!-- <div class="form-col">
-          <label for="description">Description :</label>
-          <textarea id="description" v-model="form.description"></textarea>
-        </div> -->
+        <div class="form-col">
+         <label for="city">Ville :</label>
+          <input type="text" id="city" v-model="form.city">
+        </div>
         <div class="form-col">
           <label for="image">Image :</label>
           <input type="file" id="image" @change="handleImageChange">
@@ -51,8 +51,8 @@ export default {
         firstName: '',
         lastName: '',
         address: '',
-        // city: '',
-        // zipCode: '',
+        city: '',
+        zipCode: '',
         image: ''
       }
     }
@@ -68,9 +68,8 @@ export default {
       this.form.firstName = response.data.firstName;
       this.form.lastName = response.data.lastName;
       this.form.address = response.data.address;
-      // this.form.city = response.data.city;
-      // this.form.zipCode = response.data.zipCode;
-      // this.form.description = response.data.description;
+      this.form.city = response.data.city;
+      this.form.zipCode = response.data.zipCode;
       this.form.image = response.data.image;
       console.log("results" + this.form)
     });
@@ -111,9 +110,8 @@ export default {
       this.form.firstName = response.data.firstName;
       this.form.lastName = response.data.lastName;
       this.form.address = response.data.address;
-      // this.form.city = response.data.city;
-      // this.form.zipCode = response.data.zipCode;
-      // this.form.description = response.data.description;
+      this.form.city = response.data.city;
+      this.form.zipCode = response.data.zipCode;
       this.form.image = response.data.image;
       console.log("results" + this.form)
     });

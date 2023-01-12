@@ -4,7 +4,7 @@
             <SideMenu/>
         </template>
         <template v-slot:main-content>
-            <ClientProfil/>
+            <router-view/>
         </template>
     </layout>
 </template>
