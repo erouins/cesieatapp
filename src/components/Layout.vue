@@ -1,14 +1,14 @@
 <template>
     <div class="main-contener">
-        <div class="main-content">
+        <div class="main-content" v-bind:style="{marginLeft: margin_left}">
             <slot name="main-content"></slot>
         </div>
     </div>
-    <div id="side-bar" class="side-bar">
+    <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
         <slot name="side-menu"></slot>
     </div>
     <div class='header-bar'>
-        <div class='header-right-part'>
+        <div class='header-right-part' v-bind:style="{marginLeft: margin_left, paddingLeft: padding_left}">
             <div class="logo-titre">
                 <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
                 <p>CesiEAT</p>
@@ -19,30 +19,36 @@
                 <img  class="icon-button" src="../assets/list.svg"/>
             </button>
         </div>
-        <div class="search-bar">
+        <!-- <div class="search-bar">
             <input class="input-search-bar">
-            <!-- <button clas="search-button">
+            <button clas="search-button">
                 <img class="icon-search" src="../assets/search.svg"/>
-            </button> -->
-        </div>
+            </button>
+        </div> -->
     </div>
 </template>
 
 <script>
     export default {
         name: "Layout",
-
+        data() {
+            return {
+                visibility: "block",
+                margin_left: "",
+                padding_left: ""
+            }
+        },
         methods: {
-            hideSideMenu(){
-                let side_bar = document.querySelector("#side-bar");
-                
-                if(side_bar.style.visibility == ""){
-                    side_bar.style.visibility = "hidden"
-                } else if(side_bar.style.visibility == "hidden"){
-                    console.log("what");
-                    side_bar.style.visiblility = "visible"
+            hideSideMenu() {
+                if(this.visibility == "block"){
+                    this.visibility = "none"
+                    this.margin_left =  "0px"
+                    this.padding_left = "78px"
+                } else {
+                    this.visibility = "block"
+                    this.margin_left =  ""
+                    this.padding_left = ""
                 }
-                
             }
         }
     }
