@@ -4,10 +4,17 @@ import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import ClientMain from '@/views/clients/Main.vue'
 import ClientRegister from '@/views/clients/Register.vue'
+import ClientProfil from '@/views/clients/components/Profil.vue'
+import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
+import DelivererProfil from '@/views/deliverers/components/Profil.vue'
+import DelivererUpdateProfil from '@/views/deliverers/components/UpdateProfil.vue'
 import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
+import RestaurantCardContent from '@/views/restaurants/components/CardContent.vue'
+import RestaurantProfil from '@/views/restaurants/components/Profil.vue'
+import RestaurantUpdateProfil from '@/views/restaurants/components/UpdateProfil.vue'
 
 const routes = [
   {
@@ -15,13 +22,38 @@ const routes = [
     name: 'root',
     component: Home
   },
+  { 
+    path: '/clients/register',
+    name: 'clientRegister',
+    component: ClientRegister,
+    beforeEnter: (to, from) => {
+      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+    },
+  },
+  { 
+    path: '/deliverers/register',
+    name: 'delivererRegister',
+    component: DelivererRegister,
+    beforeEnter: (to, from) => {
+      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+    },
+  },
+  { 
+    path: '/restaurants/register',
+    name: 'restaurantRegister',
+    component: RestaurantRegister,
+    beforeEnter: (to, from) => {
+      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+    },
+  },
   {
     path: '/clients',
     name: 'clients',
+    component: ClientMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'client') return true;
-      return false
+      this.$router.push('auth/login');
     },
     children: [
       { 
@@ -29,20 +61,30 @@ const routes = [
         name: 'ClientMain',
         component: ClientMain,
       },
-      { 
-        path: 'register',
-        name: 'clientRegister',
-        component: ClientRegister
+      {
+        path: 'profil',
+        
+        children:[
+          {
+            path:'update',
+            component: ClientUpdateProfil
+          },
+          {
+            path: '',
+            component: ClientProfil,
+          }
+        ]
       },
     ]
   },
   {
     path: '/deliverers',
     name: 'deliverers',
+    component: DelivererMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'deliverer') return true;
-      return false
+      this.$router.push('auth/login');
     },
     children: [
       { 
@@ -50,32 +92,75 @@ const routes = [
         name: 'delivererMain',
         component: DelivererMain
       },
-      { 
-        path: 'register',
-        name: 'delivererRegister',
-        component: DelivererRegister
+      
+      {
+        path: 'profil',
+        children:[
+          {
+            path:'update',
+            component: DelivererUpdateProfil
+          },
+          {
+            path:'',
+            component: DelivererProfil
+          }
+        ]
       },
     ]
   },
   {
     path: '/restaurants',
     name: 'restaurants',
+    component: RestaurantMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
       if(localStorage.getItem('accountType') == 'restaurant') return true;
-      return false
+      this.$router.push('auth/login');
     },
     children: [
       { 
         path: 'main',
         name: 'restaurantMain',
-        component: RestaurantMain
+        component: RestaurantCardContent
       },
-      { 
-        path: 'register',
-        name: 'restaurantRegister',
-        component: RestaurantRegister
+      {
+        path: 'cards',
+        component: RestaurantCardContent,
+        children:[
+          {
+            path:'menus',
+            component: 'MenuCard',
+            children: [
+              {
+                path: ':id/update'
+              }
+            ]
+          },
+          {
+            path:'articles',
+            component: 'ArticleCard',
+            children: [
+              {
+                path: ':id/update'
+              }
+            ]
+          },
+        ]
       },
+      {
+        path: 'profil',
+        children:[
+          {
+            path:'update',
+            component: RestaurantUpdateProfil
+          },
+          {
+            path:'',
+            component: RestaurantProfil
+          }
+        ]
+      },
+      
     ]
   },
   {
@@ -95,7 +180,7 @@ const routes = [
     ]
   },
   {
-    path: "/:pathMatch(.*)*", redirect :"/home", component: Home
+    path: "/:pathMatch(.*)*", redirect :"/auth/login", component: Login
   }
   
 ]
@@ -108,7 +193,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
 router.beforeEach((to, from, next) => {
   console.log(to, from);
