@@ -44,12 +44,11 @@ const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId"
 const urlToSend = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId") + "/update-profil";
 const currentPage = "clients"
 
-import axios from 'axios';
-
+import axios from "axios";
+import imgUtils from "@/utils/imgUtils.js";
 export default {
-    name: 'ClientUpdateProfil',
-
-    data() {
+  name: "ClientUpdateProfil",
+  data() {
     return {
       form: {
         firstName: '',
@@ -78,25 +77,9 @@ export default {
       console.log("results" + this.form)
     });
   },
-  methods:{
-     convertToBase64(file){
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    };
-    fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
-},
-    async handleImageChange (e)  {
-       let file = e.target.files[0];
-        const base64 = await this.convertToBase64(file);
-     
-       this.form.image = base64
-         
+  methods: {
+    async handleImageChange(e) {
+      this.form.image = await imgUtils.handleImageChange(e);
     },
 
     udpateData(){
@@ -130,7 +113,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   display: flex;
   align-items: stretch;
@@ -142,7 +124,6 @@ export default {
   margin-bottom: 20px;
   overflow: hidden;
   width: 100%;
-  
 }
 
 .form-row {
@@ -160,16 +141,17 @@ export default {
   display: block;
 }
 
-.form-col input, .form-col textarea {
+.form-col input,
+.form-col textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
 }
 
-.form-col img{
-  width:100%;
-  max-width:200px;
+.form-col img {
+  width: 100%;
+  max-width: 200px;
 }
 </style>
 

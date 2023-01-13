@@ -15,6 +15,7 @@ import SideMenu from "@/views/clients/components/SideMenu.vue";
 import ClientProfil from "@/views/clients/components/Profil.vue"
 
 export default {
+    
     name: 'ClientMain',
     components: {
         Layout,
