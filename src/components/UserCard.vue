@@ -24,18 +24,25 @@
 export default {
   name: "UserCard",
 
+  methods:{
+    handleClick(){
+      console.log(this.$route.path+ "/update")
+        this.$router.push(this.$route.path + "/update");
+    }
+  },
+
   props: {
     name: {
       type: String,
-      required: true,
+    
     },
      firstName: {
       type: String,
-      required: true,
+  
     },
      lastName: {
       type: String,
-      required: true,
+     
     },
     address: {
       type: String,
@@ -43,7 +50,7 @@ export default {
     },
     description: {
       type: String,
-      required: true,
+     
     },
     zipCode: {
       type: String,
@@ -55,7 +62,7 @@ export default {
     },
      image: {
       type: String,
-      required: true,
+   
     },
   },
 };
@@ -63,15 +70,7 @@ export default {
 
 <style scoped>
 
-.rounded-black-border-button {
-  border-radius: 10px;
-  border: 2px solid black;
-  color: white;
-  background-color:  green;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
+
 .card {
   border-radius: 10px;
   width: 50%;

@@ -9,6 +9,7 @@ import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
 import DelivererProfil from '@/views/deliverers/components/Profil.vue'
+import Deliveries from '@/views/deliverers/components/Deliveries.vue'
 import DelivererUpdateProfil from '@/views/deliverers/components/UpdateProfil.vue'
 import RestaurantMain from '@/views/restaurants/Main.vue'
 import RestaurantRegister from '@/views/restaurants/Register.vue'
@@ -19,6 +20,8 @@ import RestaurantUpdateArticle from '@/views/restaurants/components/UpdateArticl
 import RestaurantUpdateMenu from '@/views/restaurants/components/UpdateMenu.vue'
 import CreateArticle from '@/views/restaurants/components/CreateArticle.vue'
 import CreateMenu from '@/views/restaurants/components/CreateMenu.vue'
+
+import RestaurantsOrders from '@/views/restaurants/components/RestaurantsOrders.vue'
 
 const routes = [
   {
@@ -95,6 +98,11 @@ const routes = [
         path: 'main',
         name: 'delivererMain',
         component: DelivererMain
+      },
+      { 
+        path: 'deliveries',
+        name: 'deliveries',
+        component: Deliveries
       },
       
       {
@@ -177,6 +185,10 @@ const routes = [
             component: RestaurantProfil
           }
         ]
+      },
+      {
+        path: 'orders',
+        component: RestaurantsOrders
       },
       
     ]
