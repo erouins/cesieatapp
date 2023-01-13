@@ -3,9 +3,9 @@
         <img class="icon-button" src="@/assets/house-door-fill.svg"/>
         <label for="button-home">Home</label>
     </button>
-    <button id="button-delivery" class="button-sidemenu">
+    <button id="button-delivery" class="button-sidemenu" @click="handleClickDeliveries">
         <img class="icon-button" src="@/assets/compass-fill.svg"/>
-        <label for="button-delivery">Delivery</label>
+        <label for="button-delivery">Deliveries</label>
     </button>
     <button id="button-historical" class="button-sidemenu">
         <img class="icon-button" src="@/assets/book-fill.svg"/>
@@ -35,6 +35,9 @@ export default {
         },
         handleClickHome(){
               this.$router.push("/deliverers/main");
+        },
+        handleClickDeliveries(){
+              this.$router.push("/deliverers/deliveries");
         }
     }
 }
