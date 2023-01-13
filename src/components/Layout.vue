@@ -3,7 +3,11 @@
         <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
             <slot name="side-menu"></slot>
         </div>
-        <div class='header-bar'>
+        <div class="main-content" v-bind:style="{marginLeft: margin_left, width: main_content_width}">
+            <slot name="main-content"></slot>
+        </div>
+    </div>
+    <div class='header-bar'>
             <div class='header-right-part' v-bind:style="{marginLeft: margin_left, paddingLeft: padding_left}">
                 <div class="logo-titre">
                     <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
@@ -22,10 +26,6 @@
                 </button>
             </div> -->
         </div>
-        <div class="main-content" v-bind:style="{marginLeft: margin_left, width: main_content_width}">
-            <slot name="main-content"></slot>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -45,7 +45,7 @@
                     this.visibility = "none"
                     this.margin_left =  "0px"
                     this.padding_left = "78px"
-                    this.main_content_width = "width: calc(100% - 16px);"
+                    this.main_content_width = "calc(100% - 16px)"
                 } else {
                     this.visibility = "block"
                     this.margin_left =  ""
