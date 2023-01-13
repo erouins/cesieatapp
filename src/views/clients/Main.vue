@@ -4,7 +4,7 @@
             <SideMenu/>
         </template>
         <template v-slot:main-content>
-            <ClientProfil/>
+            <router-view/>
         </template>
     </layout>
     
@@ -16,6 +16,7 @@ import SideMenu from "@/views/clients/components/SideMenu.vue";
 import ClientProfil from "@/views/clients/components/Profil.vue"
 
 export default {
+    
     name: 'ClientMain',
     components: {
         Layout,

@@ -15,6 +15,10 @@ import RestaurantRegister from '@/views/restaurants/Register.vue'
 import RestaurantCardContent from '@/views/restaurants/components/CardContent.vue'
 import RestaurantProfil from '@/views/restaurants/components/Profil.vue'
 import RestaurantUpdateProfil from '@/views/restaurants/components/UpdateProfil.vue'
+import RestaurantUpdateArticle from '@/views/restaurants/components/UpdateArticle.vue'
+import RestaurantUpdateMenu from '@/views/restaurants/components/UpdateMenu.vue'
+import CreateArticle from '@/views/restaurants/components/CreateArticle.vue'
+import CreateMenu from '@/views/restaurants/components/CreateMenu.vue'
 
 const routes = [
   {
@@ -124,29 +128,43 @@ const routes = [
         component: RestaurantCardContent
       },
       {
-        path: 'cards',
-        component: RestaurantCardContent,
-        children:[
-          {
             path:'menus',
-            component: 'MenuCard',
             children: [
               {
-                path: ':id/update'
+                path: '',
+                component: RestaurantCardContent,
+              },
+              {
+                path: ':id/update',
+                name: 'menuUpdate',
+                component: RestaurantUpdateMenu,
+                props: true
+              },
+              {
+                path: 'create',
+                component: CreateMenu
               }
             ]
           },
           {
             path:'articles',
-            component: 'ArticleCard',
             children: [
               {
-                path: ':id/update'
+                path: '',
+                component: RestaurantCardContent,
+              },
+              {
+                path: ':id/update',
+                name:'articleUpdate',
+                props: true,
+                component: RestaurantUpdateArticle
+              },
+              {
+                path: 'create',
+                component: CreateArticle
               }
             ]
           },
-        ]
-      },
       {
         path: 'profil',
         children:[

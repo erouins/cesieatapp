@@ -1,129 +1,119 @@
 <template>
-<div class="container" >
-     <div class="card2 rounded-border">
-    <form @submit.prevent="udpateData">
-      <div class="form-row">
-        <div class="form-col">
-          <label for="name">First name :</label>
-          <input type="text" id="name" v-model="form.firstName">
-          
-          <label for="address">Adresse :</label>
-          <input type="text" id="address" v-model="form.address">
-        </div>
-        <div class="form-col">
-          <label for="city">Last name :</label>
-          <input type="text" id="city" v-model="form.lastName">
-          
-          <!-- <label for="zipcode">Code postal :</label>
-          <input type="text" id="zipcode" v-model="form.zipCode"> -->
-        </div>
-      </div>
+  <div class="container">
+    <div class="card2 rounded-border">
+      <form @submit.prevent="udpateData">
+        <div class="form-row">
+          <div class="form-col">
+            <label for="name">First name :</label>
+            <input type="text" id="name" v-model="form.firstName" />
 
-      <div class="form-row">
-        <!-- <div class="form-col">
+            <label for="address">Adresse :</label>
+            <input type="text" id="address" v-model="form.address" />
+          </div>
+          <div class="form-col">
+            <label for="city">Last name :</label>
+            <input type="text" id="city" v-model="form.lastName" />
+
+            <!-- <label for="zipcode">Code postal :</label>
+          <input type="text" id="zipcode" v-model="form.zipCode"> -->
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- <div class="form-col">
           <label for="description">Description :</label>
           <textarea id="description" v-model="form.description"></textarea>
         </div> -->
-        <div class="form-col">
-          <label for="image">Image :</label>
-          <input type="file" id="image" @change="handleImageChange">
-          <img :src="form.image" alt="restaurant image">
+          <div class="form-col">
+            <label for="image">Image :</label>
+            <input type="file" id="image" @change="handleImageChange" />
+            <img :src="form.image" alt="restaurant image" />
+          </div>
         </div>
-      </div>
-      <button type="submit">Envoyer</button>
-    </form>
-  </div>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
-const url = "http://localhost:3001/deliverer/" + localStorage.getItem("mongoUserId");
-const urlToSend = "http://localhost:3001/deliverer/" + localStorage.getItem("mongoUserId") + "/update-profil";
+const url =
+  "http://localhost:3001/deliverer/" + localStorage.getItem("mongoUserId");
+const urlToSend =
+  "http://localhost:3001/deliverer/" +
+  localStorage.getItem("mongoUserId") +
+  "/update-profil";
 
-import axios from 'axios';
-
+import axios from "axios";
+import imgUtils from "@/utils/imgUtils.js";
 export default {
-    name: 'DelivererUpdateProfil',
+  name: "DelivererUpdateProfil",
 
-    data() {
+  data() {
     return {
       form: {
-        firstName: '',
-        lastName: '',
-        address: '',
+        firstName: "",
+        lastName: "",
+        address: "",
         // city: '',
         // zipCode: '',
-        image: ''
-      }
-    }
+        image: "",
+      },
+    };
   },
   mounted() {
-    console.log("results")
-    axios.get(url,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  }}
-  ).then((response) => {
-      this.form.firstName = response.data.firstName;
-      this.form.lastName = response.data.lastName;
-      this.form.address = response.data.address;
-      // this.form.city = response.data.city;
-      // this.form.zipCode = response.data.zipCode;
-      // this.form.description = response.data.description;
-      this.form.image = response.data.image;
-      console.log("results" + this.form)
-    });
+    console.log("results");
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        this.form.firstName = response.data.firstName;
+        this.form.lastName = response.data.lastName;
+        this.form.address = response.data.address;
+        // this.form.city = response.data.city;
+        // this.form.zipCode = response.data.zipCode;
+        // this.form.description = response.data.description;
+        this.form.image = response.data.image;
+        console.log("results" + this.form);
+      });
   },
-  methods:{
-     convertToBase64(file){
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    };
-    fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
-},
-    async handleImageChange (e)  {
-       let file = e.target.files[0];
-        const base64 = await this.convertToBase64(file);
-     
-       this.form.image = base64
-         
+  methods: {
+    async handleImageChange(e) {
+      this.form.image = await imgUtils.handleImageChange(e);
     },
-
-    udpateData(){
-        console.log(JSON.stringify({profil: this.form}))
-        console.log(urlToSend)
-        axios.put(urlToSend,
-        {profil: this.form},
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
+    udpateData() {
+      console.log(JSON.stringify({ profil: this.form }));
+      console.log(urlToSend);
+      axios
+        .put(
+          urlToSend,
+          { profil: this.form },
+          {
+            headers: {
+              Authorization: `bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.form.firstName = response.data.firstName;
+          this.form.lastName = response.data.lastName;
+          this.form.address = response.data.address;
+          // this.form.city = response.data.city;
+          // this.form.zipCode = response.data.zipCode;
+          // this.form.description = response.data.description;
+          this.form.image = response.data.image;
+          console.log("results" + this.form);
+        });
+    },
   },
-   }
-  ).then((response) => {
-    console.log(response.data)
-      this.form.firstName = response.data.firstName;
-      this.form.lastName = response.data.lastName;
-      this.form.address = response.data.address;
-      // this.form.city = response.data.city;
-      // this.form.zipCode = response.data.zipCode;
-      // this.form.description = response.data.description;
-      this.form.image = response.data.image;
-      console.log("results" + this.form)
-    });
-    }
-  }
-}
+};
 </script>
 
 <style scoped>
-
 .container {
   display: flex;
   align-items: stretch;
@@ -135,7 +125,6 @@ export default {
   margin-bottom: 20px;
   overflow: hidden;
   width: 100%;
-  
 }
 
 .form-row {
@@ -153,16 +142,17 @@ export default {
   display: block;
 }
 
-.form-col input, .form-col textarea {
+.form-col input,
+.form-col textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
 }
 
-.form-col img{
-  width:100%;
-  max-width:200px;
+.form-col img {
+  width: 100%;
+  max-width: 200px;
 }
 </style>
 
