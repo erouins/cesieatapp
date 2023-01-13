@@ -45,10 +45,10 @@ const urlToSend = "http://localhost:3001/restaurant/" + localStorage.getItem("mo
 const currentPage = "restaurants"
 
 import axios from 'axios';
+import imgUtils from '@/utils/imgUtils.js'
 
 export default {
     name: 'RestaurantUpdateProfil',
-
     data() {
     return {
       form: {
@@ -79,26 +79,9 @@ export default {
     });
   },
   methods:{
-     convertToBase64(file){
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      resolve(fileReader.result)
-    };
-    fileReader.onerror = (error) => {
-      reject(error)
-    }
-  })
-},
-    async handleImageChange (e)  {
-       let file = e.target.files[0];
-        const base64 = await this.convertToBase64(file);
-     
-       this.form.image = base64
-          console.log(base64)
-    },
-
+    async handleImageChange(e){
+        this.form.image = await imgUtils.handleImageChange(e);
+      },
     udpateData(){
         console.log(JSON.stringify({profil: this.form}))
         axios.post(urlToSend,
