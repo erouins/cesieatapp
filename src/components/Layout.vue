@@ -22,7 +22,7 @@
                 </button>
             </div> -->
         </div>
-        <div class="main-content" v-bind:style="{marginLeft: margin_left}">
+        <div class="main-content" v-bind:style="{marginLeft: margin_left, width: main_content_width}">
             <slot name="main-content"></slot>
         </div>
     </div>
@@ -35,7 +35,8 @@
             return {
                 visibility: "block",
                 margin_left: "",
-                padding_left: ""
+                padding_left: "",
+                main_content_width: ""
             }
         },
         methods: {
@@ -44,10 +45,12 @@
                     this.visibility = "none"
                     this.margin_left =  "0px"
                     this.padding_left = "78px"
+                    this.main_content_width = "width: calc(100% - 16px);"
                 } else {
                     this.visibility = "block"
                     this.margin_left =  ""
                     this.padding_left = ""
+                    this.main_content_width = ""
                 }
             }
         }
@@ -55,16 +58,6 @@
 </script>
 
 <style>
-
-.rounded-black-border-button {
-  border-radius: 10px;
-  border: 2px solid black;
-  color: white;
-  background-color:  green;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
     body {
         margin: 0px;
         max-height: 500px;
@@ -84,9 +77,12 @@
     .body-contener {
         height: 100%;
         width: 100%;
+        position:absolute;
     }
 
     .main-content {
+        width: calc(100% - 94px);
+        min-height: calc(100% - 72px);
         position: absolute;
         margin-top: 56px;
         margin-left: 78px;
@@ -212,6 +208,16 @@
         background: #ebebeb;
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 50%);
         transition: 0.5s;
+    }
+
+    .rounded-black-border-button {
+        border-radius: 10px;
+        border: 2px solid black;
+        color: white;
+        background-color:  green;
+        padding: 10px 20px;
+        font-weight: bold;
+        cursor: pointer;
     }
 
 </style>

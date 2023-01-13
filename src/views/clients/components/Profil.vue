@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <UserCard :lastName="this.results.lastName" :address="this.results.address" :firstName="this.results.firstName" :zipCode="this.results.zipCode" :city="this.results.city" :image="this.results.image"/>
-  </div>
+<UserCard :lastName="this.results.lastName" :address="this.results.address" :firstName="this.results.firstName" :zipCode="this.results.zipCode" :city="this.results.city" :image="this.results.image"/>
 </template>
 
 <script>
