@@ -1,30 +1,30 @@
 <template>
-    <div class="main-contener">
+    <div class="body-contener">
+        <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
+            <slot name="side-menu"></slot>
+        </div>
+        <div class='header-bar'>
+            <div class='header-right-part' v-bind:style="{marginLeft: margin_left, paddingLeft: padding_left}">
+                <div class="logo-titre">
+                    <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
+                    <p>CesiEAT</p>
+                </div>
+            </div>
+            <div class='header-left-part'>
+                <button id="button-active-sidebar" class="button-active-sidebar" @click="hideSideMenu">
+                    <img  class="icon-button" src="../assets/list.svg"/>
+                </button>
+            </div>
+            <!-- <div class="search-bar">
+                <input class="input-search-bar">
+                <button clas="search-button">
+                    <img class="icon-search" src="../assets/search.svg"/>
+                </button>
+            </div> -->
+        </div>
         <div class="main-content" v-bind:style="{marginLeft: margin_left}">
             <slot name="main-content"></slot>
         </div>
-    </div>
-    <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
-        <slot name="side-menu"></slot>
-    </div>
-    <div class='header-bar'>
-        <div class='header-right-part' v-bind:style="{marginLeft: margin_left, paddingLeft: padding_left}">
-            <div class="logo-titre">
-                <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
-                <p>CesiEAT</p>
-            </div>
-        </div>
-        <div class='header-left-part'>
-            <button id="button-active-sidebar" class="button-active-sidebar" @click="hideSideMenu">
-                <img  class="icon-button" src="../assets/list.svg"/>
-            </button>
-        </div>
-        <!-- <div class="search-bar">
-            <input class="input-search-bar">
-            <button clas="search-button">
-                <img class="icon-search" src="../assets/search.svg"/>
-            </button>
-        </div> -->
     </div>
 </template>
 
@@ -65,17 +65,22 @@
         font-size: 1em;
     }
 
-    .main-contener {
-        position: absolute;
+    hr {
+        background-color: #2c3e50;
+        height: 2px;
+        border: none;
+    }
+
+    .body-contener {
         height: 100%;
         width: 100%;
-        top: 0;
     }
 
     .main-content {
+        position: absolute;
         margin-top: 56px;
         margin-left: 78px;
-        padding: 16px;
+        padding: 8px;
     }
     .header-bar {
         width: 100%;
@@ -185,8 +190,7 @@
         background: #fefefe;
     }
 
-    .button-active-sidebar:focus,
-    .button-sidemenu:focus,
+
     .button-active-sidebar:hover,
     .button-sidemenu:hover {
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);

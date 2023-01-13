@@ -3,6 +3,7 @@ import AuthRegister from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import ClientMain from '@/views/clients/Main.vue'
+import ClientHome from '@/views/clients/components/Home.vue'
 import ClientRegister from '@/views/clients/Register.vue'
 import ClientProfil from '@/views/clients/components/Profil.vue'
 import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
@@ -58,8 +59,8 @@ const routes = [
     children: [
       { 
         path: 'main',
-        name: 'ClientMain',
-        component: ClientMain,
+        name: 'ClientHome',
+        component: ClientHome,
       },
       {
         path: 'profil',
