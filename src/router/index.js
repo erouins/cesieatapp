@@ -73,7 +73,7 @@ const routes = [
     },
     children: [
       {
-        path: 'main',
+        path: 'home',
         children: [
           {
             path: '',
@@ -131,7 +131,7 @@ const routes = [
     },
     children: [
       {
-        path: 'main',
+        path: 'home',
         name: 'delivererMain',
         component: DelivererMain
       },

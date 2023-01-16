@@ -37,7 +37,7 @@ export default {
             this.$router.push("/clients/profil");
         },
         handleClickHome(){
-              this.$router.push("/clients/main");
+              this.$router.push("/clients/home");
         },
         handleLogout(){
             

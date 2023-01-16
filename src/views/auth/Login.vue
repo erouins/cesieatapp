@@ -70,10 +70,10 @@ export default {
              
               if (response.status == 200){
                   if (response.data.isEmailVerified == false){
-                        console.log("icciiiii")
+                       
                          this.$router.push("/auth/send-verification");
                   }else{
-
+                       
                         fetch("http://localhost:3001/users/find", {
                       headers: {
                         'Accept': "application/json",
@@ -88,11 +88,14 @@ export default {
                     })
                       .then((blob) => blob.json())
                       .then((data) => {
+                      
                         localStorage.setItem('mongoUserId', data["id"]);
                         const route = '/' + localStorage.getItem('accountType') + 's/';
                         if (data["response"] == "true") {
-                          this.$router.push(route + 'main');
+                             console.log(route)
+                          this.$router.push(route + 'home');
                         }else {
+                           console.log("icciiiii")
                           this.$router.push(route + 'register');
                         }
                       });

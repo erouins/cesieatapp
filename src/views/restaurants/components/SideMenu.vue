@@ -39,7 +39,7 @@ export default {
               this.$router.push("/restaurants/profil");
         },
         handleClickHome(){
-              this.$router.push("/restaurants/main");
+              this.$router.push("/restaurants/home");
         },
         handleClickOrders(){
               this.$router.push("/restaurants/orders");

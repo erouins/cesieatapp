@@ -54,7 +54,7 @@ export default {
             .then((data) => {
                 console.log(data)
                 localStorage.setItem('mongoUserId', data["id"]);
-                this.$router.push("/clients/main"); 
+                this.$router.push("/clients/home"); 
             }).catch((err) => {
                 console.log(err);
             });

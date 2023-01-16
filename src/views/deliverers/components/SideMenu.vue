@@ -38,7 +38,7 @@ export default {
               this.$router.push("/deliverers/profil");
         },
         handleClickHome(){
-              this.$router.push("/deliverers/main");
+              this.$router.push("/deliverers/home");
         },
         handleClickDeliveries(){
               this.$router.push("/deliverers/deliveries");
