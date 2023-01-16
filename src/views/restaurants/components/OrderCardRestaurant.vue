@@ -85,7 +85,7 @@ name: "OrderCardRestaurant",
               })
     },
     handleTest() {
-       console.log('test')
+       console.log('testtttt')
     },
   }
 }

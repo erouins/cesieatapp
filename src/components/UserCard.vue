@@ -35,7 +35,7 @@ export default {
   methods:{
     handleClick(){
       console.log(this.$route.path+ "/update")
-        this.$router.push(this.$route.path + "/update");
+      this.$router.push(this.$route.path + "/update");
     },
     handleClickDelete(){
       const url = "http://localhost:3001/users/" + localStorage.getItem('mongoUserId');
