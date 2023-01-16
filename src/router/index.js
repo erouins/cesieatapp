@@ -7,6 +7,9 @@ import ClientHome from '@/views/clients/components/Home.vue'
 import ClientRegister from '@/views/clients/Register.vue'
 import ClientProfil from '@/views/clients/components/Profil.vue'
 import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
+import ClientRestaurantPage from '@/views/clients/RestaurantPage.vue'
+import ClientArticlesList from '@/views/clients/components/ArticleList.vue'
+// import ClientMenuList from '@/views/clients/components/MenuList.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
 import DelivererProfil from '@/views/deliverers/components/Profil.vue'
@@ -66,8 +69,32 @@ const routes = [
     children: [
       {
         path: 'main',
-        name: 'ClientHome',
-        component: ClientHome,
+        children: [
+          {
+            path: '',
+            name: 'ClientHome',
+            component:  ClientHome,
+          },
+          {
+            path: 'restaurant',
+            name: 'restaurantPage',
+            children: [
+              {
+                name: 'menusList',
+                path: ':id/menus',
+                component: ClientRestaurantPage,
+                props: true,
+              },
+              {
+                name: 'articlesList',
+                path: ':id/articles',
+                component: ClientRestaurantPage,
+                props: true,
+              },
+
+            ]
+          }
+        ]
       },
       {
         path: 'profil',
@@ -130,7 +157,7 @@ const routes = [
     },
     children: [
       {
-        path: 'main',
+        path: 'home',
         name: 'restaurantMain',
         component: RestaurantCardContent
       },

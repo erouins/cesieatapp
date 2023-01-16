@@ -1,7 +1,7 @@
 <template>
   <div class="card-contener">
-    <div v-for="(item, index) in this.restaurantList" :key="index" class="restaurant-card">
-      <RestaurantCard v-bind:restaurant="item" />
+    <div v-for="(item, index) in this.restaurantList" :key="index" class="restaurant-card" >
+      <RestaurantCard v-bind:restaurant="item" @click="goToRestaurantPage(item)"/>
     </div>
   </div>
 </template>
@@ -27,10 +27,15 @@ export default {
       })
       .then((data) => {
         this.restaurantList = data['data'];
-        console.log('Data:', data['data']);
       });
   },
   methods: {
+    goToRestaurantPage(item) {
+      this.$store.commit('setRestaurant', item);
+      console.log("test2", this.$store.getters.getRestaurant['id']);
+      console.log("id:" , item['id']);
+      this.$router.push({ name: 'menusList', params: { id: item["id"].slice(-5)}});
+    }
 
   },
   components: {

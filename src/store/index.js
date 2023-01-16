@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     article: Object,
-    menu: Object
+    menu: Object,
+    restaurant: Object
   },
   getters: {
     getArticle(state){
@@ -11,6 +12,9 @@ export default createStore({
     },
     getMenu(state){
       return state.menu;
+    },
+    getRestaurant(state){
+      return state.restaurant;
     }
   },
   mutations: {
@@ -19,6 +23,9 @@ export default createStore({
     },
     setMenu(state, menu){
       state.menu = menu;
+    },
+    setRestaurant(state, restaurant){
+      state.restaurant = restaurant;
     }
   },
   actions: {
