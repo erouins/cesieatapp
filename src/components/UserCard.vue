@@ -13,7 +13,7 @@
       </div>
      
     </div>
-     <button class="rounded-black-border-button" @click="handleClick">
+     <button class="green-button" @click="handleClick">
     update my data
   </button>
   </div>
@@ -80,7 +80,6 @@ export default {
 .card-title {
   text-align: center;
   padding: 10px;
-  background-color: #f8f8f8;
 }
 
 .card-content {

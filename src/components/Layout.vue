@@ -78,6 +78,8 @@
         height: 100%;
         width: 100%;
         position:absolute;
+        overflow-y: scroll;
+        scrollbar-width: thin;
     }
 
     .main-content {
@@ -210,14 +212,17 @@
         transition: 0.5s;
     }
 
-    .rounded-black-border-button {
-        border-radius: 10px;
-        border: 2px solid black;
-        color: white;
-        background-color:  green;
-        padding: 10px 20px;
-        font-weight: bold;
+    .green-button {
         cursor: pointer;
+        color: #212529;
+        background-color: #93b721;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 0.7em 1em;
+        margin: 10px;
+        border-radius: 5px;
+        border: 0;
+        transition: 0.5s;
     }
 
 </style>

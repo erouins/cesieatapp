@@ -105,13 +105,6 @@ name: "OrderCard",
   justify-content: space-around;
 }
 
-.green-button {
-  color: white;
-  background-color: green;
-  padding: 10px 20px;
-  margin: 5px  ;
-  border-radius: 5px;
-}
 
 .red-button {
   color: white;
