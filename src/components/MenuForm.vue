@@ -1,7 +1,7 @@
 <template>
   <body>
     <div class="card">
-      <div class="card-title">{{this.title}}</div>
+      <div class="card-title">Add a new menu</div>
       <form @submit.prevent="editMenu">
         <div class="input-label"><label for="menu_name">name</label></div>
         <input
@@ -13,6 +13,36 @@
           required
           autocomplete
         />
+        <div class="dropdownContainer">
+          <select v-model="selectedArticle" class="dropdown">
+            <option
+              v-for="(item, index) in this.restaurantArticles"
+              :value="item"
+              :key="index"
+            >
+              {{ item["name"] }}
+            </option>
+          </select>
+          <button type="button" class="dropdownButton" @click="addToMenu">
+            Add
+          </button>
+        </div>
+
+        <div class="dropdownContainer">
+          <select v-model="removedArticle" class="dropdown">
+            <option
+              v-for="(item, index) in this.menuArticles"
+              :value="item"
+              :key="index"
+            >
+              {{ item["name"] }}
+            </option>
+          </select>
+          <button type="button" class="dropdownButton" @click="removeFromMenu">
+            Remove
+          </button>
+        </div>
+
         <div class="input-label">
           <label for="menu_description">description</label>
         </div>
@@ -23,9 +53,7 @@
           v-model="menu.description"
         />
         <div class="input-label">
-          <label for="menu_price" 
-            >price (in $)</label
-          >
+          <label for="menu_price">price (in $)</label>
         </div>
         <input
           class="input-field-auth"
@@ -46,6 +74,7 @@
   </body>
 </template>
 
+
 <script >
 import imgUtils from "@/utils/imgUtils.js";
 import axios from "axios";
@@ -55,8 +84,11 @@ const createMenuUrl =
   localStorage.getItem("mongoUserId") +
   "/menu/create";
 
-const updateMenuUrl = 
-"http://localhost:3001/restaurant/" +
+const getRestaurantUrl =
+  "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
+
+const updateMenuUrl =
+  "http://localhost:3001/restaurant/" +
   localStorage.getItem("mongoUserId") +
   "/menu/update";
 
@@ -66,63 +98,91 @@ export default {
     return {
       menuStored: this.$store.getters.getMenu,
       menu: {
-        id: this.$store.getters.getMenu['id'],
+        id: this.$store.getters.getMenu["id"],
         name: "",
         description: "",
         price: "",
         image: "",
+        articles: [],
       },
-      title: ''
+      title: "",
+      restaurantArticles: [],
+      menuArticles: [],
+      selectedArticle: "",
+      removedArticle: "",
     };
   },
-  props:{
-    type:'',
+  props: {
+    type: "",
   },
-    mounted(){
-        if(this.type == 'update'){
-          this.title = 'Update menu'
-            this.menu.name = this.menuStored["name"];
-            this.menu.description = this.menuStored["description"];
-            this.menu.price = this.menuStored["price"];
-            this.menu.image = this.menuStored["image"];
-        }
-        else{
-          this.title = 'Add a new menu'
-        }
-    },
+  mounted() {
+    this.getRestaurant();
+    console.log('articles: ',this.menuStored['articles'])
+    if (this.type == "update") {
+      this.title = "Update menu";
+      this.menu.name = this.menuStored["name"];
+      this.menu.description = this.menuStored["description"];
+      this.menu.price = this.menuStored["price"];
+      this.menu.image = this.menuStored["image"];
+      this.menuArticles = this.menuStored["articles"];
+    } else {
+      this.title = "Add a new menu";
+    }
+  },
   methods: {
-    editMenu(){
-        if(this.type == 'update'){
-            this.updateMenu();
-        }
-        else{
-            this.createMenu();
-        }
+    addToMenu() {
+      this.menuArticles.push(this.selectedArticle);
+    },
+    removeFromMenu() {
+      this.menuArticles.splice(this.menuArticles.indexOf(this.removedArticle), 1);
+    },
+    getRestaurant() {
+      axios
+        .get(getRestaurantUrl, {
+          headers: {
+            Authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((data) => {
+          
+          this.restaurantArticles = data["data"]["articles"];
+        });
+    },
+    editMenu() {
+      this.menuArticles.forEach(article => {
+        console.log('article id : ', article['id'])
+        this.menu.articles.push(article['id']);
+      });
+      if (this.type == "update") {
+        this.updateMenu();
+      } else {
+        this.createMenu();
+      }
     },
     createMenu() {
-      axios
-        .post(
-          createMenuUrl,
-          { menu: this.menu, userId: localStorage.getItem("userId"), },
-          {
-            headers: {
-              Authorization: `bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        )
+      axios.post(
+        createMenuUrl,
+        { menu: this.menu, userId: localStorage.getItem("userId") },
+        {
+          headers: {
+            Authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
     },
 
     updateMenu() {
-      axios
-        .put(
-          updateMenuUrl,
-          { menu: this.menu, userId: localStorage.getItem("userId"), },
-          {
-            headers: {
-              Authorization: `bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        )
+      console.log(this.menu)
+      axios.put(
+        updateMenuUrl,
+        { menu: this.menu, userId: localStorage.getItem("userId") },
+        {
+          headers: {
+            Authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      this.$router.push("/restaurants/menus");
     },
 
     async handleImageChange(e) {
@@ -133,4 +193,25 @@ export default {
 </script>
 
 <style>
+.dropdown {
+  left: initial;
+  width: 70%;
+  font-size: 1.2em;
+  margin-bottom: 2em;
+  border-radius: 5px;
+  border-width: 3px;
+  border-color: #93b721;
+  box-shadow: 2px 0px 5px rgb(0 0 0 / 20%);
+}
+
+.dropdownButton {
+  display: flex;
+  right: 100%;
+  font-size: 1em;
+  height: 1%
+}
+
+.dropdownContainer {
+   display: flex;
+}
 </style>

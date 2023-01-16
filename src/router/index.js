@@ -6,6 +6,7 @@ import ClientMain from '@/views/clients/Main.vue'
 import ClientHome from '@/views/clients/components/Home.vue'
 import ClientRegister from '@/views/clients/Register.vue'
 import ClientProfil from '@/views/clients/components/Profil.vue'
+import ClientOrder from '@/views/clients/Order.vue'
 import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import ClientRestaurantPage from '@/views/clients/RestaurantPage.vue'
 import ClientArticlesList from '@/views/clients/components/ArticleList.vue'
@@ -109,6 +110,10 @@ const routes = [
           }
         ]
       },
+      {
+        path:'order',
+        component: ClientOrder
+      }
     ]
   },
   {

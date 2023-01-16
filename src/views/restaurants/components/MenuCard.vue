@@ -13,14 +13,12 @@ export default {
   props: {
     item: Object,
   },
-  mounted() {
-    console.log('wewe')
+  mounted(){
   },
-  methods: {
-    goToUpdatePage() {
-      console.log('ffffffffff')
-      this.$store.commit('setMenu', this.item);
-      this.$router.push({ name: 'menuUpdate', params: { id: this.item["id"][0] + this.item["id"][1] + this.item["id"][2] } });
+  methods:{
+    goToUpdatePage(){
+        this.$store.commit('setMenu', this.item);
+       this.$router.push({name: 'menuUpdate',params:{id: this.item["id"][0]+this.item["id"][1]+this.item["id"][2]}});
     }
   },
   name: "RestaurantMenuCard",
