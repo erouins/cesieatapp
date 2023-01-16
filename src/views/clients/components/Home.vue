@@ -64,4 +64,9 @@ export default {
   box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
   transition: 0.5s;
 }
+
+.restaurant-card:hover {
+  box-shadow: 5px 0px 40px rgba(0, 0, 0, 40%);
+  transition: 0.5s;
+}
 </style>

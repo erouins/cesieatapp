@@ -1,10 +1,10 @@
 <template>
     <div class="body-contener">
-        <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
-            <slot name="side-menu"></slot>
-        </div>
         <div class="main-content" v-bind:style="{marginLeft: margin_left, width: main_content_width}">
             <slot name="main-content"></slot>
+        </div>
+        <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
+            <slot name="side-menu"></slot>
         </div>
     </div>
     <div class='header-bar'>
