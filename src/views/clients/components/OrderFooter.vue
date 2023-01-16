@@ -1,11 +1,18 @@
 <template>
     <div>
-        <div :v-if="orderState == 'pending'">a</div>
-        <div :v-if="orderState == 'accepted'">b</div>
-        <div :v-if="orderState == 'rejected'">c</div>
-        <div :v-if="orderState == 'deliver'">d</div>
-        <div :v-if="orderState == 'done'">e</div>
-        <div :v-if="orderState == 'restaurantAccepted'">f</div>
+        <div v-if="this.orderState == 'pending'">
+            <div v-if="this.isPayed">En attente de validation</div>
+            <div v-else>En attente de paiement</div>
+            <button v-if="!this.isPayed">payer</button>
+            <button>supprimer</button>
+        </div>
+        <div v-else-if="this.orderState == 'accepted'">
+            supprimer
+        </div>
+        <div v-else-if="this.orderState == 'rejected'"> Rejected</div>
+        <div v-else-if="this.orderState == 'deliver'"> Waiting for delivering </div>
+        <div v-else-if="this.orderState == 'done'"> Delivered</div>
+        <div v-else-if="this.orderState == 'restaurantAccepted'"> Waiting for a delivery</div>
     </div>
 </template>
 
@@ -13,8 +20,12 @@
 export default {
     name:'OrderFooter',
     props:{
-        orderState:''
+        orderState:'',
+        isPayed:'',
     },
-
+    mounted(){
+    console.log("order state: ", this.orderState)
 }
+}
+
 </script>

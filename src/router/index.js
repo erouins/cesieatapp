@@ -25,6 +25,10 @@ import RestaurantUpdateArticle from '@/views/restaurants/components/UpdateArticl
 import RestaurantUpdateMenu from '@/views/restaurants/components/UpdateMenu.vue'
 import CreateArticle from '@/views/restaurants/components/CreateArticle.vue'
 import CreateMenu from '@/views/restaurants/components/CreateMenu.vue'
+import ForgotPassword from '@/views/auth/ForgotPassword.vue'
+import UpdatePassword from '@/views/auth/UpdatePassword.vue'
+import VerifyEmail from '@/views/auth/VerifyEmail.vue'
+import SendVerificationEmail from '@/views/auth/SendVerificationEmail.vue'
 
 import RestaurantsOrders from '@/views/restaurants/components/RestaurantsOrders.vue'
 
@@ -69,7 +73,7 @@ const routes = [
     },
     children: [
       {
-        path: 'main',
+        path: 'home',
         children: [
           {
             path: '',
@@ -127,7 +131,7 @@ const routes = [
     },
     children: [
       {
-        path: 'main',
+        path: 'home',
         name: 'delivererMain',
         component: DelivererMain
       },
@@ -229,14 +233,37 @@ const routes = [
     name: 'auth',
     children: [
       {
-        path: "login",
-        name: "login",
-        component: Login,
+        path : "login",
+        name : "login",
+        component : Login,
       },
       {
-        path: "register",
-        name: "register",
-        component: AuthRegister,
+        path : "register",
+        name : "register",
+        component : AuthRegister,
+      },
+      {
+        path : "forgot-password",
+        name : "forgot-password",
+        component : ForgotPassword,
+      },
+      {
+        path : "reset-password",
+        name : "reset-password",
+        component : UpdatePassword,
+        props: true
+      },
+      {
+        path : "send-verification",
+        name : "send-verification",
+        component : SendVerificationEmail,
+        props: true
+      },
+      {
+        path : "verify-email",
+        name : "verify-email",
+        component : VerifyEmail,
+        props: true
       },
     ]
   },

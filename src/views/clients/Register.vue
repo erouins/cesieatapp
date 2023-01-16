@@ -13,6 +13,10 @@
                     required autocomplete />
                 <div class="input-label"><label for="client_address">address</label></div>
                 <input class="input-field-auth" type="text" id="client_address" v-model="profil.address" required/>
+                 <div class="input-label"><label for="restaurant_city">city</label></div>
+                <input class="input-field-auth" type="text" id="restaurant_city" v-model="profil.city" required/>
+                <div class="input-label"><label for="restaurant_zipcode">zipCode</label></div>
+                <input class="input-field-auth" type="text" id="restaurant_zipcode" v-model="profil.zipCode" required/>
                 <button class="submit-button" type="submit">submit</button>
             </form>
         </div>
@@ -28,6 +32,8 @@ export default {
                 firstName: '',
                 lastName: '',
                 address: '',
+                 city: '',
+                zipCode: '',
                 image: ''
             }
         }
@@ -46,7 +52,9 @@ export default {
             })
             .then((blob) => blob.json())
             .then((data) => {
-                
+                console.log(data)
+                localStorage.setItem('mongoUserId', data["id"]);
+                this.$router.push("/clients/home"); 
             }).catch((err) => {
                 console.log(err);
             });
