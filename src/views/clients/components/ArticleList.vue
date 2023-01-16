@@ -30,11 +30,11 @@ export default {
 .article_card {
   align-items: center;
   left: 50%;
-  display: grid;
+  display: flex;
   grid-template-columns: 5fr 1fr;
   width: 50%;
   height: 20%;
-  margin: 5%;
+  margin: 20px;
   align-items: center;
   padding: 1em;
   border-radius: 15px;

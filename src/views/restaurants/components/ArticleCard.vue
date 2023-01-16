@@ -30,19 +30,5 @@ export default {
 </script>
 
 <style>
-.article_card {
-  align-items: center;
-  left: 50%;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-  width: 50%;
-  height: 20%;
-  margin: 5%;
-  align-items: center;
-  padding: 1em;
-  border-radius: 15px;
-  background: #fefefe;
-  transition: box-shadow 0.5s;
-  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
-}
+
 </style>
