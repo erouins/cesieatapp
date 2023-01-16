@@ -98,6 +98,7 @@ export default {
     return {
       menuStored: this.$store.getters.getMenu,
       menu: {
+        id:this.$store.getters.getMenu["id"],
         name: "",
         description: "",
         price: "",

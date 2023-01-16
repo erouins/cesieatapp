@@ -3,11 +3,11 @@
         <img class="icon-button" src="@/assets/house-door-fill.svg" />
         <label for="button-home">Home</label>
     </button>
-    <button id="button-order" class="button-sidemenu">
+    <button id="button-order" class="button-sidemenu" @click="handleClickOrder">
         <img class="icon-button" src="@/assets/bag-fill.svg" />
         <label for="button-order">Order</label>
     </button>
-    <button id="button-historical" class="button-sidemenu">
+    <button id="button-historical" class="button-sidemenu" @click="handleClickHistorical">
         <img class="icon-button" src="@/assets/book-fill.svg" />
         <label for="button-historical">Historical</label>
     </button>
@@ -38,6 +38,12 @@ export default {
         },
         handleClickHome(){
               this.$router.push("/clients/home");
+        },
+        handleClickOrder(){
+              this.$router.push("/clients/order");
+        },
+        handleClickHistorical(){
+              this.$router.push("/clients/historical");
         },
         handleLogout(){
             

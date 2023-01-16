@@ -9,8 +9,6 @@ import ClientProfil from '@/views/clients/components/Profil.vue'
 import ClientOrder from '@/views/clients/Order.vue'
 import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import ClientRestaurantPage from '@/views/clients/RestaurantPage.vue'
-import ClientArticlesList from '@/views/clients/components/ArticleList.vue'
-// import ClientMenuList from '@/views/clients/components/MenuList.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
 import DelivererProfil from '@/views/deliverers/components/Profil.vue'
@@ -102,6 +100,14 @@ const routes = [
         ]
       },
       {
+        path:'order',
+        component: ClientOrder
+      },
+      {
+        path:'historical',
+        //component: ClientOrder
+      },
+      {
         path: 'profil',
         children: [
           {
@@ -115,8 +121,7 @@ const routes = [
         ]
       },
       {
-        path:'order',
-        component: ClientOrder
+        path: "/:pathMatch(.*)*", redirect: "/clients/home"
       }
     ]
   },
@@ -153,6 +158,9 @@ const routes = [
           }
         ]
       },
+      {
+        path: "/:pathMatch(.*)*", redirect: "/deliverers/home"
+      }
     ]
   },
   {
@@ -168,45 +176,50 @@ const routes = [
       {
         path: 'home',
         name: 'restaurantMain',
-        component: RestaurantCardContent
-      },
-      {
-        path: 'menus',
-        children: [
+        children:[
           {
-            path: '',
-            component: RestaurantCardContent,
+            path: 'menus',
+            children: [
+              {
+                path: '',
+                component: RestaurantCardContent,
+              },
+              {
+                path: ':id/update',
+                name: 'menuUpdate',
+                component: RestaurantUpdateMenu,
+                props: true
+              },
+              {
+                path: 'create',
+                component: CreateMenu
+              }
+            ]
           },
           {
-            path: ':id/update',
-            name: 'menuUpdate',
-            component: RestaurantUpdateMenu,
-            props: true
+            path: 'articles',
+            children: [
+              {
+                path: '',
+                component: RestaurantCardContent,
+              },
+              {
+                path: ':id/update',
+                name: 'articleUpdate',
+                props: true,
+                component: RestaurantUpdateArticle
+              },
+              {
+                path: 'create',
+                component: CreateArticle
+              }
+            ]
           },
-          {
-            path: 'create',
-            component: CreateMenu
-          }
         ]
       },
       {
-        path: 'articles',
-        children: [
-          {
-            path: '',
-            component: RestaurantCardContent,
-          },
-          {
-            path: ':id/update',
-            name: 'articleUpdate',
-            props: true,
-            component: RestaurantUpdateArticle
-          },
-          {
-            path: 'create',
-            component: CreateArticle
-          }
-        ]
+        path: 'historical',
+        //component: RestaurantHistorical
       },
       {
         path: 'profil',
@@ -225,7 +238,9 @@ const routes = [
         path: 'orders',
         component: RestaurantsOrders
       },
-
+      {
+        path: "/:pathMatch(.*)*", redirect: "/restaurants/home/menus"
+      }
     ]
   },
   {
@@ -268,7 +283,7 @@ const routes = [
     ]
   },
   {
-    path: "/:pathMatch(.*)*", redirect: "/auth/login", component: Login
+    path: "/:pathMatch(.*)*", redirect: "/restaurants/login", component: Login
   }
 
 ]

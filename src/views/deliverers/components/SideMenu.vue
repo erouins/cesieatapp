@@ -7,7 +7,7 @@
         <img class="icon-button" src="@/assets/compass-fill.svg"/>
         <label for="button-delivery">Deliveries</label>
     </button>
-    <button id="button-historical" class="button-sidemenu">
+    <button id="button-historical" class="button-sidemenu" @click="handleClickHistorical">
         <img class="icon-button" src="@/assets/book-fill.svg"/>
         <label for="button-historical">Historical</label>
     </button>
@@ -42,6 +42,9 @@ export default {
         },
         handleClickDeliveries(){
               this.$router.push("/deliverers/deliveries");
+        },
+        handleClickHistorical(){
+              this.$router.push("/deliverers/historical");
         },
         handleLogout(){
             

@@ -8,7 +8,7 @@
         <label for="button-historical">Orders</label>
     </button>
 
-    <button id="button-historical" class="button-sidemenu">
+    <button id="button-historical" class="button-sidemenu" @click="handleClickHistorical">
         <img class="icon-button" src="@/assets/book-fill.svg"/>
         <label for="button-historical">Historical</label>
     </button>
@@ -39,10 +39,13 @@ export default {
               this.$router.push("/restaurants/profil");
         },
         handleClickHome(){
-              this.$router.push("/restaurants/home");
+              this.$router.push("/restaurants/home/menus");
         },
         handleClickOrders(){
               this.$router.push("/restaurants/orders");
+        },
+        handleClickHistorical(){
+              this.$router.push("/restaurants/historical");
         },
         handleLogout(){
             
