@@ -40,7 +40,7 @@ export default {
     },
 
     methods: {
-        register() {
+        register()  {
             fetch('http://localhost:3001/users/new', {
                 headers: {
                     'Accept': 'application/json',
@@ -50,11 +50,12 @@ export default {
                 body: JSON.stringify(this.user)
             })
             .then((blob) => blob.json())
-            .then((data) => {
+            .then( async (data) =>  {
                 localStorage.clear();
                 console.log(data);
-                localStorage.setItem('userId', data.userId);
-                this.$router.push('/auth/login');
+                localStorage.setItem('userId', data.user.id);
+                console.log("register succes")                
+            this.$router.push('/auth/send-verification');
             }).catch((err) => {
                 console.log(err);
             });

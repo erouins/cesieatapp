@@ -12,15 +12,23 @@
         <p class="card-description">{{ description }}</p>
       </div>
      
-    </div>
-     <button class="rounded-black-border-button" @click="handleClick">
+    </div >
+    <div class="order-buttons">
+     <button class="green-button" @click="handleClick">
     update my data
   </button>
+  <button class="red-button" @click="handleClickDelete">
+   Delete my account 
+  </button>
+  </div>
   </div>
 </template>
 
 
 <script>
+
+import Axios from '@/services/callerService';
+
 export default {
   name: "UserCard",
 
@@ -28,6 +36,21 @@ export default {
     handleClick(){
       console.log(this.$route.path+ "/update")
         this.$router.push(this.$route.path + "/update");
+    },
+    handleClickDelete(){
+      const url = "http://localhost:3001/users/" + localStorage.getItem('mongoUserId');
+
+      if (confirm('Are you sure you want to delete your account')){
+        Axios.delete(url).then((response) => {
+              console.log(response.data)
+              if (response.status == 200){
+                  console.log("delete")
+                  this.$router.push("/login");
+                  localStorage.clear();
+                }
+              })
+             
+      }
     }
   },
 

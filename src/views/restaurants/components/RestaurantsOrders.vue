@@ -92,8 +92,8 @@
 <script>
 import OrderCardRestaurant from "@/views/restaurants/components/OrderCardRestaurant.vue";
 
-const url = 'http://localhost:3001/restaurant/63bd6e6e9d972a7deb9ff875/orders'
-import axios from 'axios';
+const url = 'http://localhost:3001/restaurant/'+localStorage.getItem('mongoUserId')+'/orders'
+import Axios from '@/services/callerService';
 
 export default {
 
@@ -102,12 +102,7 @@ export default {
   },
 
   mounted(){
-     axios.get(url,
-              {
-            headers: {
-              'Authorization': `bearer ${localStorage.getItem("token")}` 
-            }}
-            ).then((response) => {
+     Axios.get(url).then((response) => {
               console.log(response)
              for (let i = 0; i < Object.keys(response.data).length ; i++){
                 if (response.data[i].status == 'pending'){

@@ -10,7 +10,7 @@
 
 <script>
 import RestaurantMenuCard from "@/views/restaurants/components/MenuCard.vue";
-import axios from "axios";
+import Axios from '@/services/callerService';
 const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
 export default {
   data(){
@@ -20,12 +20,7 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get(url, {
-        headers: {
-          Authorization: `bearer ${localStorage.getItem("token")}`,
-        },
-      })
+    Axios.get(url)
       .then((data) => {
         this.restaurantMenus = data["data"]["menus"];
         this.restaurantArticles = data["data"]["articles"];

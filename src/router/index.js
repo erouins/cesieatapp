@@ -16,6 +16,10 @@ import RestaurantRegister from '@/views/restaurants/Register.vue'
 import RestaurantCardContent from '@/views/restaurants/components/CardContent.vue'
 import RestaurantProfil from '@/views/restaurants/components/Profil.vue'
 import RestaurantUpdateProfil from '@/views/restaurants/components/UpdateProfil.vue'
+import ForgotPassword from '@/views/auth/ForgotPassword.vue'
+import UpdatePassword from '@/views/auth/UpdatePassword.vue'
+import VerifyEmail from '@/views/auth/VerifyEmail.vue'
+import SendVerificationEmail from '@/views/auth/SendVerificationEmail.vue'
 
 import RestaurantsOrders from '@/views/restaurants/components/RestaurantsOrders.vue'
 
@@ -188,6 +192,29 @@ const routes = [
         path : "register",
         name : "register",
         component : AuthRegister,
+      },
+      {
+        path : "forgot-password",
+        name : "forgot-password",
+        component : ForgotPassword,
+      },
+      {
+        path : "reset-password",
+        name : "reset-password",
+        component : UpdatePassword,
+        props: true
+      },
+      {
+        path : "send-verification",
+        name : "send-verification",
+        component : SendVerificationEmail,
+        props: true
+      },
+      {
+        path : "verify-email",
+        name : "verify-email",
+        component : VerifyEmail,
+        props: true
       },
     ]
   },

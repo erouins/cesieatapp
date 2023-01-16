@@ -20,7 +20,7 @@
 <script>
 import OrderCard from "@/components/OrderCard.vue";
 import CurrentOrderCard from "@/views/deliverers/components/CurrentOrderCard.vue"
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
 const url = "http://localhost:3001/deliverer/pending";
 const firstRequestUrl = "http://localhost:3001/deliverer/"+ localStorage.getItem("mongoUserId") +"/orders";
@@ -39,21 +39,11 @@ export default {
     };
   },
   async mounted() {
-    await axios.get(firstRequestUrl,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  }}
-  ).then((response) => {
+    await Axios.get(firstRequestUrl).then((response) => {
       if(response.status == 200) {
         this.alreadyHaveOrder = true
      }else{
-          axios.get(url,
-              {
-            headers: {
-              'Authorization': `bearer ${localStorage.getItem("token")}` 
-            }}
-            ).then((response) => {
+          Axios.get(url).then((response) => {
                 this.results = response.data;
                 console.log("results" + this.results)
               });
@@ -61,7 +51,7 @@ export default {
     });
    
    
-     console.log(this.alreadyHaveOrder)
+   
   },
 
   methods: {},

@@ -44,7 +44,7 @@ const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId"
 const urlToSend = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId") + "/update-profil";
 const currentPage = "clients"
 
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
 export default {
     name: 'ClientUpdateProfil',
@@ -63,12 +63,7 @@ export default {
   },
   mounted() {
     console.log("results")
-    axios.get(url,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  }}
-  ).then((response) => {
+    Axios.get(url).then((response) => {
       this.form.firstName = response.data.firstName;
       this.form.lastName = response.data.lastName;
       this.form.address = response.data.address;
@@ -102,14 +97,8 @@ export default {
     udpateData(){
         console.log(JSON.stringify({profil: this.form}))
         console.log(urlToSend)
-        axios.put(urlToSend,
-        {profil: this.form},
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  },
-   }
-  ).then((response) => {
+        Axios.put(urlToSend,
+        {profil: this.form}).then((response) => {
 
       this.form.firstName = response.data.firstName;
       this.form.lastName = response.data.lastName;
