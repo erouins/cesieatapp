@@ -11,7 +11,7 @@
 <script>
 import RestaurantMenuCard from "@/views/restaurants/components/MenuCard.vue";
 import Axios from '@/services/callerService';
-const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
+const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");//
 export default {
   data(){
     return {
