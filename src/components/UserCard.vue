@@ -35,6 +35,7 @@ export default {
   methods:{
     handleClick(){
       console.log(this.$route.path+ "/update")
+
         this.$router.push(this.$route.path + "/update");
     },
     handleClickDelete(){
@@ -51,6 +52,7 @@ export default {
               })
              
       }
+
     }
   },
 

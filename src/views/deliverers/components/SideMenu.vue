@@ -13,7 +13,7 @@
     </button>
 
     <button id="button-settings" class="button-sidemenu" @click="handleClickProfile">
-        <img class="icon-button" src="@/assets/person-fill.svg"/>
+        <img class="icon-button" src="@/assets/person-circle.svg"/>
         <label for="button-settings">Profile</label>
 
     </button>

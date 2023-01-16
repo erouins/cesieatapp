@@ -1,18 +1,18 @@
 <template>
     <button id="button-home" class="button-sidemenu" @click="handleClickHome">
-        <img class="icon-button" src="@/assets/house-door-fill.svg"/>
+        <img class="icon-button" src="@/assets/house-door-fill.svg" />
         <label for="button-home">Home</label>
     </button>
     <button id="button-order" class="button-sidemenu">
-        <img class="icon-button" src="@/assets/basket2-fill.svg"/>
+        <img class="icon-button" src="@/assets/bag-fill.svg" />
         <label for="button-order">Order</label>
     </button>
     <button id="button-historical" class="button-sidemenu">
-        <img class="icon-button" src="@/assets/book-fill.svg"/>
+        <img class="icon-button" src="@/assets/book-fill.svg" />
         <label for="button-historical">Historical</label>
     </button>
     <button id="button-settings" class="button-sidemenu" @click="handleClickProfile">
-        <img class="icon-button" src="@/assets/person-fill.svg"/>
+        <img class="icon-button" src="@/assets/person-circle.svg" />
         <label for="button-settings">Profile</label>
     </button>
     <div class="footer-button">
@@ -31,11 +31,12 @@ const url = "http://localhost:3001/auth/logout";
 export default {
     name: 'ClientSideMenu',
 
-     methods:{
+    methods: {
 
-        handleClickProfile(){
-              this.$router.push("/clients/profil");
+        handleClickProfile() {
+            this.$router.push("/clients/profil");
         },
+
         handleClickHome(){
               this.$router.push("/clients/main");
         },

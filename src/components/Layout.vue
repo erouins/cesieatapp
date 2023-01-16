@@ -1,31 +1,31 @@
 <template>
-    <div class="main-contener">
-        <div class="main-content" v-bind:style="{marginLeft: margin_left}">
+    <div class="body-contener">
+        <div class="main-content" v-bind:style="{marginLeft: margin_left, width: main_content_width}">
             <slot name="main-content"></slot>
         </div>
-    </div>
-    <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
-        <slot name="side-menu"></slot>
+        <div id="side-bar" class="side-bar" v-bind:style="{display: visibility}">
+            <slot name="side-menu"></slot>
+        </div>
     </div>
     <div class='header-bar'>
-        <div class='header-right-part' v-bind:style="{marginLeft: margin_left, paddingLeft: padding_left}">
-            <div class="logo-titre">
-                <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
-                <p>CesiEAT</p>
+            <div class='header-right-part' v-bind:style="{marginLeft: margin_left, paddingLeft: padding_left}">
+                <div class="logo-titre">
+                    <img class="logo-top-left" src="../assets/logo-cesi-eat.svg" alt="logo cesi eat"/>
+                    <p>CesiEAT</p>
+                </div>
             </div>
+            <div class='header-left-part'>
+                <button id="button-active-sidebar" class="button-active-sidebar" @click="hideSideMenu">
+                    <img  class="icon-button" src="../assets/list.svg"/>
+                </button>
+            </div>
+            <!-- <div class="search-bar">
+                <input class="input-search-bar">
+                <button clas="search-button">
+                    <img class="icon-search" src="../assets/search.svg"/>
+                </button>
+            </div> -->
         </div>
-        <div class='header-left-part'>
-            <button id="button-active-sidebar" class="button-active-sidebar" @click="hideSideMenu">
-                <img  class="icon-button" src="../assets/list.svg"/>
-            </button>
-        </div>
-        <!-- <div class="search-bar">
-            <input class="input-search-bar">
-            <button clas="search-button">
-                <img class="icon-search" src="../assets/search.svg"/>
-            </button>
-        </div> -->
-    </div>
 </template>
 
 <script>
@@ -35,7 +35,8 @@
             return {
                 visibility: "block",
                 margin_left: "",
-                padding_left: ""
+                padding_left: "",
+                main_content_width: ""
             }
         },
         methods: {
@@ -44,10 +45,12 @@
                     this.visibility = "none"
                     this.margin_left =  "0px"
                     this.padding_left = "78px"
+                    this.main_content_width = "calc(100% - 16px)"
                 } else {
                     this.visibility = "block"
                     this.margin_left =  ""
                     this.padding_left = ""
+                    this.main_content_width = ""
                 }
             }
         }
@@ -55,16 +58,6 @@
 </script>
 
 <style>
-
-.rounded-black-border-button {
-  border-radius: 10px;
-  border: 2px solid black;
-  color: white;
-  background-color:  green;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
     body {
         margin: 0px;
         max-height: 500px;
@@ -75,17 +68,25 @@
         font-size: 1em;
     }
 
-    .main-contener {
-        position: absolute;
+    hr {
+        background-color: #2c3e50;
+        height: 2px;
+        border: none;
+    }
+
+    .body-contener {
         height: 100%;
         width: 100%;
-        top: 0;
+        position:absolute;
     }
 
     .main-content {
+        width: calc(100% - 94px);
+        min-height: calc(100% - 72px);
+        position: absolute;
         margin-top: 56px;
         margin-left: 78px;
-        padding: 16px;
+        padding: 8px;
     }
     .header-bar {
         width: 100%;
@@ -195,8 +196,7 @@
         background: #fefefe;
     }
 
-    .button-active-sidebar:focus,
-    .button-sidemenu:focus,
+
     .button-active-sidebar:hover,
     .button-sidemenu:hover {
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
@@ -208,6 +208,16 @@
         background: #ebebeb;
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 50%);
         transition: 0.5s;
+    }
+
+    .rounded-black-border-button {
+        border-radius: 10px;
+        border: 2px solid black;
+        color: white;
+        background-color:  green;
+        padding: 10px 20px;
+        font-weight: bold;
+        cursor: pointer;
     }
 
 </style>
