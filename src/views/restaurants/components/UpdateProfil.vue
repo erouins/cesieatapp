@@ -44,7 +44,7 @@ const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUse
 const urlToSend = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId") + "/update";
 const currentPage = "restaurants"
 
-import axios from 'axios';
+import Axios from '@/services/callerService';
 import imgUtils from '@/utils/imgUtils.js'
 
 export default {
@@ -63,12 +63,7 @@ export default {
   },
   mounted() {
     console.log("results")
-    axios.get(url,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  }}
-  ).then((response) => {
+    Axios.get(url).then((response) => {
       this.form.name = response.data.name;
       this.form.address = response.data.address;
       this.form.city = response.data.city;
@@ -84,14 +79,8 @@ export default {
       },
     udpateData(){
         console.log(JSON.stringify({profil: this.form}))
-        axios.post(urlToSend,
-        {profil: this.form},
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  },
-   }
-  ).then((response) => {
+        Axios.post(urlToSend,
+        {profil: this.form}).then((response) => {
     console.log(response.status)
       this.form.name = response.data.name;
       this.form.address = response.data.address;

@@ -19,7 +19,7 @@
 
     </button>
     <div class="footer-button">
-        <button id="button-exit" class="button-sidemenu">
+        <button id="button-exit" class="button-sidemenu" @click="handleLogout">
             <img class="icon-button" src="@/assets/arrow-left-circle-fill.svg"/>
             <label for="button-exit">Disonnect</label>
         </button>
@@ -27,6 +27,10 @@
 </template>
 
 <script>
+
+import Axios from '@/services/callerService';
+const url = "http://localhost:3001/auth/logout";
+
 export default {
     name: 'RestaurantSideMenu',
 
@@ -39,6 +43,19 @@ export default {
         },
         handleClickOrders(){
               this.$router.push("/restaurants/orders");
+        },
+        handleLogout(){
+            
+            Axios.post(url,
+                  {refreshToken : localStorage.getItem('refreshToken')}).then((response) => {
+              console.log(response.data)
+              if (response.status == 204){
+                  console.log("Logout")
+                  
+                }
+              })
+             this.$router.push("/login");
+             localStorage.clear();
         }
     }
 }

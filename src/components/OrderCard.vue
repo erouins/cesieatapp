@@ -19,7 +19,7 @@
 
 const url = "http://localhost:3001/deliverer/"+ localStorage.getItem("mongoUserId") +"/update-order";
 
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
 export default {
 
@@ -63,14 +63,7 @@ name: "OrderCard",
         this.form.deliveryId = localStorage.getItem("mongoUserId"),
         this.form.orderId = this.title
       console.log( this.form)
-       axios.put(url,
-        this.form,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  },
-   }
-  ).then((response) => {
+       Axios.put(url,this.form).then((response) => {
     console.log(response.data)
     if (response.status == 200){
         this.$router.go();

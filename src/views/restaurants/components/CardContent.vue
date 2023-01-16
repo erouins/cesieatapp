@@ -11,8 +11,8 @@
 <script>
 import RestaurantMenuCard from "@/views/restaurants/components/MenuCard.vue";
 import RestaurantArticleCard from "@/views/restaurants/components/ArticleCard.vue";
-import axios from "axios";
-const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
+import Axios from '@/services/callerService';
+const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");//
 export default {
   data() {
     return {
@@ -23,12 +23,7 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get(url, {
-        headers: {
-          Authorization: `bearer ${localStorage.getItem("token")}`,
-        },
-      })
+    Axios.get(url)
       .then((data) => {
         this.menusList = data["data"]["menus"];
         this.articlesList = data["data"]["articles"];
