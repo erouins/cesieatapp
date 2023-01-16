@@ -27,12 +27,15 @@
       Don't have an account ?
       <a href="http://localhost:8080/auth/Register">sign in</a>
     </p>
+    <a href="http://localhost:8080/auth/forgot-password">I have forgot my password</a>
     </div>
 </template>
 
 <script>
-//<input type="file" ref="file" style="display: none" />
-//<button @click="$refs.file.click()">open file dialog</button>
+
+
+
+import Axios from '@/services/callerService';
   
 export default {
   name: "Login",
@@ -59,30 +62,49 @@ export default {
         .then((data) => {
           localStorage.clear();
           localStorage.setItem("token", data["tokens"]["access"]["token"]);
+          localStorage.setItem("refreshToken", data["tokens"]["refresh"]["token"]);
           localStorage.setItem("userId", data['user']['id']);
           localStorage.setItem("accountType", data['user']['accountType']);
-          fetch("http://localhost:3001/users/find", {
-            headers: {
-              'Accept': "application/json",
-              "Content-Type": "application/json",
-              'Authorization': "Bearer " + data["tokens"]["access"]["token"],
-            },
-            method: "POST",
-            body: JSON.stringify({
-              accountType: localStorage.getItem('accountType'),
-              userId: localStorage.getItem('userId'),
-            }),
-          })
-            .then((blob) => blob.json())
-            .then((data) => {
-              localStorage.setItem('mongoUserId', data["id"]);
-              const route = '/' + localStorage.getItem('accountType') + 's/';
-              if (data["response"] == "true") {
-                this.$router.push(route + 'main');
-              }else {
-                this.$router.push(route + 'register');
-              }
-            });
+          const userUrl = "http://localhost:3001/users/" + localStorage.getItem('userId')
+            Axios.get(userUrl).then((response) => {
+             
+              if (response.status == 200){
+                  if (response.data.isEmailVerified == false){
+                       
+                         this.$router.push("/auth/send-verification");
+                  }else{
+                       
+                        fetch("http://localhost:3001/users/find", {
+                      headers: {
+                        'Accept': "application/json",
+                        "Content-Type": "application/json",
+                        'Authorization': "Bearer " + data["tokens"]["access"]["token"],
+                      },
+                      method: "POST",
+                      body: JSON.stringify({
+                        accountType: localStorage.getItem('accountType'),
+                        userId: localStorage.getItem('userId'),
+                      }),
+                    })
+                      .then((blob) => blob.json())
+                      .then((data) => {
+                      
+                        localStorage.setItem('mongoUserId', data["id"]);
+                        const route = '/' + localStorage.getItem('accountType') + 's/';
+                        if (data["response"] == "true") {
+                             console.log(route)
+                          this.$router.push(route + 'home');
+                        }else {
+                           console.log("icciiiii")
+                          this.$router.push(route + 'register');
+                        }
+                      });
+                              
+                  }
+
+                }
+              })
+  
         })
         .catch((err) => {
           console.log(err);

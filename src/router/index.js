@@ -3,10 +3,14 @@ import AuthRegister from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
 import ClientMain from '@/views/clients/Main.vue'
+import ClientHome from '@/views/clients/components/Home.vue'
 import ClientRegister from '@/views/clients/Register.vue'
 import ClientProfil from '@/views/clients/components/Profil.vue'
 import ClientOrder from '@/views/clients/Order.vue'
 import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
+import ClientRestaurantPage from '@/views/clients/RestaurantPage.vue'
+import ClientArticlesList from '@/views/clients/components/ArticleList.vue'
+// import ClientMenuList from '@/views/clients/components/MenuList.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
 import DelivererRegister from '@/views/deliverers/Register.vue'
 import DelivererProfil from '@/views/deliverers/components/Profil.vue'
@@ -21,6 +25,10 @@ import RestaurantUpdateArticle from '@/views/restaurants/components/UpdateArticl
 import RestaurantUpdateMenu from '@/views/restaurants/components/UpdateMenu.vue'
 import CreateArticle from '@/views/restaurants/components/CreateArticle.vue'
 import CreateMenu from '@/views/restaurants/components/CreateMenu.vue'
+import ForgotPassword from '@/views/auth/ForgotPassword.vue'
+import UpdatePassword from '@/views/auth/UpdatePassword.vue'
+import VerifyEmail from '@/views/auth/VerifyEmail.vue'
+import SendVerificationEmail from '@/views/auth/SendVerificationEmail.vue'
 
 import RestaurantsOrders from '@/views/restaurants/components/RestaurantsOrders.vue'
 
@@ -30,7 +38,7 @@ const routes = [
     name: 'root',
     component: Home
   },
-  { 
+  {
     path: '/clients/register',
     name: 'clientRegister',
     component: ClientRegister,
@@ -38,7 +46,7 @@ const routes = [
       //TODO BLOQUER SI PAS FROM AUTH/LOGIN
     },
   },
-  { 
+  {
     path: '/deliverers/register',
     name: 'delivererRegister',
     component: DelivererRegister,
@@ -46,7 +54,7 @@ const routes = [
       //TODO BLOQUER SI PAS FROM AUTH/LOGIN
     },
   },
-  { 
+  {
     path: '/restaurants/register',
     name: 'restaurantRegister',
     component: RestaurantRegister,
@@ -60,21 +68,44 @@ const routes = [
     component: ClientMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
-      if(localStorage.getItem('accountType') == 'client') return true;
-      this.$router.push('auth/login');
+      if (localStorage.getItem('accountType') == 'client') return true;
+      this.$router.push('/auth/login');
     },
     children: [
-      { 
-        path: 'main',
-        name: 'ClientMain',
-        component: ClientMain,
+      {
+        path: 'home',
+        children: [
+          {
+            path: '',
+            name: 'ClientHome',
+            component:  ClientHome,
+          },
+          {
+            path: 'restaurant',
+            name: 'restaurantPage',
+            children: [
+              {
+                name: 'menusList',
+                path: ':id/menus',
+                component: ClientRestaurantPage,
+                props: true,
+              },
+              {
+                name: 'articlesList',
+                path: ':id/articles',
+                component: ClientRestaurantPage,
+                props: true,
+              },
+
+            ]
+          }
+        ]
       },
       {
         path: 'profil',
-        
-        children:[
+        children: [
           {
-            path:'update',
+            path: 'update',
             component: ClientUpdateProfil
           },
           {
@@ -95,30 +126,29 @@ const routes = [
     component: DelivererMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
-      if(localStorage.getItem('accountType') == 'deliverer') return true;
-      this.$router.push('auth/login');
+      if (localStorage.getItem('accountType') == 'deliverer') return true;
+      this.$router.push('/auth/login');
     },
     children: [
-      { 
-        path: 'main',
+      {
+        path: 'home',
         name: 'delivererMain',
         component: DelivererMain
       },
-      { 
+      {
         path: 'deliveries',
         name: 'deliveries',
         component: Deliveries
       },
-      
       {
         path: 'profil',
-        children:[
+        children: [
           {
-            path:'update',
+            path: 'update',
             component: DelivererUpdateProfil
           },
           {
-            path:'',
+            path: '',
             component: DelivererProfil
           }
         ]
@@ -131,62 +161,62 @@ const routes = [
     component: RestaurantMain,
     beforeEnter: (to, from) => {
       console.log(localStorage);
-      if(localStorage.getItem('accountType') == 'restaurant') return true;
-      this.$router.push('auth/login');
+      if (localStorage.getItem('accountType') == 'restaurant') return true;
+      this.$router.push('/auth/login');
     },
     children: [
-      { 
-        path: 'main',
+      {
+        path: 'home',
         name: 'restaurantMain',
         component: RestaurantCardContent
       },
       {
-            path:'menus',
-            children: [
-              {
-                path: '',
-                component: RestaurantCardContent,
-              },
-              {
-                path: ':id/update',
-                name: 'menuUpdate',
-                component: RestaurantUpdateMenu,
-                props: true
-              },
-              {
-                path: 'create',
-                component: CreateMenu
-              }
-            ]
+        path: 'menus',
+        children: [
+          {
+            path: '',
+            component: RestaurantCardContent,
           },
           {
-            path:'articles',
-            children: [
-              {
-                path: '',
-                component: RestaurantCardContent,
-              },
-              {
-                path: ':id/update',
-                name:'articleUpdate',
-                props: true,
-                component: RestaurantUpdateArticle
-              },
-              {
-                path: 'create',
-                component: CreateArticle
-              }
-            ]
+            path: ':id/update',
+            name: 'menuUpdate',
+            component: RestaurantUpdateMenu,
+            props: true
           },
+          {
+            path: 'create',
+            component: CreateMenu
+          }
+        ]
+      },
+      {
+        path: 'articles',
+        children: [
+          {
+            path: '',
+            component: RestaurantCardContent,
+          },
+          {
+            path: ':id/update',
+            name: 'articleUpdate',
+            props: true,
+            component: RestaurantUpdateArticle
+          },
+          {
+            path: 'create',
+            component: CreateArticle
+          }
+        ]
+      },
       {
         path: 'profil',
-        children:[
+        children: [
           {
-            path:'update',
+            path: 'update',
             component: RestaurantUpdateProfil
           },
           {
-            path:'',
+            path: '',
             component: RestaurantProfil
           }
         ]
@@ -195,7 +225,7 @@ const routes = [
         path: 'orders',
         component: RestaurantsOrders
       },
-      
+
     ]
   },
   {
@@ -212,12 +242,35 @@ const routes = [
         name : "register",
         component : AuthRegister,
       },
+      {
+        path : "forgot-password",
+        name : "forgot-password",
+        component : ForgotPassword,
+      },
+      {
+        path : "reset-password",
+        name : "reset-password",
+        component : UpdatePassword,
+        props: true
+      },
+      {
+        path : "send-verification",
+        name : "send-verification",
+        component : SendVerificationEmail,
+        props: true
+      },
+      {
+        path : "verify-email",
+        name : "verify-email",
+        component : VerifyEmail,
+        props: true
+      },
     ]
   },
   {
-    path: "/:pathMatch(.*)*", redirect :"/auth/login", component: Login
+    path: "/:pathMatch(.*)*", redirect: "/auth/login", component: Login
   }
-  
+
 ]
 
 // route level code-splitting

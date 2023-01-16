@@ -13,8 +13,9 @@
       <div class="restaurant-address">{{pickupAddress}}</div>
     </div>
   </div>
-  <div class="card-footer">
-    <button class="green-button"  @click="handleDelivered" >Order Delivered</button>
+  <div class="order-buttons">
+    <button v-bind:style="{ display: OrderDeivered ? 'none' : 'block' }" class="green-button"  @click="handleTake" >Order taken over</button>
+    <button v-bind:style="{ display: OrderDeivered ? 'block' : 'none' }" class="green-button" @click="handleDelivered">Order Delivered</button>
   </div>
 </div>
 </template>
@@ -24,7 +25,7 @@
 
 const getDataUrl = "http://localhost:3001/deliverer/"+ localStorage.getItem("mongoUserId") +"/orders";
 const url = "http://localhost:3001/deliverer/"+ localStorage.getItem("mongoUserId") +"/update-order";
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
 export default {
 
@@ -32,46 +33,49 @@ name: "CurrentOrderCard",
 
 data() {
     return {
+      OrderDeivered: false,
       clientName:'',
       deliveryAddress:'',
       restaurantName:'',
       pickupAddress:'',
      form :{ 
       orderId: '',
-      action :'deliver',
+      action :'',
       deliveryId :  localStorage.getItem("mongoUserId"),}
     };
   },
   methods:{
-    handleDelivered(){
-          axios.put(url,
-                  this.form,
-              {
-            headers: {
-              'Authorization': `bearer ${localStorage.getItem("token")}` 
-            },
-            }
-            ).then((response) => {
+    handleTake(){
+      this.form.action = 'take-from-restaurant'
+          Axios.put(url,
+                  this.form).then((response) => {
               console.log(response.data)
               if (response.status == 200){
                   this.$router.go();
+                }
+              })
+    },
+     handleDelivered(){
+      this.OrderDeivered = true
+      this.form.action = 'deliver'
+          Axios.put(url,
+                  this.form).then((response) => {
+              console.log(response.data)
+              if (response.status == 200){
+                   this.$router.go();
                 }
               })
     }
   },
 
 mounted(){
-   axios.get(getDataUrl,
-              {
-            headers: {
-              'Authorization': `bearer ${localStorage.getItem("token")}` 
-            }}
-            ).then((response) => {
+   Axios.get(getDataUrl).then((response) => {
                 this.clientName = response.data.client.firstName +" " +response.data.client.lastName;
                 this.deliveryAddress = response.data.client.address +" " +response.data.client.zipCode+" " +response.data.client.city;
                 this.restaurantName = response.data.restaurant.name;
                 this.pickupAddress = response.data.restaurant.address +" " +response.data.restaurant.zipCode+" " +response.data.restaurant.city;
                 this.form.orderId = response.data.id;
+                response.data.status == 'deliver' ? this.OrderDeivered = true : this.OrderDeivered =false;
                  
                 console.log("results" + this.results)
               });

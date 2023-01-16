@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <UserCard :lastName="this.results.lastName" :address="this.results.address" :firstName="this.results.firstName" :zipCode="this.results.zipCode" :city="this.results.city" :image="this.results.image"/>
-  </div>
+  <UserCard :lastName="this.results.lastName" :address="this.results.address" :firstName="this.results.firstName"
+    :zipCode="this.results.zipCode" :city="this.results.city" :image="this.results.image" />
 </template>
 
 <script>
 import UserCard from "@/components/UserCard.vue";
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
 const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId");
 console.log(url)
@@ -23,12 +22,7 @@ export default {
   },
   async mounted() {
     console.log("results")
-    await axios.get(url,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  }}
-  ).then((response) => {
+    await Axios.get(url).then((response) => {
       this.results = response.data;
       console.log("results" + this.results)
     });

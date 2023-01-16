@@ -19,7 +19,7 @@
 
 
 const url = "http://localhost:3001/restaurant/"+ localStorage.getItem("mongoUserId") +"/update-order";
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
 
 export default {
@@ -66,14 +66,8 @@ name: "OrderCardRestaurant",
    methods: {
     handleAccept() {
       this.form.action = 'restaurantAccepted'
-       axios.put(url,
-                  this.form,
-              {
-            headers: {
-              'Authorization': `bearer ${localStorage.getItem("token")}` 
-            },
-            }
-            ).then((response) => {
+       Axios.put(url,this.form)
+       .then((response) => {
               console.log(response.data)
               if (response.status == 200){
                   this.$router.go();
@@ -82,14 +76,8 @@ name: "OrderCardRestaurant",
     },
     handleReject() {
        this.form.action = 'restaurantRejected'
-       axios.put(url,
-                  this.form,
-              {
-            headers: {
-              'Authorization': `bearer ${localStorage.getItem("token")}` 
-            },
-            }
-            ).then((response) => {
+       Axios.put(url,
+                  this.form).then((response) => {
               console.log(response.data)
               if (response.status == 200){
                   this.$router.go();
