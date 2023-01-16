@@ -30,7 +30,6 @@ export default {
 
 <style>
 .menu_card {
-    align-items: center;
     left:50%;
    display:grid;
    grid-template-columns: 5fr 1fr;
