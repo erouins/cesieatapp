@@ -3,11 +3,7 @@
     <button type="button" @click="redirectMenus">Menu</button>
     <button type="button" @click="redirectArticles">Article</button>
   </div>
-  <div
-    v-for="(item, index) in this.listToBeDisplayed"
-    :key="index"
-    class="card_restau"
-  >
+  <div v-for="(item, index) in this.listToBeDisplayed" :key="index" class="card_restau">
     <component v-bind:is="component" v-bind:item="item" />
   </div>
 </template>
@@ -16,14 +12,13 @@
 import RestaurantMenuCard from "@/views/restaurants/components/MenuCard.vue";
 import RestaurantArticleCard from "@/views/restaurants/components/ArticleCard.vue";
 import axios from "axios";
-const url =
-  "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
+const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");
 export default {
   data() {
     return {
       listToBeDisplayed: [],
-      menusList : [],
-      articlesList : [],
+      menusList: [],
+      articlesList: [],
       component: "",
     };
   },

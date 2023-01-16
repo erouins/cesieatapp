@@ -1,9 +1,6 @@
 <template>
   <div class="article_card">
     <ArticleCard v-bind:article="this.item" />
-    <button type='button' @click="goToUpdatePage">
-      <img src="@/assets/modify.png" alt="" />
-    </button>
   </div>
 </template>
 
@@ -20,7 +17,7 @@ export default {
     goToUpdatePage() {
       this.$store.commit('setArticle', this.item);
       console.log('in store : ', this.$store.getters.getArticle);
-      this.$router.push({ name: 'articleUpdate', params: { id: this.item["id"].slice(-5)}});
+      this.$router.push({ name: 'articleUpdate', params: { id: this.item["id"][0] + this.item["id"][1] + this.item["id"][2] } });
     }
   },
   components: {
