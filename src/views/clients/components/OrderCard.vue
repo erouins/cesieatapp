@@ -1,30 +1,34 @@
 <template>
   <div class="orderCard">
-    <div class="order number">
-      <h2>Command n°{{ order["id"].slice(-5) }}</h2>
+    <div class="orderNumber">
+      <h2>Order n°{{ order["id"].slice(-5) }}</h2>
+      <div><button v-if="order['status'] == 'rejected' || order['status'] == 'done' " id='btnRemove' type="button"> Remove from archives</button></div>
+      
     </div>
     <div class="order-body">
       <ul>
         <li class="item_row" v-for="menu in this.menus" :key="menu.id">
           <p>{{ menu['name'] }}</p>
-          <p>{{ menu['price'] }}</p>
+          <p>price: {{ menu['price'] }}$</p>
         </li>
       </ul>
       <ul>
         <li class="item_row" v-for="article in this.articles" :key="article.id">
           <p>{{ article['name'] }}</p>
-          <p>{{ article['price'] }}</p>
+          <p>price: {{ article['price'] }}$</p>
         </li>
       </ul>
-      <div>Total price : {{ this.totalPrice }}</div>
+      <div>Total price : {{ this.totalPrice }}$</div>
     </div>
+    <br/>
     <div class="order-footer">
-      <OrderFooter :orderState="this.order['state']" />
+      <OrderFooter :orderState="this.order['status']" :isPayed="this.order['isPayed']" />
     </div>
   </div>
 </template>
 
 <script>
+import OrderFooter from '@/views/clients/components/OrderFooter.vue'
 export default {
   name: "OrderCard",
   props: {
@@ -45,6 +49,7 @@ export default {
       this.order['articles'].forEach((element) => {
         this.totalPrice += element["price"];
       });
+      this.totalPrice = this.totalPrice.toFixed(2);
     },
   },
   mounted() {
@@ -52,17 +57,33 @@ export default {
     this.menus = this.order["menus"];
     this.articles = this.order["articles"];
   },
+  components:{
+    OrderFooter
+  }
 };
 </script>
 
 <style>
-.item_row {
-  display: flex;
-  flex-wrap: nowrap;
+
+#btnRemove{
+  text-align: center;
+}
+
+.orderNumber{
+  display: grid;
+  grid-template-columns: 3fr 3fr;
 }
 
 .orderCard {
-  width: 300px;
-  margin: 0 auto;
+      left:50%;
+   width: 50%;
+   height: 20%;
+   margin: 5%;
+   align-items: center;
+  padding: 1em;
+  border-radius: 15px;
+  background: #fefefe;
+  transition: box-shadow 0.5s;
+  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
 }
 </style>
