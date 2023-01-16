@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="button-container">
-    <button class="rounded-black-border-button" type="submit">Send</button>
-    <button class="rounded-black-border-button" @click="GoBack">Back</button>
+    <button class="green-button" type="submit">Send</button>
+    <button class="green-button" @click="GoBack">Back</button>
   </div>
     </form>
   </div>
@@ -103,15 +103,7 @@ export default {
 <style scoped>
 
 
-.rounded-black-border-button {
-  border-radius: 10px;
-  border: 2px solid black;
-  color: white;
-  background-color:  green;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
+
 
 .container {
   display: flex;

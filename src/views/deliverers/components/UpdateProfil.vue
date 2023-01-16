@@ -31,8 +31,8 @@
         </div>
       </div>
      <div class="button-container">
-    <button class="rounded-black-border-button" type="submit">Send</button>
-    <button class="rounded-black-border-button" @click="GoBack">Back</button>
+    <button class="green-button" type="submit">Send</button>
+    <button class="green-button" @click="GoBack">Back</button>
   </div>
     </form>
   </div>

@@ -32,8 +32,6 @@ export default {
   methods: {
     goToRestaurantPage(item) {
       this.$store.commit('setRestaurant', item);
-      console.log("test2", this.$store.getters.getRestaurant['id']);
-      console.log("id:" , item['id']);
       this.$router.push({ name: 'menusList', params: { id: item["id"].slice(-5)}});
     }
 
