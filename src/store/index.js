@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     article: Object,
-    menu: Object
+    menu: Object,
   },
   getters: {
     getArticle(state){

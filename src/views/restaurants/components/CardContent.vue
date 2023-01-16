@@ -48,7 +48,6 @@ export default {
   },
   methods: {
     redirectMenus() {
-      console.log('ayaya')
       this.$router.push("/restaurants/menus");
       this.component = "RestaurantMenuCard";
       this.listToBeDisplayed = this.menusList;

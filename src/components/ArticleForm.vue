@@ -92,6 +92,12 @@ export default {
         }
     },
   methods: {
+    addToMenu() {
+      this.articlesDisplayed.push(this.selectedArticle)
+    },
+    removeFromMenu() {
+      this.articlesDisplayed.splice(this.articlesDisplayed.indexOf(this.removedArticle), 1)
+    },
     editArticle(){
         if(this.type == 'update'){
             this.updateArticle();
@@ -127,6 +133,7 @@ export default {
             },
           }
         )
+        this.$router.push('/restaurants/articles')
     },
 
     async handleImageChange(e) {

@@ -14,11 +14,9 @@ export default {
     item: Object,
   },
   mounted(){
-    console.log('wewe')
   },
   methods:{
     goToUpdatePage(){
-      console.log('ffffffffff')
         this.$store.commit('setMenu', this.item);
        this.$router.push({name: 'menuUpdate',params:{id: this.item["id"][0]+this.item["id"][1]+this.item["id"][2]}});
     }
