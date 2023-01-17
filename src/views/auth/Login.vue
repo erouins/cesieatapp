@@ -36,6 +36,7 @@
 
 
 import Axios from '@/services/callerService';
+import io from 'socket.io-client';
   
 export default {
   name: "Login",
@@ -44,6 +45,8 @@ export default {
       user: {
         email: "",
         password: "",
+        socket: null,
+       messages: []
       },
     };
   },
@@ -127,6 +130,8 @@ export default {
         });
     },
   },
+
+  
 };
 </script>
 

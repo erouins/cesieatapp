@@ -6,8 +6,6 @@
 import UserCard from "@/components/UserCard.vue";
 import Axios from '@/services/callerService';
 
-const url = "http://localhost:3001/deliverer/" + localStorage.getItem("mongoUserId");
-console.log(url)
 export default {
   name: "DelivererProfil",
   components: {
@@ -20,6 +18,7 @@ export default {
     };
   },
   async mounted() {
+    const url = "http://localhost:3001/deliverer/" + localStorage.getItem("mongoUserId");
     console.log("results")
     await Axios.get(url).then((response) => {
       this.results = response.data;
