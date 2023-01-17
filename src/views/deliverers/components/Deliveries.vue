@@ -38,29 +38,25 @@ export default {
 
   data() {
     return {
-      alreadyHaveOrder: true,
-      noOrder:true,
+      alreadyHaveOrder: false,
+      noOrder:false,
       results: {},
-     
     };
   },
   async mounted() {
     await Axios.get(firstRequestUrl).then((response) => {
-      if(response.data == ''){
-        this.noOrder = false
-        
-      }
-      else{
-        console.log(response.data == '');
+      
         if(response.status == 200) {
         this.alreadyHaveOrder = true
      }else{
           Axios.get(url).then((response) => {
                 this.results = response.data;
-                console.log("results" + this.results)
+                if(this.results == ''){
+                  this.noOrder = true;
+                }
               });
               }
-      }
+      
       
     });
    
