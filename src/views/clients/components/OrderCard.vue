@@ -2,7 +2,7 @@
   <div class="orderCard">
     <div class="orderNumber">
       <h2>Order n°{{ order["id"].slice(-5) }}</h2>
-      <div><button v-if="order['status'] == 'rejected' || order['status'] == 'done' " id='btnRemove' type="button"> Remove from archives</button></div>
+      <div><button v-if="order['status'] == 'rejected' || order['status'] == 'done' " id='btnRemove' type="button" @click="removeFromHistorical"> Remove from historical</button></div>
       
     </div>
     <div class="order-body">
@@ -28,7 +28,9 @@
 </template>
 
 <script>
+
 import OrderFooter from '@/views/clients/components/OrderFooter.vue'
+import Axios from '@/services/callerService';
 export default {
   name: "OrderCard",
   props: {
@@ -39,9 +41,18 @@ export default {
       menus: Array,
       articles: Array,
       totalPrice: 0,
+      orderId:''
     };
   },
   methods: {
+    removeFromHistorical(){
+      console.log('idd: ',this.order['id']);
+      const removeFromHistoricalUrl = "http://localhost:3001/restaurant/"+this.order['id']+"/order/delete";
+      Axios.delete(removeFromHistoricalUrl).then((response) =>{
+        this.$router.go();
+      });
+      
+    },
     caculateTotalPrice() {
       this.order['menus'].forEach((element) => {
         this.totalPrice += element["price"];
@@ -56,6 +67,7 @@ export default {
     this.caculateTotalPrice();
     this.menus = this.order["menus"];
     this.articles = this.order["articles"];
+    this.orderId = this.order['id'];
   },
   components:{
     OrderFooter
