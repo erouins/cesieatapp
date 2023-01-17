@@ -17,14 +17,17 @@
 </template>
 
 <script>
+
 export default {
     name:'OrderFooter',
     props:{
         orderState:'',
         isPayed:'',
+        socket: null,
     },
     mounted(){
     console.log("order state: ", this.orderState)
+    
 }
 }
 

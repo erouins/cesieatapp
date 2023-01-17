@@ -25,6 +25,7 @@ let getOrderUrl = "http://localhost:3001/"+ localStorage.getItem("accountType") 
 
 import axios from 'axios';
 import OrderCard from '@/views/clients/components/OrderCard.vue'
+import io from 'socket.io-client';
 
 export default {
     name: 'OrdersPage',
@@ -32,10 +33,19 @@ export default {
         return{
             orderList:[],
             title:'',
+             socket: null,
         }
     },
     mounted(){
         this.getOrders();
+         this.socket = io('http://localhost:3001');
+        this.socket.on('connect', () => {
+        console.log('connected')
+        });
+        this.socket.on('orderModified', (message) => {
+            console.log("orderModified")
+            this.getOrders();
+        });
     },
     methods:{
         getOrders(){

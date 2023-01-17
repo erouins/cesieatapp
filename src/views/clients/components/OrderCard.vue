@@ -39,6 +39,7 @@ export default {
       menus: Array,
       articles: Array,
       totalPrice: 0,
+       
     };
   },
   methods: {
@@ -56,6 +57,8 @@ export default {
     this.caculateTotalPrice();
     this.menus = this.order["menus"];
     this.articles = this.order["articles"];
+
+   
   },
   components:{
     OrderFooter

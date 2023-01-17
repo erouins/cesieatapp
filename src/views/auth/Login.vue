@@ -95,24 +95,8 @@ export default {
                         localStorage.setItem('mongoUserId', data["id"]);
                         const route = '/' + localStorage.getItem('accountType') + 's/';
                         if (data["response"] == "true") {
-                             switch(localStorage.getItem('accountType')){
-                              case 'deliverer':{
-                                this.$router.push('/deliverers/home');
-                                break;
-                              }
-                              case'client':{
-                                this.$router.push('/clients/home');
-                                break;
-                              }
-                              case'restaurant':{
-                                this.$router.push('/restaurants/home/menus');
-                                break;
-                              }
-                              default:{
-                                this.$router.push('/auth/login');
-                                break;
-                              }
-                             }
+                             console.log(route)
+                          this.$router.push(route + 'home');
                         }else {
                            console.log("icciiiii")
                           this.$router.push(route + 'register');
@@ -131,7 +115,15 @@ export default {
     },
   },
 
-  
+  mounted(){
+    this.socket = io('http://localhost:3001');
+    this.socket.on('connect', () => {
+      console.log('connected')
+    });
+    this.socket.on('welcome', (message) => {
+      console.log("yeaahhhh")
+    });
+  }
 };
 </script>
 

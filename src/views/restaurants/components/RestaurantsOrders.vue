@@ -94,6 +94,7 @@ import OrderCardRestaurant from "@/views/restaurants/components/OrderCardRestaur
 
 const url = 'http://localhost:3001/restaurant/'+localStorage.getItem('mongoUserId')+'/orders'
 import Axios from '@/services/callerService';
+import io from 'socket.io-client';
 
 export default {
 
@@ -102,25 +103,16 @@ export default {
   },
 
   mounted(){
-     Axios.get(url).then((response) => {
-              console.log(response)
-             for (let i = 0; i < Object.keys(response.data).length ; i++){
-                if (response.data[i].status == 'pending'){
-                     this.pendingOrders.push(response.data[i])
-                }else if (response.data[i].status == 'accepted'){
-                     this.acceptedOrders.push(response.data[i])
-                }else if (response.data[i].status == 'rejected'){
-                     this.rejectedOrders.push(response.data[i])
-                }else if (response.data[i].status == 'deliver'){
-                     this.deliverOrders.push(response.data[i])
-                }else if (response.data[i].status == 'done'){
-                    this.doneOrders.push(response.data[i])
-                }else if (response.data[i].status == 'restaurantAccepted'){
-                    this.restaurantAcceptedOrders.push(response.data[i])
-                }
-             }
-              
-              });
+    
+        this.getdatas()
+        this.socket = io('http://localhost:3001');
+        this.socket.on('connect', () => {
+        console.log('connected')
+        });
+        this.socket.on('orderModified', (message) => {
+            console.log("orderModified")
+            this.getdatas()
+        });
   },
 
   data() {
@@ -137,6 +129,36 @@ export default {
       doneOrders: [],
       container6Title: "Waiting for a delivery person",
       restaurantAcceptedOrders: []
+    }
+  },
+
+  methods:{
+    getdatas(){
+           this.pendingOrders = []
+            this.acceptedOrders = []
+            this.rejectedOrders = []
+            this.deliverOrders = []
+            this.doneOrders = []
+            this.restaurantAcceptedOrders = []
+          Axios.get(url).then((response) => {
+                      console.log(response)
+                    for (let i = 0; i < Object.keys(response.data).length ; i++){
+                        if (response.data[i].status == 'pending'){
+                            this.pendingOrders.push(response.data[i])
+                        }else if (response.data[i].status == 'accepted'){
+                            this.acceptedOrders.push(response.data[i])
+                        }else if (response.data[i].status == 'rejected'){
+                            this.rejectedOrders.push(response.data[i])
+                        }else if (response.data[i].status == 'deliver'){
+                            this.deliverOrders.push(response.data[i])
+                        }else if (response.data[i].status == 'done'){
+                            this.doneOrders.push(response.data[i])
+                        }else if (response.data[i].status == 'restaurantAccepted'){
+                            this.restaurantAcceptedOrders.push(response.data[i])
+                        }
+                    }
+                      
+                      });
     }
   }
 }

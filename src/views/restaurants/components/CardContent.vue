@@ -13,7 +13,7 @@
   </div>
   </div>
   <div>
-  <button class='select-button' @click="createFct">create new {{this.$route.path == "/restaurants/articles"?'article':'menu'}}</button>
+  <button class='select-button' @click="createFct">create new {{this.$route.path == "/restaurants/home/articles"?'article':'menu'}}</button>
   </div>
   
 </template>
@@ -37,7 +37,7 @@ export default {
       .then((data) => {
         this.menusList = data["data"]["menus"];
         this.articlesList = data["data"]["articles"];
-        if (this.$route.path == "/restaurants/articles") {
+        if (this.$route.path == "/restaurants/home/articles") {
           this.listToBeDisplayed = this.articlesList;
           this.component = "RestaurantArticleCard";
         } else {
@@ -48,24 +48,23 @@ export default {
   },
   methods: {
     createFct(){
-      if(this.$route.path == "/restaurants/articles")
-        this.$router.push("/restaurants/article/create");
+      if(this.$route.path == "/restaurants/home/articles")
+        this.$router.push("/restaurants/home/articles/create");
       else{
-        this.$router.push("/restaurants/menus/create");
+        this.$router.push("/restaurants/home/menus/create");
       }
     },
     
     redirectMenus() {
-      this.$router.push("/restaurants/menus");
+      this.$router.push("/restaurants/home/menus");
       this.component = "RestaurantMenuCard";
       this.listToBeDisplayed = this.menusList;
-      this.createFct = 'gotoCreateMenu';
+   
     },
     redirectArticles() {
-      this.$router.push("/restaurants/articles");
+      this.$router.push("/restaurants/home/articles");
       this.component = "RestaurantArticleCard";
       this.listToBeDisplayed = this.articlesList;
-      this.createFct = 'gotoCreateArticle';
     },
   },
   name: "RestaurantCardContent",

@@ -48,7 +48,7 @@
 
 <script >
 import imgUtils from "@/utils/imgUtils.js";
-import axios from "axios";
+import Axios from '@/services/callerService';
 
 const createArticleUrl =
   "http://localhost:3001/restaurant/" +
@@ -107,31 +107,28 @@ export default {
         }
     },
     createArticle() {
-      axios
+      Axios
         .post(
           createArticleUrl,
-          { article: this.article, userId: localStorage.getItem("userId"), },
-          {
-            headers: {
-              Authorization: `bearer ${localStorage.getItem("token")}`,
-            },
+          { article: this.article, userId: localStorage.getItem("userId"), }
+        ).then((response) => {
+          if(response.status == 201){
+            this.$router.push('/restaurants/home/articles')
           }
-        )
+          else {
+            console.log("erreur création article ")
+          }
+                      });
     },
 
     updateArticle() {
       console.log('user id :',localStorage.getItem("userId"))
       console.log('resto id :',localStorage.getItem("mongoUserId"))
       console.log('article id :',this.article.id)
-      axios
+      Axios
         .put(
           updateArticleUrl,
-          { article: this.article, userId: localStorage.getItem("userId"), },
-          {
-            headers: {
-              Authorization: `bearer ${localStorage.getItem("token")}`,
-            },
-          }
+          { article: this.article, userId: localStorage.getItem("userId"), }
         )
         this.$router.push('/restaurants/articles')
     },
