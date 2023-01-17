@@ -2,11 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AuthRegister from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Home from '@/views/public/Home.vue'
+import OrdersPage from '@/components/Orders.vue'
 import ClientMain from '@/views/clients/Main.vue'
 import ClientHome from '@/views/clients/components/Home.vue'
 import ClientRegister from '@/views/clients/Register.vue'
 import ClientProfil from '@/views/clients/components/Profil.vue'
-import ClientOrder from '@/views/clients/Order.vue'
 import ClientUpdateProfil from '@/views/clients/components/UpdateProfil.vue'
 import ClientRestaurantPage from '@/views/clients/RestaurantPage.vue'
 import DelivererMain from '@/views/deliverers/Main.vue'
@@ -101,11 +101,11 @@ const routes = [
       },
       {
         path:'order',
-        component: ClientOrder
+        component: OrdersPage
       },
       {
         path:'historical',
-        //component: ClientOrder
+        component: OrdersPage
       },
       {
         path: 'profil',
@@ -138,12 +138,11 @@ const routes = [
       {
         path: 'home',
         name: 'delivererMain',
-        component: DelivererMain
+        component: Deliveries
       },
       {
-        path: 'deliveries',
-        name: 'deliveries',
-        component: Deliveries
+        path:'historical',
+        component: OrdersPage
       },
       {
         path: 'profil',
@@ -218,8 +217,8 @@ const routes = [
         ]
       },
       {
-        path: 'historical',
-        //component: RestaurantHistorical
+        path:'historical',
+        component: OrdersPage
       },
       {
         path: 'profil',
@@ -235,7 +234,7 @@ const routes = [
         ]
       },
       {
-        path: 'orders',
+        path: 'order',
         component: RestaurantsOrders
       },
       {

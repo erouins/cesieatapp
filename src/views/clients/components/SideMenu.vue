@@ -55,7 +55,7 @@ export default {
                   
                 }
               })
-             this.$router.push("/login");
+             this.$router.push("/auth/login");
              localStorage.clear();
         }
     }
