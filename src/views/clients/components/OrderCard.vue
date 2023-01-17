@@ -27,7 +27,9 @@
 </template>
 
 <script>
+
 import OrderFooter from '@/views/clients/components/OrderFooter.vue'
+import Axios from '@/services/callerService';
 export default {
   name: "OrderCard",
   props: {
@@ -38,9 +40,18 @@ export default {
       menus: Array,
       articles: Array,
       totalPrice: 0,
+      orderId:''
     };
   },
   methods: {
+    removeFromHistorical(){
+      console.log('idd: ',this.order['id']);
+      const removeFromHistoricalUrl = "http://localhost:3001/restaurant/"+this.order['id']+"/order/delete";
+      Axios.delete(removeFromHistoricalUrl).then((response) =>{
+        this.$router.go();
+      });
+      
+    },
     caculateTotalPrice() {
       this.order['menus'].forEach((element) => {
         this.totalPrice += element["price"];
@@ -55,6 +66,7 @@ export default {
     this.caculateTotalPrice();
     this.menus = this.order["menus"];
     this.articles = this.order["articles"];
+    this.orderId = this.order['id'];
   },
   components: {
     OrderFooter

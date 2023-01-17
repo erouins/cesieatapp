@@ -42,7 +42,7 @@ export default {
               this.$router.push("/restaurants/home/menus");
         },
         handleClickOrders(){
-              this.$router.push("/restaurants/orders");
+              this.$router.push("/restaurants/order");
         },
         handleClickHistorical(){
               this.$router.push("/restaurants/historical");
@@ -57,7 +57,7 @@ export default {
                   
                 }
               })
-             this.$router.push("/login");
+             this.$router.push("/auth/login");
              localStorage.clear();
         }
     }

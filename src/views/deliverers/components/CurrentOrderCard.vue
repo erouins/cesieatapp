@@ -70,6 +70,7 @@ data() {
 
 mounted(){
    Axios.get(getDataUrl).then((response) => {
+    console.log('data: ',response.data);
                 this.clientName = response.data.client.firstName +" " +response.data.client.lastName;
                 this.deliveryAddress = response.data.client.address +" " +response.data.client.zipCode+" " +response.data.client.city;
                 this.restaurantName = response.data.restaurant.name;

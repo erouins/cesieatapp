@@ -1,4 +1,6 @@
 <template>
+<div v-if="this.noOrder"><h1>No order available</h1></div>
+<div v-else>
   <div v-show="!alreadyHaveOrder" class="order-container">
      <OrderCard 
       v-for="(order, index) in results" 
@@ -15,6 +17,9 @@
    <div v-show="alreadyHaveOrder" class="order-container">
     <CurrentOrderCard /> 
   </div>
+</div>
+  
+  
 </template>
 
 <script>
@@ -34,20 +39,25 @@ export default {
   data() {
     return {
       alreadyHaveOrder: false,
+      noOrder:false,
       results: {},
-     
     };
   },
   async mounted() {
     await Axios.get(firstRequestUrl).then((response) => {
-      if(response.status == 200) {
+      
+        if(response.status == 200) {
         this.alreadyHaveOrder = true
      }else{
           Axios.get(url).then((response) => {
                 this.results = response.data;
-                console.log("results" + this.results)
+                if(this.results == ''){
+                  this.noOrder = true;
+                }
               });
               }
+      
+      
     });
    
    
