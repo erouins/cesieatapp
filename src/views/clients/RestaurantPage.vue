@@ -3,14 +3,14 @@
         <button type="button" @click="redirectMenus" class="green-button">Menu</button>
         <button type="button" @click="redirectArticles" class="green-button">Article</button>
     </div>
-    <div class="cards-container">
-        <div v-for="(item, index) in this.listToBeDisplayed" :key="index" class="card_restau">
+    <div class="card-contener">
+        <div v-for="(item, index) in this.listToBeDisplayed" :key="index" class="menu_article_container">
             <component v-bind:is="component" v-bind:item="item" />
         </div>
     </div>
     <div class="space-buttom"></div>
         <div class="order-button-container">
-        <button class="order-button green-button">Order</button>
+        <button class="order-button green-button">Cart</button>
     </div>
 </template>
 
@@ -55,7 +55,6 @@ export default {
     },
     methods: {
         redirectMenus() {
-            console.log("test");
             this.$router.push({ name: 'menusList' });
             this.component = "MenuList";
             this.listToBeDisplayed = this.menusList;
@@ -75,6 +74,11 @@ export default {
 </script>
 
 <style>
+    .menu_article_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .select-button-container {
         margin: 20px;
@@ -102,7 +106,7 @@ export default {
     }
 
     .order-button {
-        width: 150px;
+        width: 200px;
         cursor: pointer;
         color: #212529;
         background-color: #93b721;

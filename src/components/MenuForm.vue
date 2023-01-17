@@ -68,7 +68,7 @@
           <input type="file" id="image" @change="handleImageChange" />
           <img :src="menu.image" alt="menu image" />
         </div>
-        <button class="submit-button" type="submit">submit</button>
+        <button class="green-button " type="submit">submit</button>
       </form>
     </div>
   </body>

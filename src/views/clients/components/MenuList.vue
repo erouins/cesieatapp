@@ -1,6 +1,9 @@
 <template>
-  <div class="menu_card">
+  <div class="menu_article_card">
     <MenuCard v-bind:menu="this.item" />
+    <div class="add-to-order">
+      <button class="normal-font-size green-button" @click="addToCart(this.item)">Add to cart</button>
+    </div>
   </div>
 </template>
 
@@ -11,15 +14,14 @@ export default {
     item: Object,
   },
   mounted() {
-    console.log('wewe')
+
   },
   methods: {
-    goToUpdatePage() {
-      this.$store.commit('setMenu', this.item);
-      this.$router.push({ name: 'menuUpdate', params: { id: this.item["id"][0] + this.item["id"][1] + this.item["id"][2] } });
+    addToCard(item){
+      console.log("Added item :" + item);
+      this.$store.commit('addToCard', item);
     }
   },
-  name: "RestaurantMenuCard",
   components: {
     MenuCard,
   },
@@ -27,19 +29,16 @@ export default {
 </script>
 
 <style>
-.menu_card {
-  align-items: center;
-  left: 50%;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-  width: 50%;
-  height: 20%;
-  margin: 5%;
-  align-items: center;
-  padding: 1em;
-  border-radius: 15px;
+.menu_article_card {
+  width: 300px;
+  cursor: pointer;
+  padding: 12px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 1em;
+  color: #2c3e50;
   background: #fefefe;
-  transition: box-shadow 0.5s;
   box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+  transition: 0.5s;
 }
 </style>

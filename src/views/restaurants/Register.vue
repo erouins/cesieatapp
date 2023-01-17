@@ -18,7 +18,7 @@
                 <div class="input-label"><label for="restaurant_image">image</label></div>
                 <input class="input-field-auth" type="text" id="restaurant_image" v-model="profil.image"/>
                 
-                <button class="submit-button" type="submit">submit</button>
+                <button class="green-button " type="submit">submit</button>
             </form>
         </div>
     </body>

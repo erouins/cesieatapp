@@ -21,7 +21,7 @@
         v-model="user.password"
         required
       />
-      <button class="submit-button" type="submit">connect</button>
+      <button class="green-button" type="submit">connect</button>
     </form>
     <p>
       Don't have an account ?
@@ -139,18 +139,6 @@ body {
   font-size: 1em;
 }
 
-form {
-  width: 100%;
-}
-
-a {
-  color: #93b721;
-}
-
-a:active {
-  color: #0091ff;
-}
-
 .input-label {
   font-size: 1.2em;
   color: #212529;
@@ -172,31 +160,6 @@ a:active {
 [title]:hover:before,
 [title]:focus:before {
   visibility: visible;
-}
-
-.card {
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  width: 20em;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: fit-content;
-  margin: auto;
-  padding: 1em;
-  border-radius: 15px;
-  background: #fefefe;
-  transition: box-shadow 0.5s;
-  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
-}
-
-.card-title {
-  color: #212529;
-  font-size: 2em;
-  font-weight: 600;
-  margin: 1em 0 1em 0;
 }
 
 .input-field-auth {
@@ -232,28 +195,4 @@ a:active {
   box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
 }
 
-.submit-button:enabled {
-  cursor: pointer;
-  color: #212529;
-  background-color: #93b721;
-  font-size: 1.2em;
-  font-weight: 600;
-  padding: 0.7em 1em;
-  border-radius: 5px;
-  border: 0;
-  transition: 0.5s;
-}
-
-.submit-button:focus,
-.submit-button:hover {
-  outline: none;
-  background-color: #a2c924;
-  transition: 0.5s;
-  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
-}
-
-.submit-button:active {
-  background-color: #8aa923;
-  box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
-}
 </style>

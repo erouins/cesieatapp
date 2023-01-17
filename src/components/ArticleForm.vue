@@ -40,7 +40,7 @@
           <input type="file" id="image" @change="handleImageChange" />
           <img :src="article.image" alt="article image" />
         </div>
-        <button class="submit-button" type="submit">submit</button>
+        <button class="green-button " type="submit">submit</button>
       </form>
     </div>
   </body>

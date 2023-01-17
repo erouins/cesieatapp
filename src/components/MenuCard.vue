@@ -1,12 +1,12 @@
 <template>
-  <div class = "menu_card_all">
-    <div class = "menu_card_items">
-      <h2 class="card-name">{{ this.menu["name"] }}</h2>
-      <p class="card-price">{{ this.menu["price"] }}$</p>
-      <p class="card-description">{{ this.menu["description"] }}</p>
+  <div class="menu_article_content">
+    <div class="card-image-contener">
+      <img class="menu_article_image" :src="this.img" alt="image of menu" />
     </div>
-    <div class = "menu_card_image">
-      <img :src="this.img" alt="restaurant image" />
+    <div class="menu_article_text">
+      <div class="menu-article-name">{{ this.menu["name"] }}</div>
+      <div class="menu-article-price">{{ this.menu["price"] }}$</div>
+      <div class="menu-article-description">{{ this.menu["description"] }}</div>
     </div>
   </div>
 </template>
@@ -15,15 +15,15 @@
 import imgUtils from '@/utils/imgUtils.js'
 export default {
   props: {
-    menu:Object,
+    menu: Object,
   },
-  data(){
+  data() {
     return {
-      img:this.menu["image"]
+      img: this.menu["image"]
     }
   },
   name: 'MenuCard',
-  methods:{
+  methods: {
     async handleImageChange(e) {
       this.menu.image = await imgUtils.handleImageChange(e);
     },
@@ -32,8 +32,26 @@ export default {
 </script>
 
 <style>
-  .menu_card_all {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-  }
+.menu_article_image {
+  height: 100%;
+}
+
+.menu_article_text {
+  text-align: left;
+}
+
+.menu-article-name {
+  font-size: 1.5em;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.menu-article-description {
+  padding-top: 5px;
+}
+
+.menu-article-price {
+  padding-top: 5px;
+  font-size: 0.9em;
+}
 </style>

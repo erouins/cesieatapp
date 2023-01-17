@@ -17,7 +17,7 @@
                 <input class="input-field-auth" type="text" id="restaurant_city" v-model="profil.city" required/>
                 <div class="input-label"><label for="restaurant_zipcode">zipCode</label></div>
                 <input class="input-field-auth" type="text" id="restaurant_zipcode" v-model="profil.zipCode" required/>
-                <button class="submit-button" type="submit">submit</button>
+                <button class="green-button " type="submit">submit</button>
             </form>
         </div>
     </body>
