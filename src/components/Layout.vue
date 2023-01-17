@@ -255,6 +255,7 @@
         font-size: 1em !important;
     }
 
+    .green-button,
     .green-button:enabled {
         cursor: pointer;
         color: #212529;
@@ -267,6 +268,12 @@
         border: 0;
         transition: 0.5s;
     }
+
+    .green-button:disabled {
+        cursor:not-allowed;
+        background-color: #c4c7b6;
+    }
+
     
     .green-button:hover {
         outline: none;

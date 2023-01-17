@@ -9,14 +9,19 @@
         </div>
     </div>
     <div class="space-buttom"></div>
-        <div class="order-button-container">
+        <div class="order-button-container" @click="displayCart()">
         <button class="order-button green-button">Cart</button>
+    </div>
+    <div class="cart-container" v-bind:style="{display: visibility}">
+        <CartPage/>
     </div>
 </template>
 
 <script>
 import ArticleList from "@/views/clients/components/ArticleList.vue";
 import MenuList from "@/views/clients/components/MenuList.vue";
+import CartPage from "@/views/clients/components/CartPage.vue";
+
 import axios from "axios";
 export default {
     name: "RestaurantPage",
@@ -28,6 +33,7 @@ export default {
             articlesList: [],
             component: "",
             listToBeDisplayed: '',
+            visibility: 'none'
         }
     },
     props: {id:''},
@@ -64,10 +70,18 @@ export default {
             this.component = "ArticleList";
             this.listToBeDisplayed = this.articlesList;
         },
+        displayCart() {
+            if(this.visibility == "none"){
+                this.visibility = ""
+            } else {
+                this.visibility = "none"
+            }
+        }
     },
     components: {
         ArticleList,
-        MenuList
+        MenuList,
+        CartPage
     }
 }
 
@@ -99,6 +113,7 @@ export default {
 
     .order-button-container {
         width: 100%;
+        height: 70px;
         position: fixed;
         bottom: 0;
         padding-bottom: 0;
@@ -122,6 +137,14 @@ export default {
 
     .space-buttom {
         height: 75px;
+    }
+
+    .cart-container {
+        width: 100%;
+        height: calc(100% - 126px);
+        position: fixed;
+        top: 56px;
+        background-color:rgba(238, 238, 238, 0.5);
     }
 
 </style>
