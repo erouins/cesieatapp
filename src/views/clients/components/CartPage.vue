@@ -95,12 +95,6 @@ export default {
     text-align: left;
 }
 
-.item-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 3px 0;
-}
-
 .end-of-line {
     display: flex;
 }
