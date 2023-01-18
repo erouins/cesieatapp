@@ -6,7 +6,7 @@
         <input class="input-field-auth" type="password" id="new_password" v-model="user.password" @input="inputPassword" required />
         <div class="input-label"><label for="confirm_password">Confirm password</label></div>
         <input class="input-field-auth" type="password" id="confirm_password" @input="inputConfirmPassword" required />
-      <button class="submit-button" type="submit">Send</button>
+      <button class="green-button " type="submit">Send</button>
     </form>
     </div>
 </template>
@@ -173,7 +173,7 @@ a:active {
   box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
 }
 
-.submit-button:enabled {
+.green-button :enabled {
   cursor: pointer;
   color: #212529;
   background-color: #93b721;
@@ -185,15 +185,15 @@ a:active {
   transition: 0.5s;
 }
 
-.submit-button:focus,
-.submit-button:hover {
+.green-button :focus,
+.green-button :hover {
   outline: none;
   background-color: #a2c924;
   transition: 0.5s;
   box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
 }
 
-.submit-button:active {
+.green-button :active {
   background-color: #8aa923;
   box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
 }

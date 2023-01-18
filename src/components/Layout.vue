@@ -74,6 +74,18 @@
         border: none;
     }
 
+    form {
+        width: 100%;
+    }
+
+    a {
+        color: #93b721;
+    }
+
+    a:active {
+        color: #0091ff;
+    }
+
     .body-contener {
         height: 100%;
         width: 100%;
@@ -90,6 +102,7 @@
         margin-left: 78px;
         padding: 8px;
     }
+
     .header-bar {
         width: 100%;
         height: 56px;
@@ -98,6 +111,7 @@
         align-items: center;
         top: 0;
     }
+
     .header-left-part {
         width: 78px;
         height: 56px;
@@ -105,6 +119,7 @@
         text-align: center;
         background: #fefefe;
     }
+
     .header-right-part {
         margin-left: 78px;
         width: 100%;
@@ -198,7 +213,6 @@
         background: #fefefe;
     }
 
-
     .button-active-sidebar:hover,
     .button-sidemenu:hover {
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
@@ -212,7 +226,37 @@
         transition: 0.5s;
     }
 
-    .green-button {
+    .card {
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: 20em;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        margin: auto;
+        padding: 1em;
+        border-radius: 15px;
+        background: #fefefe;
+        transition: box-shadow 0.5s;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+    }
+
+    .card-title {
+        color: #212529;
+        font-size: 2em;
+        font-weight: 600;
+        margin: 1em 0 1em 0;
+    }
+    
+    .normal-font-size { 
+        font-size: 1em !important;
+    }
+
+    .green-button,
+    .green-button:enabled {
         cursor: pointer;
         color: #212529;
         background-color: #93b721;
@@ -224,5 +268,24 @@
         border: 0;
         transition: 0.5s;
     }
+
+    .green-button:disabled {
+        cursor:not-allowed;
+        background-color: #c4c7b6;
+    }
+
+    
+    .green-button:hover:enabled {
+        outline: none;
+        background-color: #a2c924;
+        transition: 0.5s;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+    }
+
+    .green-button:active:enabled {
+        background-color: #8aa923;
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
+    }
+
 
 </style>

@@ -6,13 +6,11 @@
             <button v-if="!this.isPayed" @click="payOrder">payer</button>
             <button>supprimer</button>
         </div>
-        <div v-else-if="this.orderState == 'accepted'">
-            supprimer
-        </div>
-        <div v-else-if="this.orderState == 'rejected'"> Rejected</div>
-        <div v-else-if="this.orderState == 'deliver'"> Waiting for delivering </div>
-        <div v-else-if="this.orderState == 'done'"> Delivered</div>
-        <div v-else-if="this.orderState == 'restaurantAccepted'"> Waiting for a delivery</div>
+        <div v-else-if="this.orderState == 'accepted'">supprimer</div>
+        <div v-else-if="this.orderState == 'rejected'">Rejected</div>
+        <div v-else-if="this.orderState == 'deliver'">Waiting for delivering </div>
+        <div v-else-if="this.orderState == 'done'">Delivered</div>
+        <div v-else-if="this.orderState == 'restaurantAccepted'">Waiting for a delivery</div>
     </div>
 </template>
 

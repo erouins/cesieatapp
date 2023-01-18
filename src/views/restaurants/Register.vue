@@ -16,6 +16,7 @@
                 <div class="input-label"><label for="restaurant_description">add a description</label></div>
                 <input class="input-field-auth" type="text" id="restaurant_description" v-model="profil.description"/>
                 <div class="input-label"><label for="restaurant_image">image</label></div>
+
                 <div class="form-col">
                 <input type="file" id="image" @change="handleImageChange">
                </div>

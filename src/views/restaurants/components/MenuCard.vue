@@ -1,5 +1,5 @@
 <template>
-  <div class="menu_card">
+  <div class="menu_article_card">
     <MenuCard v-bind:menu="this.item" />
     <button type='button' @click="goToUpdatePage">
       <img src="@/assets/modify.png" alt="" />
@@ -29,19 +29,5 @@ export default {
 </script>
 
 <style>
-.menu_card {
-  align-items: center;
-  left: 50%;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-  width: 50%;
-  height: 20%;
-  margin: 5%;
-  align-items: center;
-  padding: 1em;
-  border-radius: 15px;
-  background: #fefefe;
-  transition: box-shadow 0.5s;
-  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
-}
+
 </style>
