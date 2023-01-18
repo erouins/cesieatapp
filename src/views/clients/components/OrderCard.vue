@@ -2,25 +2,24 @@
   <div class="orderCard">
     <div class="orderNumber">
       <h2>Order n°{{ order["id"].slice(-5) }}</h2>
-      <div><button v-if="order['status'] == 'rejected' || order['status'] == 'done' " id='btnRemove' type="button" @click="removeFromHistorical"> Remove from historical</button></div>
-      
+      <div>
+        <button v-if="order['status'] == 'rejected' || order['status'] == 'done'" id='btnRemove' type="button">Remove from archives</button>
+      </div>
     </div>
     <div class="order-body">
       <ul>
         <li class="item_row" v-for="menu in this.menus" :key="menu.id">
-          <p>{{ menu['name'] }}</p>
-          <p>price: {{ menu['price'] }}$</p>
+          <p>{{ menu['name'] }}&emsp;{{ menu['price'] }}$</p>
         </li>
       </ul>
       <ul>
         <li class="item_row" v-for="article in this.articles" :key="article.id">
-          <p>{{ article['name'] }}</p>
-          <p>price: {{ article['price'] }}$</p>
+          <p>{{ article['name'] }}&emsp;{{ article['price'] }}$</p>
         </li>
       </ul>
       <div>Total price : {{ this.totalPrice }}$</div>
     </div>
-    <br/>
+    <br />
     <div class="order-footer">
       <OrderFooter :orderState="this.order['status']" :isPayed="this.order['isPayed']" :orderId="order['id']"/>
     </div>
@@ -69,29 +68,29 @@ export default {
     this.articles = this.order["articles"];
     this.orderId = this.order['id'];
   },
-  components:{
+  components: {
     OrderFooter
   }
 };
 </script>
 
 <style>
-
-#btnRemove{
+#btnRemove {
   text-align: center;
 }
 
-.orderNumber{
+.orderNumber {
   display: grid;
   grid-template-columns: 3fr 3fr;
 }
 
 .orderCard {
-      left:50%;
-   width: 50%;
-   height: 20%;
-   margin: 5%;
-   align-items: center;
+  text-align: left;
+  left: 50%;
+  width: 50%;
+  height: 20%;
+  margin: 5%;
+  align-items: center;
   padding: 1em;
   border-radius: 15px;
   background: #fefefe;

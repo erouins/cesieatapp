@@ -16,7 +16,7 @@
       <p>
          {{textConfirm}}
     </p>
-      <button class="submit-button" type="submit">Reset</button>
+      <button class="green-button " type="submit">Reset</button>
       
     </form>
     </div>
@@ -155,7 +155,7 @@ a:active {
   box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
 }
 
-.submit-button:enabled {
+.green-button :enabled {
   cursor: pointer;
   color: #212529;
   background-color: #93b721;
@@ -167,15 +167,15 @@ a:active {
   transition: 0.5s;
 }
 
-.submit-button:focus,
-.submit-button:hover {
+.green-button :focus,
+.green-button :hover {
   outline: none;
   background-color: #a2c924;
   transition: 0.5s;
   box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
 }
 
-.submit-button:active {
+.green-button :active {
   background-color: #8aa923;
   box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
 }

@@ -1,12 +1,12 @@
 <template>
-  <div class = "article_card_all">
-    <div class = "article_card_items">
-      <h2 class="card-name">{{ this.article["name"] }}</h2>
-      <p class="card-price">{{ this.article["price"] }}$</p>
-      <p class="card-description">{{ this.article["description"] }}</p>
+  <div class="menu_article_content">
+    <div class="card-image-contener">
+      <img class="menu_article_image" :src="this.img" alt="image of article" />
     </div>
-    <div class = "article_card_image">
-      <img :src="this.img" alt="restaurant image" />
+    <div class="menu_article_text">
+      <div class="menu-article-name">{{ this.article["name"] }}</div>
+      <div class="menu-article-price">{{ this.article["price"] }}$</div>
+      <div class="menu-article-description">{{ this.article["description"] }}</div>
     </div>
   </div>
 </template>
@@ -15,15 +15,15 @@
 import imgUtils from '@/utils/imgUtils.js'
 export default {
   props: {
-    article:Object,
+    article: Object,
   },
-  data(){
+  data() {
     return {
-      img:this.article["image"]
+      img: this.article["image"]
     }
   },
   name: 'ArticleCard',
-  methods:{
+  methods: {
     async handleImageChange(e) {
       this.article.image = await imgUtils.handleImageChange(e);
     },
@@ -32,8 +32,5 @@ export default {
 </script>
 
 <style>
-  .article_card_all {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-  }
+
 </style>

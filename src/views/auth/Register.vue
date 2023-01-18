@@ -14,7 +14,7 @@
                 <select class="input-select-auth" id="user_type" v-model="user.accountType" required>
                     <option v-for="option in user.typeOptions" v-bind:value="option.key" v-bind:key="option.key">{{ option.value }}</option>
                 </select>
-                <button class="submit-button" type="submit" >register</button>
+                <button class="green-button" type="submit" >register</button>
                 <p>You have an account ? <a href="http://localhost:8080/auth/Login">login</a></p>
             </form>
         </div>

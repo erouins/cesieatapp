@@ -1,5 +1,5 @@
 <template>
-  <div class="article_card">
+  <div class="menu_article_card">
     <ArticleCard v-bind:article="this.item" />
     <button type='button' @click="goToUpdatePage">
       <img src="@/assets/modify.png" alt="" />
