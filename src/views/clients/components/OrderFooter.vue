@@ -5,7 +5,7 @@
             <div v-else>Awaiting payment</div>
             <div >
             <button class="green-button" v-if="!this.isPayed" @click="payOrder">Pay</button>
-            <button class="red-button">Delete</button>
+            <button class="red-button" @click="remove">Delete</button>
             </div>
         </div>
         <div v-else-if="this.orderState == 'accepted'">Accepted</div>
@@ -50,7 +50,15 @@ export default {
                     console.log("erreur pay  ")
                 }
             });
-        }
+        },
+        remove(){
+            const removeFromHistoricalUrl = "http://localhost:3001/client/"+this.orderId+"/order/delete";
+            Axios.delete(removeFromHistoricalUrl).then((response) =>{
+                console.log("order delete")
+      });
+      
+    },
+        
     },
 
     props:{
