@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div class="card">
+    <div class="resto-card">
       <div class="card-title">{{this.title}}</div>
       <form @submit.prevent="editArticle">
         <div class="input-label"><label for="article_name">name</label></div>
@@ -38,7 +38,7 @@
         <div class="input-label">
           <label for="image">Image :</label>
           <input type="file" id="image" @change="handleImageChange" />
-          <img :src="article.image" alt="article image" />
+          <img class="fixed-size-img" :src="article.image" alt="article image" />
         </div>
         <button class="green-button " type="submit">submit</button>
       </form>

@@ -58,6 +58,8 @@ export default {
             this.$router.push('/auth/send-verification');
             }).catch((err) => {
                 console.log(err);
+                  if (confirm('an error has occurred, please check that all fields are correct')){
+           }
             });
         },
 

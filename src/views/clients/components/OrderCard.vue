@@ -2,17 +2,15 @@
   <div class="orderCard">
     <div class="orderNumber">
       <h2>Order n°{{ order["id"].slice(-5) }}</h2>
-      <div>
-        <button v-if="order['status'] == 'rejected' || order['status'] == 'done'" id='btnRemove' type="button">Remove from archives</button>
-      </div>
+     
     </div>
     <div class="order-body">
-      <ul>
+      <ul class="list-items">
         <li class="item_row" v-for="menu in this.menus" :key="menu.id">
           <p>{{ menu['name'] }}&emsp;{{ menu['price'] }}$</p>
         </li>
       </ul>
-      <ul>
+      <ul class="list-items">
         <li class="item_row" v-for="article in this.articles" :key="article.id">
           <p>{{ article['name'] }}&emsp;{{ article['price'] }}$</p>
         </li>
@@ -23,6 +21,9 @@
     <div class="order-footer">
       <OrderFooter :orderState="this.order['status']" :isPayed="this.order['isPayed']" :orderId="order['id']"/>
     </div>
+     <div>
+        <button @click="remove" class="red-button" style="margin-top: 20px" v-if="order['status'] == 'rejected' || order['status'] == 'done'" id='btnRemove' type="button">Remove from archives</button>
+      </div>
   </div>
 </template>
 
@@ -44,11 +45,11 @@ export default {
     };
   },
   methods: {
-    removeFromHistorical(){
+    remove(){
       console.log('idd: ',this.order['id']);
       const removeFromHistoricalUrl = "http://localhost:3001/restaurant/"+this.order['id']+"/order/delete";
       Axios.delete(removeFromHistoricalUrl).then((response) =>{
-        this.$router.go();
+        console.log("order delete")
       });
       
     },
@@ -79,15 +80,31 @@ export default {
   text-align: center;
 }
 
+.list-items{
+   list-style-type: none;
+}
+
+.order-body{
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 .orderNumber {
-  display: grid;
+  display: flex;
   grid-template-columns: 3fr 3fr;
+  justify-content: center;
+}
+
+.order-footer{
+  display: flex;
+  justify-content: center;
 }
 
 .orderCard {
-  text-align: left;
+  text-align: center;
+  justify-content: center;
   left: 50%;
-  width: 50%;
+  width: 30%;
   height: 20%;
   margin: 5%;
   align-items: center;

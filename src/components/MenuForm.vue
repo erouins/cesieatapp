@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div class="card">
+    <div class="resto-card">
       <div class="card-title">Add a new menu</div>
       <form @submit.prevent="editMenu">
         <div class="input-label"><label for="menu_name">name</label></div>
@@ -26,22 +26,14 @@
           <button type="button" class="dropdownButton" @click="addToMenu">
             Add
           </button>
-        </div>
 
-        <div class="dropdownContainer">
-          <select v-model="removedArticle" class="dropdown">
-            <option
-              v-for="(item, index) in this.menuArticles"
-              :value="item"
-              :key="index"
-            >
-              {{ item["name"] }}
-            </option>
-          </select>
-          <button type="button" class="dropdownButton" @click="removeFromMenu">
-            Remove
-          </button>
         </div>
+        <ul class="ul-style">
+          <li v-for="(item, index) in menuArticles" :key="index" class="item">
+            <span class="item-name">{{ item.name }}</span>
+             <button class="delete-button" @click="removeFromMenu(index)">Delete</button>
+          </li>
+        </ul>
 
         <div class="input-label">
           <label for="menu_description">description</label>
@@ -66,7 +58,7 @@
         <div class="input-label">
           <label for="image">Image :</label>
           <input type="file" id="image" @change="handleImageChange" />
-          <img :src="menu.image" alt="menu image" />
+          <img class="fixed-size-img" :src="menu.image" alt="menu image" />
         </div>
         <button class="green-button " type="submit">submit</button>
       </form>
@@ -133,8 +125,8 @@ export default {
     addToMenu() {
       this.menuArticles.push(this.selectedArticle);
     },
-    removeFromMenu() {
-      this.menuArticles.splice(this.menuArticles.indexOf(this.removedArticle), 1);
+    removeFromMenu(index) {
+      this.menuArticles.splice(index, 1);
     },
     getRestaurant() {
       Axios
@@ -187,6 +179,53 @@ export default {
 </script>
 
 <style>
+
+.resto-card{
+ transform: translate(-50%, -0%);
+        top: 0;
+     
+        left: 10%;
+        width: 20em;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        margin: auto;
+        padding: 1em;
+        border-radius: 15px;
+        background: #fefefe;
+        transition: box-shadow 0.5s;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+}
+.fixed-size-img{
+  width: 100%
+}
+.ul-style{
+  padding: 0
+}
+
+ .item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    justify-content: flex-start;
+  }
+
+  .item-name {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .delete-button {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+
 .dropdown {
   left: initial;
   width: 70%;

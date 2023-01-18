@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <button class='select-button' type="button" @click="redirectMenus">Menu</button>
-    <button class='select-button' type="button" @click="redirectArticles">Article</button>
+   <div class="boutons-menu-articles">
+    <button class='select-button menu-articles' type="button" @click="redirectMenus">Menu</button>
+    <button class='select-button menu-articles' type="button" @click="redirectArticles">Article</button>
   </div>
   <div class='cards'>
     <div
@@ -13,7 +13,7 @@
   </div>
   </div>
   <div>
-  <button class='select-button' @click="createFct">create new {{this.$route.path == "/restaurants/home/articles"?'article':'menu'}}</button>
+  <button class='select-button new' @click="createFct">create new {{this.$route.path == "/restaurants/home/articles"?'article':'menu'}}</button>
   </div>
   
 </template>
@@ -76,12 +76,34 @@ export default {
 </script>
 
 <style>
+
+.new{
+        position: fixed;
+        bottom: 0;
+    margin-bottom: 20px;
+}
+.menu-articles{
+        
+       
+        margin-top: 20px;
+}
+
+.boutons-menu-articles{
+        position: fixed;
+        display: inline-flex;
+      
+}
+
+
 .cards{
   margin: 10%;
   height: 60vh;
   overflow-y: scroll;
   scrollbar-color: rebeccapurple green;
   scrollbar-width: thin;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+  grid-gap: 8px;
 }
 
 .card_restau {

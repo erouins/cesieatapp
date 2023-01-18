@@ -112,6 +112,8 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+           if (confirm('an error has occurred, please check that your email and password are correct')){
+           }
         });
     },
   },
