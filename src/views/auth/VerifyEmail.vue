@@ -53,7 +53,7 @@ export default {
               console.log(response.data)
               if (response.status == 204){
                   console.log("envoyé")
-                 this.$router.push("auth/login");
+                 this.$router.push("/auth/login");
                 }
               })
               }, 2000);

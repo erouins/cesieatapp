@@ -77,7 +77,7 @@
 
 <script >
 import imgUtils from "@/utils/imgUtils.js";
-import axios from "axios";
+import Axios from '@/services/callerService';
 
 const createMenuUrl =
   "http://localhost:3001/restaurant/" +
@@ -137,12 +137,8 @@ export default {
       this.menuArticles.splice(this.menuArticles.indexOf(this.removedArticle), 1);
     },
     getRestaurant() {
-      axios
-        .get(getRestaurantUrl, {
-          headers: {
-            Authorization: `bearer ${localStorage.getItem("token")}`,
-          },
-        })
+      Axios
+        .get(getRestaurantUrl)
         .then((data) => {
           
           this.restaurantArticles = data["data"]["articles"];
@@ -160,29 +156,27 @@ export default {
       }
     },
     createMenu() {
-      axios.post(
-        createMenuUrl,
-        { menu: this.menu, userId: localStorage.getItem("userId") },
-        {
-          headers: {
-            Authorization: `bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+       Axios
+        .post(
+          createMenuUrl,
+          { menu: this.menu, userId: localStorage.getItem("userId"), }
+        ).then((response) => {
+          if(response.status == 201){
+            this.$router.push('/restaurants/home/menus')
+          }
+          else {
+            console.log("erreur création menu ")
+          }
+                      });
     },
 
     updateMenu() {
       console.log(this.menu)
-      axios.put(
+      Axios.put(
         updateMenuUrl,
-        { menu: this.menu, userId: localStorage.getItem("userId") },
-        {
-          headers: {
-            Authorization: `bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        { menu: this.menu, userId: localStorage.getItem("userId") }
       );
-      this.$router.push("/restaurants/menus");
+      this.$router.push("/restaurants/home/menus");
     },
 
     async handleImageChange(e) {

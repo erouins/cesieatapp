@@ -21,7 +21,7 @@
     </div>
     <br />
     <div class="order-footer">
-      <OrderFooter :orderState="this.order['status']" :isPayed="this.order['isPayed']" />
+      <OrderFooter :orderState="this.order['status']" :isPayed="this.order['isPayed']" :orderId="order['id']"/>
     </div>
   </div>
 </template>
