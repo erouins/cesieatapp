@@ -1,5 +1,5 @@
 <template>
-  <div class="order-card" @click="handleTest">
+  <div class="order-card">
     <h2>Order N° : {{ title.slice(-5) }}</h2>
     <div class="order-details">
       <p>Client : {{ clientName }}</p>
@@ -29,6 +29,7 @@ name: "OrderCardRestaurant",
  data() {
     return {
        buttonVisible: false,
+       order: Object,
       form: {
         action :'',
         orderId : this.title,
@@ -85,7 +86,23 @@ name: "OrderCardRestaurant",
               })
     },
     handleTest() {
-       console.log('testtttt')
+      const Url = "http://localhost:3001/restaurant/"+ localStorage.getItem("mongoUserId") +"/orders"
+      Axios.get(Url).then((response) => {
+      
+       for (let i = 0; i < Object.keys(response.data).length ; i++){
+              if (response.data[i].id == this.title){
+                    this.order = response.data[i]
+                      console.log("results", this.order )
+                      this.$router.push({ path: '/restaurants/order/details', params: {order: this.order }})
+                }
+       }
+
+      // this.caculateTotalPrice();
+      // this.menus = this.order["menus"];
+      // this.articles = this.order["articles"];
+      // this.orderId = this.order['id'];
+    });
+      
     },
   }
 }

@@ -6,10 +6,9 @@
 
 <script>
 import UserCard from "@/components/UserCard.vue";
-import axios from 'axios';
+import Axios from '@/services/callerService';
 
-const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId");
-console.log(url)
+
 export default {
   name: "ClientProfil",
   components: {
@@ -22,12 +21,9 @@ export default {
     };
   },
   mounted() {
+    const url = "http://localhost:3001/client/" + localStorage.getItem("mongoUserId");
     console.log("results")
-    axios.get(url,
-    {
-  headers: {
-    'Authorization': `bearer ${localStorage.getItem("token")}` 
-  }}
+    Axios.get(url,
   ).then((response) => {
       this.results = response.data;
       console.log("results" + this.results)
