@@ -16,7 +16,12 @@
       <p>
          {{textConfirm}}
     </p>
-      <button class="green-button " type="submit">Reset</button>
+      <button class="green-button " type="submit">
+        <img  v-if="loading" class="loading" src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif" >
+        <span v-if="loading" class="" > loading</span>
+         <span v-else >Reset</span>
+
+      </button>
       
     </form>
     </div>
@@ -31,6 +36,7 @@ export default {
   name: "ForgotPassword",
   data() {
     return {
+      loading : false,
       textConfirm: '',
       user: {
         email: "",
@@ -40,10 +46,12 @@ export default {
 
   methods: {
     reset(){
+      this.loading = true
       Axios.post(url,
                   this.user).then((response) => {
               console.log(response.data)
               if (response.status == 200){
+                  this.loading = false
                   console.log("envoyé")
                   this.textConfirm = "We have sent you an email to renew your password"
                 }
@@ -60,6 +68,11 @@ body {
   font-family: "Roboto", "Open Sans", Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 1em;
+}
+
+.loading{
+  width: 20px;
+  height: 20px;
 }
 
 form {

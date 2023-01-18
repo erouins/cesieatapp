@@ -130,7 +130,7 @@ export default {
           updateArticleUrl,
           { article: this.article, userId: localStorage.getItem("userId"), }
         )
-        this.$router.push('/restaurants/articles')
+        this.$router.push('/restaurants/home/articles')
     },
 
     async handleImageChange(e) {
