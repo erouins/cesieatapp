@@ -14,7 +14,7 @@
     </div>
     <div class="cart-container" v-bind:style="{display: visibility}">
         <div class="cart-background" @click="displayCart()"></div>
-        <CartPage v-bind:isDisabled="isDisabled" v-bind:restaurantID="restaurantID"/>
+        <CartPage v-bind:isDisabled="isDisabled" @update:isDisabled="updateDisabled" v-bind:restaurantID="restaurantID" v-bind:articlesList="articles" v-bind:menusList="menus"/>
     </div>
 </template>
 
@@ -23,6 +23,7 @@ import ArticleList from "@/views/clients/components/ArticleList.vue";
 import MenuList from "@/views/clients/components/MenuList.vue";
 import CartPage from "@/views/clients/components/CartPage.vue";
 import axios from "axios";
+import { thisExpression } from "@babel/types";
 export default {
     name: "RestaurantPage",
     data() {
@@ -62,6 +63,9 @@ export default {
             });
     },
     methods: {
+        updateDisabled(bool) {
+            this.isDisabled = bool
+        },
         redirectMenus() {
             this.$router.push({ name: 'menusList' });
             this.component = "MenuList";
@@ -73,6 +77,9 @@ export default {
             this.listToBeDisplayed = this.articlesList;
         },
         displayCart() {
+            this.menus = this.$store.getters.getCart[1]
+            this.articles = this.$store.getters.getCart[0]
+
             if(this.visibility == "none"){
                 this.visibility = ""
                 this.cart = this.$store.getters.getCart
