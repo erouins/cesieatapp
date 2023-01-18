@@ -52,6 +52,24 @@ export default {
                   {user : this.user}).then((response) => {
               console.log(response.data)
               if (response.status == 204){
+                    fetch("http://localhost:3001/users/find", {
+                      headers: {
+                        'Accept': "application/json",
+                        "Content-Type": "application/json",
+                        'Authorization': "Bearer " + localStorage.getItem('token'),
+                      },
+                      method: "POST",
+                      body: JSON.stringify({
+                        accountType: localStorage.getItem('accountType'),
+                        userId: localStorage.getItem('userId'),
+                      }),
+                    })
+                      .then((blob) => blob.json())
+                      .then((data) => {
+                      
+                        localStorage.setItem('mongoUserId', data["id"]);
+                        const route = '/' + localStorage.getItem('accountType') + 's/';
+                      });
                   console.log("envoyé")
                  this.$router.push("/auth/login");
                 }

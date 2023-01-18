@@ -45,7 +45,7 @@ export default {
               console.log(response.data)
               if (response.status == 200){
                   console.log("delete")
-                  this.$router.push("/login");
+                  this.$router.push("/auth/login");
                   localStorage.clear();
                 }
               })

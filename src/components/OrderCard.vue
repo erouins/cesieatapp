@@ -1,6 +1,9 @@
 <template>
   <div class="order-card">
     <h2>Order N° : {{ title.slice(-5) }}</h2>
+    <button type="button" @click="goToUpdateOrder">
+      <img src="@/assets/modify.png" alt="" />
+    </button>
     <div class="order-details">
       <p>Delivery Address : {{ deliveryAddress }}</p>
       <p>Pickup Address : {{ pickupAddress }}</p>
@@ -58,6 +61,9 @@ name: "OrderCard",
     }
   },
    methods: {
+    gotoUpdateOrder(){
+      this.router.push()
+    },
     handleAccept() {
         this.form.action = "accept",
         this.form.deliveryId = localStorage.getItem("mongoUserId"),
@@ -100,6 +106,7 @@ name: "OrderCard",
 
 
 .red-button {
+  cursor: pointer;
   color: white;
   background-color: red;
   padding: 10px 20px ;

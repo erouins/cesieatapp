@@ -27,6 +27,7 @@ import ForgotPassword from '@/views/auth/ForgotPassword.vue'
 import UpdatePassword from '@/views/auth/UpdatePassword.vue'
 import VerifyEmail from '@/views/auth/VerifyEmail.vue'
 import SendVerificationEmail from '@/views/auth/SendVerificationEmail.vue'
+import OrderDetails from '@/views/restaurants/components/OrderDetails.vue'
 
 import RestaurantsOrders from '@/views/restaurants/components/RestaurantsOrders.vue'
 
@@ -225,7 +226,8 @@ const routes = [
         children: [
           {
             path: 'update',
-            component: RestaurantUpdateProfil
+            component: RestaurantUpdateProfil,
+            
           },
           {
             path: '',
@@ -235,7 +237,19 @@ const routes = [
       },
       {
         path: 'order',
-        component: RestaurantsOrders
+        children: [
+          {
+            path: 'details',
+            component: OrderDetails,
+            props: true,
+          },
+          {
+            path: '',
+            component: RestaurantsOrders,
+            props: true,
+          }
+        ]
+       
       },
       {
         path: "/:pathMatch(.*)*", redirect: "/restaurants/home/menus"

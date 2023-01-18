@@ -1,12 +1,14 @@
 <template>
     <div>
         <div v-if="this.orderState == 'pending'">
-            <div v-if="this.isPayed">En attente de validation</div>
-            <div v-else>En attente de paiement</div>
-            <button v-if="!this.isPayed" @click="payOrder">payer</button>
-            <button>supprimer</button>
+            <div v-if="this.isPayed">Pending validation</div>
+            <div v-else>Awaiting payment</div>
+            <div >
+            <button class="green-button" v-if="!this.isPayed" @click="payOrder">Pay</button>
+            <button class="red-button" @click="remove">Delete</button>
+            </div>
         </div>
-        <div v-else-if="this.orderState == 'accepted'">supprimer</div>
+        <div v-else-if="this.orderState == 'accepted'">Accepted</div>
         <div v-else-if="this.orderState == 'rejected'">Rejected</div>
         <div v-else-if="this.orderState == 'deliver'">Waiting for delivering </div>
         <div v-else-if="this.orderState == 'done'">Delivered</div>
@@ -48,7 +50,15 @@ export default {
                     console.log("erreur pay  ")
                 }
             });
-        }
+        },
+        remove(){
+            const removeFromHistoricalUrl = "http://localhost:3001/client/"+this.orderId+"/order/delete";
+            Axios.delete(removeFromHistoricalUrl).then((response) =>{
+                console.log("order delete")
+      });
+      
+    },
+        
     },
 
     props:{

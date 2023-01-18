@@ -43,7 +43,7 @@ props:{
                   console.log("good")
               if (response.status == 204){
                   console.log("good")
-                  this.$router.push("auth/login");
+                  this.$router.push("/auth/login");
                 }
               })
     },
