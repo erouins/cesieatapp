@@ -37,23 +37,20 @@ export default createStore({
         state.cart = [[],[]]
       }
       if (typeof item.articles === 'undefined') { // if it's an article
-        state.cart[0].push(item.id)
+        state.cart[0].push(item)
       } else {
-        state.cart[1].push(item.id) // if it's a menus
+        state.cart[1].push(item) // if it's a menus
       }
-      console.log(state.cart)
     },
     removeToCart(state, item, type) {
       if (typeof state.cart === 'Object') {
         if (state.cart[type] != []) {
           state.cart[type].splice(state.cart.indexOf(item), 1);
         } 
-        console.log(state.cart)
       }
     },
     clearCart(state) {
       state.cart = [[],[]]
-      console.log(state.cart)
     }
   },
   actions: {
