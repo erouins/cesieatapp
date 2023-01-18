@@ -275,14 +275,14 @@
     }
 
     
-    .green-button:hover {
+    .green-button:hover:enabled {
         outline: none;
         background-color: #a2c924;
         transition: 0.5s;
         box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
     }
 
-    .green-button:active {
+    .green-button:active:enabled {
         background-color: #8aa923;
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
     }

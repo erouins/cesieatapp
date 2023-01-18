@@ -2,7 +2,7 @@
   <div class="menu_article_card">
     <ArticleCard v-bind:article="this.item" />
     <div class="add-to-order">
-      <button class="green-button normal-font-size" @click="addToCart(this.item)">Add to cart</button>
+      <button class="green-button normal-font-size" @click="addToCart()">Add to cart</button>
     </div>
   </div>
 </template>
@@ -14,9 +14,9 @@ export default {
     item: Object,
   },
   methods: {
-    addToCard(item){
-      console.log("Added item :" + item);
-      this.$store.commit('addToCard', item);
+    addToCart(){
+      console.log("Added item :" + this.item.id);
+      this.$store.commit('addToCart', this.item);
     }
   },
   components: {

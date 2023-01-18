@@ -6,7 +6,7 @@ export default createStore({
     article: Object,
     menu: Object,
     restaurant: Object,
-    cart: Array
+    cart: Array,
   },
   getters: {
     getArticle(state){
@@ -18,7 +18,7 @@ export default createStore({
     getRestaurant(state){
       return state.restaurant;
     },
-    getcart(state){
+    getCart(state){
       return state.cart;
     }
   },
@@ -32,21 +32,27 @@ export default createStore({
     setRestaurant(state, restaurant){
       state.restaurant = restaurant;
     }, 
-    addTocart(state, item) {
+    addToCart(state, item) {
       if (typeof state.cart === 'function') {
-        state.cart = []
+        state.cart = [[],[]]
       }
-      state.cart.push(item)
+      if (typeof item.articles === 'undefined') { // if it's an article
+        state.cart[0].push(item.id)
+      } else {
+        state.cart[1].push(item.id) // if it's a menus
+      }
       console.log(state.cart)
     },
-    removeTocart(state, item) {
-      if (typeof state.cart === 'Object' && state.cart != []) {
-        state.cart.splice(state.cart.indexOf(item), 1);
+    removeToCart(state, item, type) {
+      if (typeof state.cart === 'Object') {
+        if (state.cart[type] != []) {
+          state.cart[type].splice(state.cart.indexOf(item), 1);
+        } 
         console.log(state.cart)
       }
     },
-    clearcart(state) {
-      state.cart = []
+    clearCart(state) {
+      state.cart = [[],[]]
       console.log(state.cart)
     }
   },
