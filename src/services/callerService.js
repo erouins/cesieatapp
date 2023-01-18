@@ -8,6 +8,12 @@ import jwt_decode from "jwt-decode";
 const accesToken = localStorage.getItem("token")
 const currentRefreshToken = localStorage.getItem("refreshToken")
 
+
+let isLogged = () => {
+    let token = localStorage.getItem('token')
+    return !!token
+}
+
 const Axios = axios.create({
     baseURL: 'http://localhost:3001'
 })
@@ -33,8 +39,6 @@ const minutes = new Date(-difference).getMinutes()
 console.log("minutes restantes: " + minutes)
 
 
-
-
 /**
  * Interceptor pour injection token
  */
@@ -45,6 +49,8 @@ Axios.interceptors.request.use(request => {
     // Si connecté on ajoute le token dans l'entête
     if(accesToken != null){
         request.headers.Authorization = 'Bearer '+ accesToken
+    }else{
+        
     }
   
     return request

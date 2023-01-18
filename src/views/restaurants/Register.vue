@@ -16,8 +16,9 @@
                 <div class="input-label"><label for="restaurant_description">add a description</label></div>
                 <input class="input-field-auth" type="text" id="restaurant_description" v-model="profil.description"/>
                 <div class="input-label"><label for="restaurant_image">image</label></div>
-                <input class="input-field-auth" type="text" id="restaurant_image" v-model="profil.image"/>
-                
+                <div class="form-col">
+                <input type="file" id="image" @change="handleImageChange">
+               </div>
                 <button class="submit-button" type="submit">submit</button>
             </form>
         </div>
@@ -41,6 +42,28 @@ export default {
     },
 
     methods: {
+
+convertToBase64(file){
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
+},
+
+         async handleImageChange (e)  {
+       let file = e.target.files[0];
+        const base64 = await this.convertToBase64(file);
+     
+       this.profil.image = base64
+          console.log(base64)
+    },
+
         register() {
             fetch('http://localhost:3001/restaurant/create', {
                 headers: {
@@ -68,5 +91,10 @@ export default {
 </script>
 
 <style>
+
+.form-col {
+  width: 50%;
+  padding: 20px;
+}
 
 </style>

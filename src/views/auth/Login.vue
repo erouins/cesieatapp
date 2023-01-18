@@ -36,6 +36,7 @@
 
 
 import Axios from '@/services/callerService';
+
 import io from 'socket.io-client';
   
 export default {
@@ -116,6 +117,12 @@ export default {
   },
 
   mounted(){
+    if(localStorage.getItem("token") != null){
+       console.log("déja connecté")
+      this.$router.push('/'+localStorage.getItem("accountType")+'s/home')
+    }else{
+        console.log("non connecté")
+    }
     this.socket = io('http://localhost:3001');
     this.socket.on('connect', () => {
       console.log('connected')
