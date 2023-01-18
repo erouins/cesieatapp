@@ -251,6 +251,11 @@
         margin: 1em 0 1em 0;
     }
     
+    .item-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px 0;
+    }
     .normal-font-size { 
         font-size: 1em !important;
     }
