@@ -4,7 +4,7 @@
         <label for="button-home">Home</label>
     </button>
      <button id="button-historical" class="button-sidemenu" @click="handleClickOrders">
-        <img class="icon-button" src="@/assets/book-fill.svg"/>
+        <img class="icon-button" src="@/assets/bag-fill.svg"/>
         <label for="button-historical">Orders</label>
     </button>
 

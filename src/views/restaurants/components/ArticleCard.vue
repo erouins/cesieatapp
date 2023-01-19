@@ -1,10 +1,10 @@
 <template>
   <div class="menu_article_card">
     <ArticleCard v-bind:article="this.item" />
-    <button type="button" @click="goToUpdatePage">
+    <button class="button-edit" type="button" @click="goToUpdatePage">
       <img src="@/assets/modify.png" alt="" />
     </button>
-    <button type="button" @click="removeArticle">
+    <button class="button-delete" type="button" @click="removeArticle">
       <img src="@/assets/remove.png" alt="" />
     </button>
   </div>

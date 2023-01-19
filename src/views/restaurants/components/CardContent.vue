@@ -1,21 +1,16 @@
 <template>
-   <div class="boutons-menu-articles">
-    <button class='select-button menu-articles' type="button" @click="redirectMenus">Menu</button>
-    <button class='select-button menu-articles' type="button" @click="redirectArticles">Article</button>
+  <div class="select-button-container">
+    <button class='green-button' type="button" @click="redirectMenus">Menu</button>
+    <button class='green-button' type="button" @click="redirectArticles">Article</button>
   </div>
-  <div class='cards'>
-    <div
-    v-for="(item, index) in this.listToBeDisplayed"
-    :key="index"
-    class="card_restau"
-  >
-    <component v-bind:is="component" v-bind:item="item" />
+  <div class='card-contener'>
+    <div v-for="(item, index) in this.listToBeDisplayed" :key="index" class="card_restau">
+      <component v-bind:is="component" v-bind:item="item" />
+    </div>
   </div>
+  <div class="space-buttom">
+    <button class='green-button' @click="createFct">create new {{this.$route.path =="/restaurants/home/articles" ? 'article' : 'menu'}}</button>
   </div>
-  <div>
-  <button class='select-button new' @click="createFct">create new {{this.$route.path == "/restaurants/home/articles"?'article':'menu'}}</button>
-  </div>
-  
 </template>
 
 <script>
@@ -47,19 +42,19 @@ export default {
       });
   },
   methods: {
-    createFct(){
-      if(this.$route.path == "/restaurants/home/articles")
+    createFct() {
+      if (this.$route.path == "/restaurants/home/articles")
         this.$router.push("/restaurants/home/articles/create");
-      else{
+      else {
         this.$router.push("/restaurants/home/menus/create");
       }
     },
-    
+
     redirectMenus() {
       this.$router.push("/restaurants/home/menus");
       this.component = "RestaurantMenuCard";
       this.listToBeDisplayed = this.menusList;
-   
+
     },
     redirectArticles() {
       this.$router.push("/restaurants/home/articles");
@@ -76,36 +71,6 @@ export default {
 </script>
 
 <style>
-
-.new{
-        position: fixed;
-        bottom: 0;
-    margin-bottom: 20px;
-}
-.menu-articles{
-        
-       
-        margin-top: 20px;
-}
-
-.boutons-menu-articles{
-        position: fixed;
-        display: inline-flex;
-      
-}
-
-
-.cards{
-  margin: 10%;
-  height: 60vh;
-  overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 350px);
-  grid-gap: 8px;
-}
-
 .card_restau {
   display: flex;
   justify-content: center;
