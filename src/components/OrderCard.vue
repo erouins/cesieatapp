@@ -105,13 +105,5 @@ name: "OrderCard",
 }
 
 
-.red-button {
-  cursor: pointer;
-  color: white;
-  background-color: red;
-  padding: 10px 20px ;
-  margin: 5px  ;
-  border-radius: 5px;
 
-}
 </style>

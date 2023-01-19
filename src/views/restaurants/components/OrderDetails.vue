@@ -60,3 +60,20 @@ export default {
   },
 };
 </script>
+
+<style>
+.orderCard {
+  text-align: center;
+  justify-content: center;
+  left: 50%;
+  width: 30%;
+  height: 20%;
+  margin: 5%;
+  align-items: center;
+  padding: 1em;
+  border-radius: 15px;
+  background: #fefefe;
+  transition: box-shadow 0.5s;
+  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+}
+</style>

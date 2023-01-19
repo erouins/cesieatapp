@@ -49,7 +49,7 @@ export default {
             this.$emit('update:isDisabled', true); 
         },
         removeItem(index,list,type) {
-            list.splice(index)
+            list.splice(index,1)
             this.$store.commit('removeToCart', list[index], type);
 
             if(this.menusList.length == 0 && this.articlesList.length == 0) {
@@ -100,7 +100,6 @@ export default {
 }
 
 .delete-to-basket {
-    /* background-color: #c42524; */
     cursor: pointer;
     background-color: #fefefe;
     outline: none;
