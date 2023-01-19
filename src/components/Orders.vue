@@ -9,12 +9,15 @@
             <OrderCard v-if="item['status'] == 'rejected' || item['status'] == 'done'" v-bind:order="item" />
         </div>
     </div>
+    <div>
+        <p v-if="emptyOrders" > There is nothing here at the moment  </p>
+    </div>
 </template>
 
 <script>
 let getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/';
 
-import axios from 'axios';
+import Axios from '@/services/callerService';
 import OrderCard from '@/views/clients/components/OrderCard.vue'
 import io from 'socket.io-client';
 
@@ -22,6 +25,7 @@ export default {
     name: 'OrdersPage',
     data() {
         return {
+            emptyOrders: false,
             orderList: [],
             title: '',
             socket: null,
@@ -48,11 +52,10 @@ export default {
                 getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/orders'
             }
             console.log(getOrderUrl)
-            axios.get(getOrderUrl, {
-                headers: {
-                    Authorization: `bearer ${localStorage.getItem("token")}`,
-                },
-            }).then((data) => {
+            Axios.get(getOrderUrl).then((data) => {
+                if (Object.keys(data['data']).length == 0){
+                    this.emptyOrders = true
+                }
                 console.log('list of orders:', data['data'])
                 this.orderList = data['data'];
             })

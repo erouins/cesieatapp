@@ -97,10 +97,6 @@ name: "OrderCardRestaurant",
                 }
        }
 
-      // this.caculateTotalPrice();
-      // this.menus = this.order["menus"];
-      // this.articles = this.order["articles"];
-      // this.orderId = this.order['id'];
     });
       
     },

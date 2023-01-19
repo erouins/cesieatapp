@@ -27,18 +27,17 @@
       Don't have an account ?
       <a href="http://localhost:8080/auth/Register">sign in</a>
     </p>
-    <a href="http://localhost:8080/auth/forgot-password">I have forgot my password</a>
-    </div>
+    <a href="http://localhost:8080/auth/forgot-password"
+      >I have forgot my password</a
+    >
+  </div>
 </template>
 
 <script>
+import Axios from "@/services/callerService";
 
+import io from "socket.io-client";
 
-
-import Axios from '@/services/callerService';
-
-import io from 'socket.io-client';
-  
 export default {
   name: "Login",
   data() {
@@ -47,7 +46,7 @@ export default {
         email: "",
         password: "",
         socket: null,
-       messages: []
+        messages: [],
       },
     };
   },
@@ -56,7 +55,7 @@ export default {
     login() {
       fetch("http://localhost:3001/auth/login", {
         headers: {
-          'Accept': "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         method: "PUT",
@@ -66,73 +65,78 @@ export default {
         .then((data) => {
           localStorage.clear();
           localStorage.setItem("token", data["tokens"]["access"]["token"]);
-          localStorage.setItem("refreshToken", data["tokens"]["refresh"]["token"]);
-          localStorage.setItem("userId", data['user']['id']);
-          localStorage.setItem("accountType", data['user']['accountType']);
-          const userUrl = "http://localhost:3001/users/" + localStorage.getItem('userId')
-            Axios.get(userUrl).then((response) => {
-             
-              if (response.status == 200){
-                  if (response.data.isEmailVerified == false){
-                       
-                         this.$router.push("/auth/send-verification");
-                  }else{
-                       
-                        fetch("http://localhost:3001/users/find", {
-                      headers: {
-                        'Accept': "application/json",
-                        "Content-Type": "application/json",
-                        'Authorization': "Bearer " + data["tokens"]["access"]["token"],
-                      },
-                      method: "POST",
-                      body: JSON.stringify({
-                        accountType: localStorage.getItem('accountType'),
-                        userId: localStorage.getItem('userId'),
-                      }),
-                    })
-                      .then((blob) => blob.json())
-                      .then((data) => {
-                      
-                        localStorage.setItem('mongoUserId', data["id"]);
-                        const route = '/' + localStorage.getItem('accountType') + 's/';
-                        if (data["response"] == "true") {
-                             console.log(route)
-                          this.$router.push(route + 'home');
-                        }else {
-                           console.log("icciiiii")
-                          this.$router.push(route + 'register');
-                        }
-                      });
-                              
-                  }
-
-                }
-              })
-  
+          localStorage.setItem(
+            "refreshToken",
+            data["tokens"]["refresh"]["token"]
+          );
+          localStorage.setItem("userId", data["user"]["id"]);
+          localStorage.setItem("accountType", data["user"]["accountType"]);
+          const userUrl =
+            "http://localhost:3001/users/" + localStorage.getItem("userId");
+          Axios.get(userUrl).then((response) => {
+            if (response.status == 200) {
+              if (response.data.isEmailVerified == false) {
+                this.$router.push("/auth/send-verification");
+              } else {
+                fetch("http://localhost:3001/users/find", {
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization:
+                      "Bearer " + data["tokens"]["access"]["token"],
+                  },
+                  method: "POST",
+                  body: JSON.stringify({
+                    accountType: localStorage.getItem("accountType"),
+                    userId: localStorage.getItem("userId"),
+                  }),
+                })
+                  .then((blob) => blob.json())
+                  .then((data) => {
+                    localStorage.setItem("mongoUserId", data["id"]);
+                    const route =
+                      "/" + localStorage.getItem("accountType") + "s/";
+                    if (data["response"] == "true") {
+                      if ((route == "/restaurants/")) {
+                        this.$router.push(route + "home/menus");
+                      } else {
+                        this.$router.push(route + "home");
+                      }
+                    } else {
+                      this.$router.push(route + "register");
+                    }
+                  });
+              }
+            }
+          });
         })
         .catch((err) => {
           console.log(err);
-           if (confirm('an error has occurred, please check that your email and password are correct')){
-           }
+          if (
+            confirm(
+              "an error has occurred, please check that your email and password are correct"
+            )
+          ) {
+          }
         });
     },
   },
 
-  mounted(){
-    if(localStorage.getItem("token") != null){
-       console.log("déja connecté")
-      this.$router.push('/'+localStorage.getItem("accountType")+'s/home')
-    }else{
-        console.log("non connecté")
+  mounted() {
+    if (localStorage.getItem("token") != null) {
+      console.log("déja connecté");
+      this.$router.push("/" + localStorage.getItem("accountType") + "s/home");
+    } else {
+      console.log("non connecté");
     }
-    this.socket = io('http://localhost:3001');
-    this.socket.on('connect', () => {
-      console.log('connected')
+    this.socket = io("http://localhost:3001");
+    this.socket.on("connect", () => {
+      console.log("connected");
     });
-    this.socket.on('welcome', (message) => {
-      console.log("yeaahhhh")
+    this.socket.on("welcome", (message) => {
+      console.log("yeaahhhh");
     });
-  }
+  },
 };
 </script>
 
@@ -200,5 +204,4 @@ body {
   border-color: #0091ff;
   box-shadow: 2px 0px 5px rgb(0 0 0 / 30%);
 }
-
 </style>
