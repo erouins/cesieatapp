@@ -62,30 +62,36 @@ export default {
             }
             console.log(getOrderUrl)
             Axios.get(getOrderUrl).then((data) => {
-                if (Object.keys(data['data']).length == 0){
+                if (data['data']== ''){
                     this.emptyOrders = true
                 }
-                console.log('list of orders:', data['data'])
+                else{
+                    console.log('list of orders:', data['data'])
                 this.orderList = data['data'];
+                }
             })
         },
         async getOrdersOnClick(to){
             console.log('TO:', to)
             console.log('show me: ', '/' + localStorage.getItem("accountType") + 's/historical')
-            if (to == '/' + localStorage.getItem("accountType") + 's/historical') {
+            if (to.path == '/' + localStorage.getItem("accountType") + 's/historical') {
                 getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/historical'
-                console.log('url: ', getOrderUrl)
+                console.log('HISTORICAL url: ', getOrderUrl)
             } else {
                 getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/orders'
-                console.log('url: ', getOrderUrl)
+                console.log('ORDER url: ', getOrderUrl)
             }
             console.log(getOrderUrl)
             await Axios.get(getOrderUrl).then((data) => {
                 if (Object.keys(data['data']).length == 0){
+                    console.log('NO ORDER')
                     this.emptyOrders = true
                 }
-                console.log('list of orders:', data['data'])
+                else{
+                    console.log('list of orders:', data['data'])
                 this.orderList = data['data'];
+                }
+                
             })
         }
     },
