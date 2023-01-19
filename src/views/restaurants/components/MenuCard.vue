@@ -29,8 +29,10 @@ export default {
     removeMenu(){
       console.log('item: ', this.item['id'])
       Axios.delete(deleteMenuUrl,{data:{
-        menuId: this.item['id'], userId: localStorage.getItem("mongoUserId")
-      }}).then((response) => {
+        menuId: this.item['id'],
+        userId: localStorage.getItem("userId")
+      }
+      }).then((response) => {
         console.log('menu deleted')
       })
     }

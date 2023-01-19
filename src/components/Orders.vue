@@ -1,11 +1,11 @@
 <template>
     <div class="orders-contener" v-if="this.$route.path == '/clients/order'">
-        <div v-for="(item, index) in this.orderList" :key="index" class="order_card">
+        <div v-for="(item, index) in orderList" :key="index" class="order_card">
             <OrderCard v-if="item['status'] != 'rejected' && item['status'] != 'done'" v-bind:order="item" />
         </div>
     </div>
     <div v-else-if="this.$route.path == '/clients/historical' || this.$route.path == '/deliverers/historical' || this.$route.path == '/restaurants/historical'">
-        <div v-for="(item, index) in this.orderList" :key="index" class="order_card">
+        <div v-for="(item, index) in orderList" :key="index" class="order_card">
             <OrderCard v-if="item['status'] == 'rejected' || item['status'] == 'done'" v-bind:order="item" />
         </div>
     </div>
@@ -26,13 +26,18 @@ export default {
     data() {
         return {
             emptyOrders: false,
-            orderList: [],
             title: '',
             socket: null,
+            orderList:this.orderList2
         }
     },
+    props:{
+        orderList2: []
+    },
     mounted() {
-        this.getOrders();
+        this.getOrders()
+        console.log('mhhm Ok')
+        
         this.socket = io('http://localhost:3001');
         this.socket.on('connect', () => {
             console.log('connected')
@@ -42,6 +47,9 @@ export default {
             this.getOrders();
         });
     },
+    beforeRouteLeave(to){
+     this.getOrdersOnClick(to)
+    },
     methods: {
         getOrders() {
             console.log('show me: ', '/' + localStorage.getItem("accountType") + 's/historical')
@@ -50,14 +58,40 @@ export default {
                 console.log('url: ', getOrderUrl)
             } else {
                 getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/orders'
+                console.log('url: ', getOrderUrl)
             }
             console.log(getOrderUrl)
             Axios.get(getOrderUrl).then((data) => {
-                if (Object.keys(data['data']).length == 0){
+                if (data['data']== ''){
                     this.emptyOrders = true
                 }
-                console.log('list of orders:', data['data'])
+                else{
+                    console.log('list of orders:', data['data'])
                 this.orderList = data['data'];
+                }
+            })
+        },
+        async getOrdersOnClick(to){
+            console.log('TO:', to)
+            console.log('show me: ', '/' + localStorage.getItem("accountType") + 's/historical')
+            if (to.path == '/' + localStorage.getItem("accountType") + 's/historical') {
+                getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/historical'
+                console.log('HISTORICAL url: ', getOrderUrl)
+            } else {
+                getOrderUrl = "http://localhost:3001/" + localStorage.getItem("accountType") + "/" + localStorage.getItem("mongoUserId") + '/orders'
+                console.log('ORDER url: ', getOrderUrl)
+            }
+            console.log(getOrderUrl)
+            await Axios.get(getOrderUrl).then((data) => {
+                if (Object.keys(data['data']).length == 0){
+                    console.log('NO ORDER')
+                    this.emptyOrders = true
+                }
+                else{
+                    console.log('list of orders:', data['data'])
+                this.orderList = data['data'];
+                }
+                
             })
         }
     },

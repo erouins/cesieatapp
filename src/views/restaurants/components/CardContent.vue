@@ -17,7 +17,8 @@
 import RestaurantMenuCard from "@/views/restaurants/components/MenuCard.vue";
 import RestaurantArticleCard from "@/views/restaurants/components/ArticleCard.vue";
 import Axios from '@/services/callerService';
-const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");//
+import io from 'socket.io-client';
+
 export default {
   data() {
     return {
@@ -28,22 +29,40 @@ export default {
     };
   },
   mounted() {
-    Axios.get(url)
-      .then((data) => {
-        this.menusList = data["data"]["menus"];
-        this.articlesList = data["data"]["articles"];
-        if (this.$route.path == "/restaurants/home/articles") {
-          this.listToBeDisplayed = this.articlesList;
-          this.component = "RestaurantArticleCard";
-        } else {
-          this.listToBeDisplayed = this.menusList;
-          this.component = "RestaurantMenuCard";
-        }
+      this.getRestaurants()
+      this.socket = io('http://localhost:3001');
+      this.socket.on('connect', () => {
+      console.log('connected')
+      });
+      this.socket.on('articleModified', (message) => {
+          console.log("articleModified")
+          this.getRestaurants()
+      });
+      this.socket.on('menuModified', (message) => {
+          console.log("menuModified")
+          this.getRestaurants()
       });
   },
   methods: {
-    createFct() {
-      if (this.$route.path == "/restaurants/home/articles")
+    getRestaurants (){
+      const url = "http://localhost:3001/restaurant/" + localStorage.getItem("mongoUserId");//
+      console.log(url)
+        Axios.get(url)
+          .then((data) => {
+            this.menusList = data["data"]["menus"];
+            this.articlesList = data["data"]["articles"];
+            if (this.$route.path == "/restaurants/home/articles") {
+              this.listToBeDisplayed = this.articlesList;
+              this.component = "RestaurantArticleCard";
+            } else {
+              this.listToBeDisplayed = this.menusList;
+              this.component = "RestaurantMenuCard";
+            }
+          });
+    },
+
+    createFct(){
+      if(this.$route.path == "/restaurants/home/articles")
         this.$router.push("/restaurants/home/articles/create");
       else {
         this.$router.push("/restaurants/home/menus/create");

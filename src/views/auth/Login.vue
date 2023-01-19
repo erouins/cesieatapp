@@ -71,10 +71,13 @@ export default {
           );
           localStorage.setItem("userId", data["user"]["id"]);
           localStorage.setItem("accountType", data["user"]["accountType"]);
+          console.log("1er : ", localStorage.getItem("userId"))
           const userUrl =
             "http://localhost:3001/users/" + localStorage.getItem("userId");
-          Axios.get(userUrl).then((response) => {
+          Axios.get(userUrl).then((response) => {   
             if (response.status == 200) {
+              localStorage.setItem("userId" , response.data.id)
+              console.log("2eme : ", localStorage.getItem("userId"))
               if (response.data.isEmailVerified == false) {
                 this.$router.push("/auth/send-verification");
               } else {
@@ -93,7 +96,9 @@ export default {
                 })
                   .then((blob) => blob.json())
                   .then((data) => {
+                    console.log("3eme : ", localStorage.getItem("userId"))
                     localStorage.setItem("mongoUserId", data["id"]);
+                    console.log("1er mongo : ", localStorage.getItem("mongoUserId"))
                     const route =
                       "/" + localStorage.getItem("accountType") + "s/";
                     if (data["response"] == "true") {
