@@ -4,8 +4,10 @@
       <img class="menu_article_image" :src="this.img" alt="image of article" />
     </div>
     <div class="menu_article_text">
-      <div class="menu-article-name">{{ this.article["name"] }}</div>
-      <div class="menu-article-price">{{ this.article["price"] }}$</div>
+      <div class="menu-article-title">
+        <div class="menu-article-name">{{ this.article["name"] }}</div>
+        <div class="menu-article-price">{{ this.article["price"] }}$</div>
+      </div>
       <div class="menu-article-description">{{ this.article["description"] }}</div>
     </div>
   </div>
