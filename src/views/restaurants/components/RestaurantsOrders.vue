@@ -130,6 +130,7 @@ export default {
 
   data() {
     return {
+      socket: null,
       showDiv: true,
       container1Title: "Pending Orders",
       pendingOrders: [],

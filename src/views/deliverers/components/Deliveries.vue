@@ -1,6 +1,5 @@
 <template>
-<div v-if="this.noOrder"><h1>No order available</h1></div>
-<div v-else>
+<div>
   <div v-show="!alreadyHaveOrder" class="order-container">
      <OrderCard 
       v-for="(order, index) in results" 
@@ -17,6 +16,9 @@
    <div v-show="alreadyHaveOrder" class="order-container">
     <CurrentOrderCard /> 
   </div>
+  <div>
+        <p v-if="emptyOrders" > There is nothing here at the moment  </p>
+  </div>
 </div>
   
   
@@ -26,6 +28,7 @@
 import OrderCard from "@/components/OrderCard.vue";
 import CurrentOrderCard from "@/views/deliverers/components/CurrentOrderCard.vue"
 import Axios from '@/services/callerService';
+import io from 'socket.io-client';
 
 const url = "http://localhost:3001/deliverer/pending";
 const firstRequestUrl = "http://localhost:3001/deliverer/"+ localStorage.getItem("mongoUserId") +"/orders";
@@ -38,13 +41,32 @@ export default {
 
   data() {
     return {
+      socket: null,
+      emptyOrders: false,
       alreadyHaveOrder: false,
-      noOrder:false,
+  
       results: {},
     };
   },
   async mounted() {
-    await Axios.get(firstRequestUrl).then((response) => {
+        this.getOrders()
+        this.socket = io('http://localhost:3001');
+        this.socket.on('connect', () => {
+        console.log('connected')
+        });
+        this.socket.on('orderModified', (message) => {
+            console.log("orderModified")
+            this.getOrders()
+        });
+   
+   
+   
+   
+  },
+
+  methods: {
+   async getOrders (){
+       await Axios.get(firstRequestUrl).then((response) => {
       
         if(response.status == 200) {
         this.alreadyHaveOrder = true
@@ -52,19 +74,19 @@ export default {
           Axios.get(url).then((response) => {
                 this.results = response.data;
                 if(this.results == ''){
-                  this.noOrder = true;
+                  this.emptyOrders = true;
+                  console.log("pas de commandes")
+                }else{
+                   this.emptyOrders = false;
                 }
               });
               }
       
       
     });
-   
-   
-   
-  },
+    }
 
-  methods: {},
+  },
 };
 </script>
 
