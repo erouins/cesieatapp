@@ -1,23 +1,24 @@
 <template>
-  <div class="orderCard">
+  <div class="order-user-card">
     <div class="orderNumber">
       <h2>Order n°{{ order["id"].slice(-5) }}</h2>
-     
     </div>
     <div class="order-body">
-      <ul class="list-items">
-        <li class="item_row" v-for="menu in this.menus" :key="menu.id">
-          <p>{{ menu['name'] }}&emsp;{{ menu['price'] }}$</p>
-        </li>
-      </ul>
-      <ul class="list-items">
-        <li class="item_row" v-for="article in this.articles" :key="article.id">
-          <p>{{ article['name'] }}&emsp;{{ article['price'] }}$</p>
-        </li>
-      </ul>
-      <div>Total price : {{ this.totalPrice }}$</div>
+      <div class="list-items">
+        <div class="item-row" v-for="menu in this.menus" :key="menu.id">
+          <div><li>{{ menu['name'] }}</li></div>
+          <div>{{ menu['price'] }}$</div>
+        </div>
+        <div class="item-row" v-for="article in this.articles" :key="article.id">
+          <div><li>{{ article['name'] }}</li></div>
+          <div>{{ article['price'] }}$</div>
+        </div>
+      </div>
+      <div class="item-row">
+        <div class="bold">Total price :</div>
+        <div class="bold">{{ this.totalPrice }}$</div>
+      </div>
     </div>
-    <br />
     <div class="order-footer">
       <OrderFooter :orderState="this.order['status']" :isPayed="this.order['isPayed']" :orderId="order['id']"/>
     </div>
@@ -81,7 +82,7 @@ export default {
 }
 
 .list-items{
-   list-style-type: none;
+  margin-bottom: 10px;
 }
 
 .order-body{
@@ -100,18 +101,14 @@ export default {
   justify-content: center;
 }
 
-.orderCard {
-  text-align: center;
-  justify-content: center;
-  left: 50%;
-  width: 30%;
-  height: 20%;
-  margin: 5%;
-  align-items: center;
-  padding: 1em;
+.order-user-card {
+  width: 350px;
+  padding: 12px;
+  margin: 10px;
   border-radius: 15px;
   background: #fefefe;
   transition: box-shadow 0.5s;
   box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+
 }
 </style>

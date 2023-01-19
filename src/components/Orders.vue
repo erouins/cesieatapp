@@ -69,5 +69,6 @@ export default {
     .orders-contener {
         display: flex;
         flex-direction: column-reverse;
+        align-items: center;
     }
 </style>

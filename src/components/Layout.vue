@@ -260,6 +260,10 @@
         font-size: 1em !important;
     }
 
+    .bold {
+        font-weight: 600;
+    }
+
     .green-button,
     .green-button:enabled {
         cursor: pointer;
@@ -289,6 +293,32 @@
 
     .green-button:active:enabled {
         background-color: #8aa923;
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
+    }
+
+    .red-button,
+    .red-button:enabled {
+        cursor: pointer;
+        color: #212529;
+        background-color: #df3032;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 0.7em 1em;
+        margin: 10px;
+        border-radius: 5px;
+        border: 0;
+        transition: 0.5s;
+    }
+
+    .red-button:hover:enabled {
+        outline: none;
+        background-color: #ef2b34;
+        transition: 0.5s;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+    }
+
+    .red-button:active:enabled {
+        background-color: #d0332d;
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
     }
 
