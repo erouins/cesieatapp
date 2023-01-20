@@ -7,8 +7,6 @@
 import UserCard from "@/components/UserCard.vue";
 import Axios from '@/services/callerService';
 
-
-
 export default {
   name: "ClientProfil",
   components: {

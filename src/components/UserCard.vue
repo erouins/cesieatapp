@@ -1,26 +1,19 @@
 <template>
-  <div class="card">
-    <div class="card-title">{{ name }} {{ firstName }} {{ lastName }}</div>
-    <div class="card-content">
-      <div class="card-left">
-        <img class="card-img" :src="this.image" alt="Card Image">
-      </div>
-      <div class="card-right">
-        <p class="card-address">{{ address }}</p>
-        <p class="card-zipcode">{{ zipCode }}</p>
-        <p class="card-city">{{ city }}</p>
-        <p class="card-description">{{ description }}</p>
-      </div>
-     
-    </div >
-    <div class="order-buttons">
-     <button class="green-button" @click="handleClick">
-    update my data
-  </button>
-  <button class="red-button" @click="handleClickDelete">
-   Delete my account 
-  </button>
-  </div>
+  <div class="user-card">
+    <div class="user-card-content">
+        <div class="user-card-title"><h2>{{ name }} {{ firstName }} {{ lastName }}</h2></div>
+        <img class="user-card-img" :src="this.image" alt="user-card Image">
+        <div class="user-card-text">
+          <p class="user-card-address">Adress : {{ address }}</p>
+          <p class="user-card-zipcode">Zipcode : {{ zipCode }}</p>
+          <p class="user-card-city">City : {{ city }}</p>
+          <p class="user-card-description">Description: {{ description }}</p>
+        </div>
+    </div>
+    <div class="edit-account-buttons">
+      <button class="green-button" @click="handleClick">update my account</button>
+      <button class="red-button" @click="handleClickDelete">Delete my account</button>
+    </div>
   </div>
 </template>
 
@@ -32,24 +25,24 @@ import Axios from '@/services/callerService';
 export default {
   name: "UserCard",
 
-  methods:{
-    handleClick(){
-      console.log(this.$route.path+ "/update")
+  methods: {
+    handleClick() {
+      console.log(this.$route.path + "/update")
       this.$router.push(this.$route.path + "/update");
     },
-    handleClickDelete(){
+    handleClickDelete() {
       const url = "http://localhost:3001/users/" + localStorage.getItem('mongoUserId');
 
-      if (confirm('Are you sure you want to delete your account')){
+      if (confirm('Are you sure you want to delete your account')) {
         Axios.delete(url).then((response) => {
-              console.log(response.data)
-              if (response.status == 200){
-                  console.log("delete")
-                  this.$router.push("/auth/login");
-                  localStorage.clear();
-                }
-              })
-             
+          console.log(response.data)
+          if (response.status == 200) {
+            console.log("delete")
+            this.$router.push("/auth/login");
+            localStorage.clear();
+          }
+        })
+
       }
     }
   },
@@ -57,15 +50,15 @@ export default {
   props: {
     name: {
       type: String,
-    
+
     },
-     firstName: {
+    firstName: {
       type: String,
-  
+
     },
-     lastName: {
+    lastName: {
       type: String,
-     
+
     },
     address: {
       type: String,
@@ -73,7 +66,7 @@ export default {
     },
     description: {
       type: String,
-     
+
     },
     zipCode: {
       type: String,
@@ -83,46 +76,47 @@ export default {
       type: String,
       required: true,
     },
-     image: {
+    image: {
       type: String,
-   
+
     },
   },
 };
 </script>
 
-<style scoped>
-
-
-.card {
-  border-radius: 10px;
-  width: 50%;
-  overflow: hidden;
+<style>
+.user-card {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  margin: auto;
+  padding: 1em;
+  border-radius: 15px;
+  background: #fefefe;
+  transition: box-shadow 0.5s;
+  box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
 }
 
-.card-title {
+.user-card-title {
   text-align: center;
   padding: 10px;
 }
 
-.card-content {
-  display: flex;
+.user-card-text {
+  text-align: left;
 }
 
-.card-left {
-  width: 35%;
-}
-
-.card-img {
+.user-card-img {
   width: 100%;
 }
 
-.card-right {
-  width: 65%;
-  padding: 0px 20px;
-}
-
-.card-name {
+.user-card-name {
   font-weight: bold;
 }
 </style>

@@ -19,12 +19,6 @@
                     <img  class="icon-button" src="../assets/list.svg"/>
                 </button>
             </div>
-            <!-- <div class="search-bar">
-                <input class="input-search-bar">
-                <button clas="search-button">
-                    <img class="icon-search" src="../assets/search.svg"/>
-                </button>
-            </div> -->
         </div>
 </template>
 
@@ -295,6 +289,40 @@
         background-color: #8aa923;
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
     }
+    
+    .yellow-button,
+    .yellow-button:enabled {
+        cursor: pointer;
+        color: #212529;
+        background-color: #e4a731;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 0.7em 1em;
+        margin: 10px;
+        border-radius: 5px;
+        border: 0;
+        transition: 0.5s;
+    }
+
+    .button-edit:disabled,
+    .yellow-button:disabled {
+        cursor:not-allowed;
+        background-color: #c4c7b6;
+    }
+
+    .button-edit:hover:enabled,
+    .yellow-button:hover:enabled {
+        outline: none;
+        background-color: #f3b357;
+        transition: 0.5s;
+        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
+    }
+
+    .button-edit:active:enabled,
+    .yellow-button:active:enabled {
+        background-color: #cc841a;
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
+    }
 
     .red-button,
     .red-button:enabled {
@@ -310,6 +338,7 @@
         transition: 0.5s;
     }
 
+    .button-delete:hover:enabled
     .red-button:hover:enabled {
         outline: none;
         background-color: #ef2b34;
@@ -317,9 +346,42 @@
         box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
     }
 
+    .button-delete:active:enabled
     .red-button:active:enabled {
         background-color: #d0332d;
         box-shadow: 5px 0px 40px rgba(0, 0, 0, 30%);
+    }
+
+    .button-delete,
+    .button-delete:enabled {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        color: #212529;
+        background-color: #df3032;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 5px;
+        margin: 10px;
+        border-radius: 5px;
+        border: 0;
+        transition: 0.5s;
+    }
+
+    .button-edit,
+    .button-edit:enabled {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        color: #212529;
+        background-color: #e4a731;
+        font-size: 1.2em;
+        font-weight: 600;
+        padding: 5px;
+        margin: 10px;
+        border-radius: 5px;
+        border: 0;
+        transition: 0.5s;
     }
 
 
