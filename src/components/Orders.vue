@@ -64,6 +64,7 @@ export default {
             Axios.get(getOrderUrl).then((data) => {
                 if (data['data']== ''){
                     this.emptyOrders = true
+                    this.orderList = []
                 }
                 else{
                     console.log('list of orders:', data['data'])
@@ -86,6 +87,7 @@ export default {
                 if (Object.keys(data['data']).length == 0){
                     console.log('NO ORDER')
                     this.emptyOrders = true
+                    this.orderList = []
                 }
                 else{
                     console.log('list of orders:', data['data'])

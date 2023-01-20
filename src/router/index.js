@@ -42,7 +42,8 @@ const routes = [
     name: 'clientRegister',
     component: ClientRegister,
     beforeEnter: (to, from) => {
-      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+      if (localStorage.getItem('accountType') == 'client') return true;
+      this.$router.push('/auth/login');
     },
   },
   {
@@ -50,7 +51,8 @@ const routes = [
     name: 'delivererRegister',
     component: DelivererRegister,
     beforeEnter: (to, from) => {
-      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+      if (localStorage.getItem('accountType') == 'deliverer') return true;
+      this.$router.push('/auth/login');
     },
   },
   {
@@ -58,7 +60,8 @@ const routes = [
     name: 'restaurantRegister',
     component: RestaurantRegister,
     beforeEnter: (to, from) => {
-      //TODO BLOQUER SI PAS FROM AUTH/LOGIN
+      if (localStorage.getItem('accountType') == 'restaurant') return true;
+      this.$router.push('/auth/login');
     },
   },
   {
@@ -77,7 +80,7 @@ const routes = [
           {
             path: '',
             name: 'ClientHome',
-            component:  ClientHome,
+            component: ClientHome,
           },
           {
             path: 'restaurant',
@@ -101,11 +104,11 @@ const routes = [
         ]
       },
       {
-        path:'order',
+        path: 'order',
         component: OrdersPage
       },
       {
-        path:'historical',
+        path: 'historical',
         component: OrdersPage
       },
       {
@@ -142,7 +145,7 @@ const routes = [
         component: Deliveries
       },
       {
-        path:'historical',
+        path: 'historical',
         component: OrdersPage
       },
       {
@@ -176,7 +179,7 @@ const routes = [
       {
         path: 'home',
         name: 'restaurantMain',
-        children:[
+        children: [
           {
             path: 'menus',
             children: [
@@ -218,7 +221,7 @@ const routes = [
         ]
       },
       {
-        path:'historical',
+        path: 'historical',
         component: OrdersPage
       },
       {
@@ -227,7 +230,7 @@ const routes = [
           {
             path: 'update',
             component: RestaurantUpdateProfil,
-            
+
           },
           {
             path: '',
@@ -249,7 +252,7 @@ const routes = [
             props: true,
           }
         ]
-       
+
       },
       {
         path: "/:pathMatch(.*)*", redirect: "/restaurants/home/menus"
@@ -261,36 +264,36 @@ const routes = [
     name: 'auth',
     children: [
       {
-        path : "login",
-        name : "login",
-        component : Login,
+        path: "login",
+        name: "login",
+        component: Login,
       },
       {
-        path : "register",
-        name : "register",
-        component : AuthRegister,
+        path: "register",
+        name: "register",
+        component: AuthRegister,
       },
       {
-        path : "forgot-password",
-        name : "forgot-password",
-        component : ForgotPassword,
+        path: "forgot-password",
+        name: "forgot-password",
+        component: ForgotPassword,
       },
       {
-        path : "reset-password",
-        name : "reset-password",
-        component : UpdatePassword,
+        path: "reset-password",
+        name: "reset-password",
+        component: UpdatePassword,
         props: true
       },
       {
-        path : "send-verification",
-        name : "send-verification",
-        component : SendVerificationEmail,
+        path: "send-verification",
+        name: "send-verification",
+        component: SendVerificationEmail,
         props: true
       },
       {
-        path : "verify-email",
-        name : "verify-email",
-        component : VerifyEmail,
+        path: "verify-email",
+        name: "verify-email",
+        component: VerifyEmail,
         props: true
       },
     ]
