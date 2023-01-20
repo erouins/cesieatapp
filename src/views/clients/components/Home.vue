@@ -46,6 +46,7 @@ export default {
 
 <style>
 .card-contener {
+  margin-bottom: 100px;
   height: 100%;
   width: 100%;
   padding-top: 4px;
