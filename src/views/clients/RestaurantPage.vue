@@ -8,9 +8,8 @@
             <component v-bind:is="component" v-bind:item="item" />
         </div>
     </div>
-    <div class="space-buttom"></div>
-        <div class="cart-button-container" @click="displayCart()">
-        <button class="green-button">Cart</button>
+    <div class="space-buttom">
+        <button class="green-button" @click="displayCart()">Cart</button>
     </div>
     <div class="cart-container" v-bind:style="{display: visibility}">
         <div class="cart-background" @click="displayCart()"></div>
@@ -115,30 +114,13 @@ export default {
         margin: 20px;
     }
 
-    .select-button {
-        cursor: pointer;
-        color: #212529;
-        background-color: #93b721;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 0.7em 1em;
-        border-radius: 5px;
-        border: 0;
-        transition: 0.5s;
-        box-shadow: 5px 0px 40px rgb(0 0 0 / 20%);
-    }
-
-    .cart-button-container {
+    .space-buttom {
         width: 100%;
         height: 70px;
         position: fixed;
         bottom: 0;
         padding-bottom: 0;
         background: #eeeeee;
-    }
-
-    .space-buttom {
-        height: 75px;
     }
 
     .cart-container {

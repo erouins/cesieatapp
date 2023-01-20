@@ -1,10 +1,10 @@
 <template>
   <div class="menu_article_card">
     <MenuCard v-bind:menu="this.item" />
-    <button type='button' @click="goToUpdatePage">
+    <button class="button-edit" type='button' @click="goToUpdatePage">
       <img src="@/assets/modify.png" alt="" />
     </button>
-    <button type='button' @click="removeMenu">
+    <button class="button-delete" type='button' @click="removeMenu">
       <img src="@/assets/remove.png" alt="" />
     </button>
   </div>
@@ -29,8 +29,10 @@ export default {
     removeMenu(){
       console.log('item: ', this.item['id'])
       Axios.delete(deleteMenuUrl,{data:{
-        menuId: this.item['id'], userId: localStorage.getItem("mongoUserId")
-      }}).then((response) => {
+        menuId: this.item['id'],
+        userId: localStorage.getItem("userId")
+      }
+      }).then((response) => {
         console.log('menu deleted')
       })
     }

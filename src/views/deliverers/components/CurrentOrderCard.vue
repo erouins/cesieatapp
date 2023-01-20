@@ -1,9 +1,9 @@
 <template>
  <div class="order-card">
-  <div class="card-header">Commande en cours de livraison</div>
+  <div class="card-header">Order in progress</div>
   <div class="card-body">
     <div class="delivery-column">
-      <div class="column-header">Adresse de livraison</div>
+      <div class="column-header">Delivery address</div>
       <div class="customer-name">{{clientName}}</div>
       <div class="customer-address">{{deliveryAddress}}</div>
     </div>
